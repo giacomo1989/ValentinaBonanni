@@ -1,0 +1,75 @@
+{
+  "nav": {
+    "home": "Inicio",
+    "portfolio": "Portfolio",
+    "about": "Sobre mí",
+    "contact": "Contacto"
+  },
+  "home": {
+    "role": "MODELO FASHION & COMMERCIAL",
+    "cta": "VER PORTFOLIO",
+    "fashion": "Fashion",
+    "commercial": "Comercial",
+    "digitals": "Digitals",
+    "beauty": "Beauty"
+  },
+  "portfolio": {
+    "title": "Portfolio",
+    "subtitle": "Una selección de mis trabajos de fashion y commercial.",
+    "fashion": "Fashion",
+    "commercial": "Commercial",
+    "view": "VER",
+    "digitals": "Digitals",
+    "beauty": "Beauty"
+  },
+  "fashion": {
+    "title": "Fashion"
+  },
+  "commercial": {
+    "title": "Commercial"
+  },
+  "about": {
+    "heading": "About",
+    "body": "Soy Valentina, modelo afincada en Barcelona, con una gran pasión por la moda, la narrativa visual y el mundo creativo. Me gusta aportar personalidad, movimiento y autenticidad a cada proyecto, adaptándome de forma natural a diferentes conceptos, estilos y entornos. Mi trabajo abarca proyectos de fashion, commercial y editorial, siempre con la misma atención al detalle y un enfoque profesional en el set. Disfruto colaborando con fotógrafos, diseñadores, estilistas y marcas para crear imágenes contemporáneas, elegantes y auténticas. Para mí, ser modelo no consiste únicamente en estar delante de la cámara, sino en comprender una visión y ayudar a convertirla en imágenes. Soy curiosa, versátil y siempre estoy abierta a nuevas experiencias, retos creativos y colaboraciones que me permitan crecer y explorar nuevas perspectivas.",
+    "measurements": "MEDIDAS",
+    "height": "ALTURA",
+    "bust": "PECHO",
+    "waist": "CINTURA",
+    "hips": "CADERA",
+    "shoes": "CALZADO",
+    "hair": "CABELLO",
+    "eyes": "OJOS"
+  },
+  "contact": {
+    "title": "Contacto",
+    "heading": "TRABAJEMOS JUNTOS",
+    "body": "Para bookings, colaboraciones o cualquier consulta, no dudes en contactarme.",
+    "email": "EMAIL",
+    "instagram": "INSTAGRAM",
+    "formName": "Nombre",
+    "formNamePlaceholder": "Tu nombre",
+    "formEmail": "Email",
+    "formEmailPlaceholder": "tu@email.com",
+    "formProject": "Tipo de proyecto",
+    "formProjectPlaceholder": "Selecciona el tipo de proyecto",
+    "projectRunway": "Desfile",
+    "projectCampaign": "Campaña",
+    "projectLookbook": "Lookbook",
+    "projectEcommerce": "E-commerce",
+    "projectEvent": "Evento",
+    "projectOther": "Otro",
+    "formMessage": "Mensaje",
+    "formMessagePlaceholder": "Cuéntame sobre tu proyecto...",
+    "formSend": "Enviar mensaje",
+    "projectBeauty": "Beauty"
+  },
+  "footer": {
+    "location": "BARCELONA · EUROPA"
+  },
+  "digitals": {
+    "title": "Digitals"
+  },
+  "beauty": {
+    "title": "Beauty"
+  }
+}

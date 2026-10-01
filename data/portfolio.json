@@ -1,0 +1,153 @@
+{
+  "featured": {
+    "home": "assets/images/home/hero.jpg",
+    "fashionCover": "assets/images/portfolio/fashion-cover.jpg",
+    "commercialCover": "assets/images/portfolio/commercial-cover.jpg",
+    "about": "assets/images/about/about.jpg",
+    "contact": "assets/images/contact/contact.jpg",
+    "digitalsCover": "assets/images/portfolio/digitals-cover.jpg",
+    "beautyCover": "assets/images/portfolio/beauty-cover.jpg"
+  },
+  "portfolio": [
+    {
+      "id": 1,
+      "src": "assets/images/portfolio/01.jpg",
+      "alt": "Fashion portrait 01",
+      "category": "fashion",
+      "layout": "tall"
+    },
+    {
+      "id": 2,
+      "src": "assets/images/portfolio/02.jpg",
+      "alt": "Fashion portrait 02",
+      "category": "fashion",
+      "layout": "portrait"
+    },
+    {
+      "id": 3,
+      "src": "assets/images/portfolio/03.jpg",
+      "alt": "Fashion portrait 03",
+      "category": "fashion",
+      "layout": "square"
+    },
+    {
+      "id": 4,
+      "src": "assets/images/portfolio/04.jpg",
+      "alt": "Fashion portrait 04",
+      "category": "fashion",
+      "layout": "portrait"
+    },
+    {
+      "id": 5,
+      "src": "assets/images/portfolio/05.jpg",
+      "alt": "Fashion portrait 05",
+      "category": "fashion",
+      "layout": "landscape"
+    },
+    {
+      "id": 6,
+      "src": "assets/images/portfolio/06.jpg",
+      "alt": "Fashion portrait 06",
+      "category": "fashion",
+      "layout": "tall"
+    },
+    {
+      "id": 7,
+      "src": "assets/images/portfolio/07.jpg",
+      "alt": "Commercial image 01",
+      "category": "commercial",
+      "layout": "portrait"
+    },
+    {
+      "id": 8,
+      "src": "assets/images/portfolio/08.jpg",
+      "alt": "Commercial image 02",
+      "category": "commercial",
+      "layout": "square"
+    },
+    {
+      "id": 9,
+      "src": "assets/images/portfolio/09.jpg",
+      "alt": "Commercial image 03",
+      "category": "commercial",
+      "layout": "tall"
+    },
+    {
+      "id": 10,
+      "src": "assets/images/portfolio/10.jpg",
+      "alt": "Commercial image 04",
+      "category": "commercial",
+      "layout": "landscape"
+    },
+    {
+      "id": 11,
+      "src": "assets/images/portfolio/11.jpg",
+      "alt": "Commercial image 05",
+      "category": "commercial",
+      "layout": "portrait"
+    },
+    {
+      "id": 12,
+      "src": "assets/images/portfolio/12.jpg",
+      "alt": "Commercial image 06",
+      "category": "commercial",
+      "layout": "tall"
+    },
+    {
+      "id": 13,
+      "src": "assets/images/portfolio/13.jpg",
+      "alt": "Digitals image 13",
+      "category": "digitals",
+      "layout": "portrait"
+    },
+    {
+      "id": 14,
+      "src": "assets/images/portfolio/14.jpg",
+      "alt": "Digitals image 14",
+      "category": "digitals",
+      "layout": "tall"
+    },
+    {
+      "id": 15,
+      "src": "assets/images/portfolio/15.jpg",
+      "alt": "Digitals image 15",
+      "category": "digitals",
+      "layout": "square"
+    },
+    {
+      "id": 16,
+      "src": "assets/images/portfolio/16.jpg",
+      "alt": "Digitals image 16",
+      "category": "digitals",
+      "layout": "landscape"
+    },
+    {
+      "id": 17,
+      "src": "assets/images/portfolio/17.jpg",
+      "alt": "Beauty image 17",
+      "category": "beauty",
+      "layout": "tall"
+    },
+    {
+      "id": 18,
+      "src": "assets/images/portfolio/18.jpg",
+      "alt": "Beauty image 18",
+      "category": "beauty",
+      "layout": "portrait"
+    },
+    {
+      "id": 19,
+      "src": "assets/images/portfolio/19.jpg",
+      "alt": "Beauty image 19",
+      "category": "beauty",
+      "layout": "landscape"
+    },
+    {
+      "id": 20,
+      "src": "assets/images/portfolio/20.jpg",
+      "alt": "Beauty image 20",
+      "category": "beauty",
+      "layout": "square"
+    }
+  ]
+}

@@ -1,0 +1,193 @@
+@media(max-width:800px){.shell{padding:22px 20px 18px}.menu-toggle{display:block}.nav{display:none;position:absolute;top:44px;right:0;background:var(--bg);padding:20px;flex-direction:column;align-items:flex-end;gap:18px}.nav.open{display:flex}.home-page{grid-template-columns:1fr;gap:30px}.home-photo{height:62vh;min-height:430px}.home-copy{padding:5px 4px 30px}.portfolio-covers{grid-template-columns:1fr}.gallery{columns:2;column-gap:10px}.gallery-item{margin-bottom:10px}.about-wrap,.contact-wrap{grid-template-columns:1fr;gap:35px;margin-top:20px}.about-photo,.contact-photo{max-width:520px}.measurements{grid-template-columns:repeat(2,1fr)}.contact-copy .script-title{margin-bottom:35px}.footer{padding-top:25px}.script-title{font-size:42px}}@media(max-width:480px){.gallery{columns:2}.signature{font-size:22px}.home-copy h1{font-size:17px}.footer{font-size:7px}}
+
+@media(max-width:800px){.home-categories{grid-template-columns:repeat(2,1fr);margin-top:10px}.home-category{min-height:105px;border-bottom:1px solid var(--line)}.home-category:nth-child(2n){border-right:0}.home-category:nth-last-child(-n+2){border-bottom:0}.portfolio-covers-four{grid-template-columns:repeat(2,1fr)}.footer-signature{position:static;transform:none;order:2;font-size:20px}.footer{gap:12px;flex-wrap:wrap}.footer>span:first-child{order:1}.socials{order:3}}
+@media(max-width:480px){.home-category{font-size:25px;padding:18px 14px}.portfolio-covers-four{gap:10px}.footer-signature{width:100%;text-align:center;order:1}.footer>span:first-child{order:2}.socials{order:3}}
+
+@media(max-width:800px){.site-header{height:60px;margin:-22px -20px 0;padding:10px 20px}.nav{top:60px;right:0;background:linear-gradient(180deg,rgba(225,221,211,.99),rgba(242,240,233,.99));box-shadow:0 14px 24px rgba(41,40,36,.08)}.category-topline{gap:14px}.home-back{width:34px;height:34px}.gallery-head{padding-top:3vh}}
+
+/* V4 home responsive */
+@media(max-width:800px){.home-body .site-header{height:70px;padding:18px 22px}.home-body .signature{font-size:31px}.home-body .menu-toggle{display:flex;width:26px;height:22px;padding:3px 0;flex-direction:column;justify-content:space-around;color:inherit}.home-body .menu-toggle span{display:block;width:100%;height:1px;background:currentColor}.home-body .nav{top:70px;right:0;width:100%;padding:28px 22px 32px;background:rgba(31,29,27,.94);color:#f3eee5;align-items:flex-end;gap:24px;box-shadow:none;backdrop-filter:blur(12px)}.home-hero{min-height:620px;background-position:42% center}.home-body .home-copy{left:auto;right:8vw;top:51%;width:190px}.home-body .home-copy h1{font-size:26px;font-weight:500;line-height:1.5;letter-spacing:.14em;margin-bottom:38px}.home-body .cta{font-size:12px;font-weight:700;gap:14px}.home-footer{padding:0 22px 20px;height:58px}.home-socials{gap:14px}}
+@media(max-width:480px){.home-body .signature{font-size:29px}.home-hero{background-position:40% center}.home-body .home-copy{right:7vw;top:55%;width:155px}.home-body .home-copy h1{font-size:26px;font-weight:500;margin-bottom:32px}.home-footer{font-size:6px}.home-socials a,.home-socials svg{width:14px;height:14px}}
+
+
+/* V12 repaired responsive */
+@media(max-width:800px){
+ .portfolio-page,.gallery-page{padding-bottom:58px}
+ .footer-logo{position:static;transform:none;width:132px;order:2;margin:0 auto}
+ .footer-icons{order:3}
+ .footer>span:first-child{order:1}
+ .home-back{font-size:22px!important}
+}
+@media(max-width:480px){
+ .portfolio-page,.gallery-page{padding-bottom:48px}
+ .footer-logo{width:125px!important;text-align:center;order:1}
+ .footer>span:first-child{order:2}.footer-icons{order:3}
+}
+
+@media(max-width:800px){.about-top{grid-template-columns:1fr;gap:35px}.about-inline-signature{width:165px;max-width:60%;margin-top:24px}.about-wrap>.measurements{margin-top:38px}}
+
+/* V18 — keep editorial two-column compositions on mobile */
+@media(max-width:800px){
+  .portfolio-covers.portfolio-covers-four{grid-template-columns:repeat(2,minmax(0,1fr));width:100%;max-width:none}
+  .about-top{grid-template-columns:minmax(0,.92fr) minmax(0,1.08fr);gap:22px;align-items:start}
+  .about-photo{max-width:none;width:100%}
+  .about-wrap>.measurements-section{grid-column:1/-1;width:100%;margin-top:38px}
+  .contact-wrap{grid-template-columns:minmax(0,1.08fr) minmax(0,.92fr);gap:22px;align-items:start}
+  .contact-photo{max-width:none;width:100%}
+  .contact-copy{min-width:0}
+}
+@media(max-width:480px){
+  .about-top{gap:14px}
+  .contact-wrap{gap:14px}
+  .about-copy p,.contact-copy p{font-size:9px;line-height:1.65}
+  .about-inline-signature{width:120px;max-width:80%;margin-top:18px}
+  .contact-copy .script-title{margin-bottom:22px}
+  .contact-copy h1{font-size:14px;margin-bottom:16px}
+  .contact-details{margin-top:22px;gap:16px}
+}
+
+/* V19 — mobile-only refinements */
+@media(max-width:800px){
+  /* Contact: the image fills the full height of the text column beside it. */
+  .contact-wrap{align-items:stretch}
+  .contact-photo{height:100%;aspect-ratio:auto;align-self:stretch}
+  .contact-photo img{width:100%;height:100%;object-fit:cover}
+
+  /* About: keep measurements below the two-column intro, but more compact. */
+  .about-wrap>.measurements-section{margin-top:26px;padding-top:18px}
+  .measurements-title{margin-bottom:16px;font-size:9px}
+  .about-wrap>.measurements-section .measurements{gap:14px 18px}
+  .measurement b{margin-bottom:5px}
+}
+@media(max-width:480px){
+  .about-wrap>.measurements-section{margin-top:22px;padding-top:16px}
+  .measurements-title{margin-bottom:13px}
+  .about-wrap>.measurements-section .measurements{gap:11px 14px}
+}
+
+/* V20 — mobile only: reduce empty space before footer on About and Contact */
+@media(max-width:800px){
+  .about-wrap,.contact-wrap{margin-bottom:28px;}
+}
+@media(max-width:480px){
+  .about-wrap,.contact-wrap{margin-bottom:18px;}
+}
+
+/* V21 — mobile only: Home menu uses the same compact panel geometry as internal pages */
+@media(max-width:800px){
+  .home-body .nav{
+    width:auto;
+    min-width:0;
+    right:0;
+    padding:20px;
+    gap:18px;
+    align-items:flex-end;
+  }
+}
+
+
+/* V22 — mobile only: CONTACT title full-width above the two-column content */
+@media(max-width:800px){
+  .contact-mobile-layout{margin-top:20px;margin-bottom:28px;}
+  .contact-mobile-title{display:block;margin:0 0 26px;}
+  .contact-desktop-title{display:none;}
+  .contact-mobile-layout>.contact-wrap{margin-top:0;margin-bottom:0;grid-template-columns:minmax(0,1.08fr) minmax(0,.92fr);gap:22px;align-items:stretch;}
+  .contact-mobile-layout .contact-photo{height:auto;min-height:100%;align-self:stretch;}
+  .contact-mobile-layout .contact-photo img{width:100%;height:100%;object-fit:cover;}
+}
+@media(max-width:480px){
+  .contact-mobile-layout{margin-bottom:18px;}
+  .contact-mobile-title{margin-bottom:20px;}
+  .contact-mobile-layout>.contact-wrap{gap:14px;}
+}
+
+
+/* V23 — mobile only: ABOUT page title above the two-column intro */
+@media(max-width:800px){
+  .about-mobile-title{display:block;margin:0 0 26px;}
+  .about-desktop-title{display:none;}
+  .about-mobile-copy-title{display:block;margin:0 0 14px;font-family:'Space Mono',monospace;font-size:11px;font-weight:500;line-height:1.35;letter-spacing:.12em;text-transform:uppercase;}
+  .about-wrap{margin-top:20px;}
+  .about-top{grid-template-columns:minmax(0,.92fr) minmax(0,1.08fr);gap:22px;align-items:start;}
+}
+@media(max-width:480px){
+  .about-mobile-title{margin-bottom:20px;}
+  .about-mobile-copy-title{font-size:10px;margin-bottom:11px;}
+  .about-top{gap:14px;}
+}
+@media(min-width:801px){
+  .about-mobile-title,.about-mobile-copy-title{display:none;}
+}
+
+
+/* V24 — mobile only: reduce the large flexible blank area before footer on About/Contact */
+@media(max-width:800px){
+  .about-shell,.contact-shell{min-height:72vh;}
+  .about-shell .page,.contact-shell .page{flex:0 0 auto;}
+  .about-shell .footer,.contact-shell .footer{margin-top:clamp(90px,24vh,230px);}
+}
+@media(max-width:480px){
+  .about-shell .footer,.contact-shell .footer{margin-top:clamp(70px,20vh,180px);}
+}
+
+
+/* V25 — keep the same hierarchy on mobile */
+@media(max-width:800px){
+  .about-page-title,.contact-page-title{display:block;margin:0 0 26px;}
+  .about-copy-title{font-size:11px;margin-bottom:14px;}
+}
+@media(max-width:480px){
+  .about-page-title,.contact-page-title{margin-bottom:20px;}
+  .about-copy-title{font-size:10px;margin-bottom:11px;}
+}
+
+/* V27 — mobile only: About photo follows the height of the copy column */
+@media(max-width:800px){
+  .about-top{align-items:stretch;}
+  .about-photo{height:100%;aspect-ratio:auto;align-self:stretch;overflow:hidden;}
+  .about-photo img{width:100%;height:100%;object-fit:cover;}
+}
+
+@media(max-width:800px){.contact-form{margin-top:20px;gap:14px}.contact-form label{gap:5px}.contact-form input,.contact-form select,.contact-form textarea{font-size:8px;padding:5px 0 7px}.contact-form textarea{min-height:58px}.contact-form button{padding:11px 8px;font-size:7px;letter-spacing:.13em;gap:10px}.contact-mobile-layout .contact-details{margin-top:18px}}
+@media(max-width:480px){.contact-form{gap:11px}.contact-form label>span{font-size:7px}.contact-form input,.contact-form select,.contact-form textarea{font-size:7.5px}.contact-form textarea{min-height:52px}}
+
+/* V30 — mobile only: compact contact handles */
+@media(max-width:800px){
+  .contact-details a{font-size:9px;}
+}
+
+/* V31 — Representation map responsive */
+@media(max-width:800px){
+  .representation{margin-top:70px;padding:48px 0 24px}
+  .representation-head{display:block;margin-bottom:22px}
+  .representation-head h2{font-size:36px}
+  .representation-copy{margin-top:18px;max-width:290px;font-size:8px}
+  .representation-map{height:480px;min-height:0;overflow:visible}
+  .europe-map{inset:3% -15% auto -15%;width:130%;height:72%}
+  .agency-marker em{font-size:6.5px}
+  .marker-london{left:31%;top:34%}.marker-milan{left:54%;top:48%}.marker-barcelona{left:35%;top:51.5%}.marker-madrid{left:24%;top:56%}.marker-stockholm{left:64%;top:20%}
+  .agency-card{left:0;right:0;top:auto;bottom:0;width:100%;min-height:150px;padding:20px 22px;background:rgba(242,240,233,.97)}
+  .agency-card::before{display:none}
+  .agency-card h3{font-size:12px;margin-bottom:20px}.agency-card-city{font-size:7px}
+  .representation-note{text-align:left;font-size:6px;margin-top:13px}
+}
+@media(max-width:480px){
+  .representation{margin-top:56px;padding-top:40px}
+  .representation-head h2{font-size:32px}
+  .representation-map{height:430px}
+  .agency-marker{gap:5px}.agency-marker button{width:15px;height:15px}.agency-marker button::after{inset:6px}.agency-marker button span{inset:4px}
+  .agency-marker em{font-size:5.8px;letter-spacing:.08em}
+}
+
+/* V32 — card stays attached to the selected city on touch screens too */
+@media(max-width:800px){
+  .representation-map{height:500px;overflow:hidden}
+  .europe-map{inset:2% -8% auto -8%;width:116%;height:78%;object-fit:contain}
+  .agency-card{left:0;right:auto;top:0;bottom:auto;width:min(230px,68vw);min-height:132px;padding:17px 18px}
+  .agency-card h3{margin-bottom:15px}
+  .marker-london{left:27%;top:41%}.marker-milan{left:50%;top:53%}.marker-barcelona{left:33%;top:58.5%}.marker-madrid{left:19%;top:63%}.marker-stockholm{left:66%;top:25%}
+}
+@media(max-width:480px){
+  .representation-map{height:460px}
+  .agency-card{width:min(215px,70vw);padding:15px 16px}
+}

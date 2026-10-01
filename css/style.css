@@ -1,0 +1,326 @@
+@import url('https://fonts.googleapis.com/css2?family=Space+Mono:wght@400;700&display=swap');
+:root{--bg:#f2f0e9;--ink:#292824;--muted:#77736b;--line:#d5d0c6;--gap:18px}*{box-sizing:border-box}html{scroll-behavior:smooth}body{margin:0;background:var(--bg);color:var(--ink);font-family:Arial,Helvetica,sans-serif;font-size:12px;letter-spacing:.08em}a{color:inherit;text-decoration:none}img{display:block;width:100%}.shell{min-height:100vh;padding:28px 38px 22px;display:flex;flex-direction:column}.site-header{height:52px;display:flex;align-items:flex-start;justify-content:space-between;position:relative;z-index:5}.signature{font-family:"Brush Script MT","Segoe Script",cursive;font-size:26px;letter-spacing:0;line-height:1}.nav{display:flex;gap:28px;align-items:center;text-transform:uppercase;font-size:9px;letter-spacing:.14em}.nav a{padding:4px 0;border-bottom:1px solid transparent}.nav a:hover,.nav a.active{border-color:var(--ink)}.lang{display:flex;gap:8px;margin-left:12px}.lang button{border:0;background:none;padding:0;font:inherit;font-size:8px;color:var(--muted);cursor:pointer}.lang button.active{color:var(--ink);text-decoration:underline}.page{flex:1}.footer{min-height:38px;display:flex;justify-content:space-between;align-items:flex-end;text-transform:uppercase;font-size:8px;letter-spacing:.16em}.socials{display:flex;gap:12px}.script-title{font-family:"Brush Script MT","Segoe Script",cursive;font-size:48px;font-weight:400;letter-spacing:0;margin:0 0 14px}.eyebrow{text-transform:uppercase;line-height:1.6;font-size:10px}.arrow{margin-left:10px}.home-page{display:grid;grid-template-columns:minmax(0,1.25fr) minmax(300px,.75fr);gap:5vw;align-items:center}.home-photo{height:calc(100vh - 140px);min-height:520px;background:#d8d4cb url('../assets/images/home/hero.jpg') center/cover no-repeat}.home-copy{max-width:270px}.home-copy h1{font-size:19px;line-height:1.5;letter-spacing:.18em;font-weight:500;margin:0 0 42px}.cta{text-transform:uppercase;font-size:9px;letter-spacing:.18em;border-bottom:1px solid var(--ink);padding-bottom:5px}.portfolio-intro{padding:5vh 0 4vh;max-width:420px}.portfolio-covers{display:grid;grid-template-columns:1fr 1fr;gap:22px;max-width:900px}.cover{position:relative;aspect-ratio:1.12/1;overflow:hidden;background:#d6d2ca}.cover img{height:100%;object-fit:cover;filter:brightness(.82)}.cover-label{position:absolute;left:24px;bottom:24px;color:#fff;text-transform:uppercase;font-size:16px;letter-spacing:.14em}.cover-label small{display:block;font-size:8px;margin-top:14px}.gallery-head{display:flex;justify-content:space-between;align-items:flex-start;padding:4vh 0 3vh}.gallery{columns:3;column-gap:var(--gap);max-width:1180px}.gallery-item{break-inside:avoid;margin:0 0 var(--gap);overflow:hidden;background:#ddd8cf}.gallery-item img{width:100%;height:auto;transition:transform .5s ease}.gallery-item:hover img{transform:scale(1.015)}.gallery-item.tall img{aspect-ratio:3/4.6;object-fit:cover}.gallery-item.portrait img{aspect-ratio:3/4;object-fit:cover}.gallery-item.square img{aspect-ratio:1/1;object-fit:cover}.gallery-item.landscape img{aspect-ratio:4/3;object-fit:cover}.about-wrap{display:grid;grid-template-columns:minmax(300px,440px) minmax(300px,520px);gap:7vw;align-items:center;max-width:1050px;margin:4vh auto}.about-photo{aspect-ratio:4/5;background:#d8d4cb}.about-photo img{height:100%;object-fit:cover}.about-copy h1,.contact-copy h1{font-size:15px;letter-spacing:.14em}.about-copy p,.contact-copy p{line-height:1.8;letter-spacing:.05em;color:#514f49}.measurements{border-top:1px solid var(--line);margin-top:38px;padding-top:24px;display:grid;grid-template-columns:repeat(4,1fr);gap:26px}.measurement b{display:block;font-size:8px;text-transform:uppercase;margin-bottom:8px}.measurement span{font-size:9px;color:#55524c}.contact-wrap{display:grid;grid-template-columns:1fr minmax(300px,440px);gap:8vw;align-items:center;max-width:1050px;margin:3vh auto}.contact-copy{max-width:410px}.contact-copy .script-title{margin-bottom:65px}.contact-copy h1{font-size:21px;line-height:1.35;margin-bottom:24px}.contact-details{margin-top:35px;display:grid;gap:24px}.contact-details b{display:block;font-size:9px;text-transform:uppercase;margin-bottom:8px}.contact-photo{aspect-ratio:4/5;background:#d8d4cb}.contact-photo img{height:100%;object-fit:cover}.placeholder{height:100%;display:grid;place-items:center;color:#77736b;text-transform:uppercase;font-size:9px;letter-spacing:.16em;border:1px solid #d4cfc5}.menu-toggle{display:none;border:0;background:none;font-size:20px}.empty{padding:80px 0;color:var(--muted)}
+
+/* V2: signature identity + four portfolio worlds */
+.signature,.footer-signature,.script-title{font-family:"Snell Roundhand","Segoe Script","Brush Script MT",cursive;font-weight:400;letter-spacing:0}
+.footer{position:relative}
+.footer-signature{position:absolute;left:50%;transform:translateX(-50%);bottom:-1px;font-size:23px;white-space:nowrap;text-transform:none}
+.home-categories{display:grid;grid-template-columns:repeat(4,1fr);border-top:1px solid var(--line);border-bottom:1px solid var(--line);margin:34px 0 28px}
+.home-category{min-height:112px;padding:22px 20px;display:flex;align-items:flex-end;justify-content:space-between;border-right:1px solid var(--line);font-family:"Snell Roundhand","Segoe Script","Brush Script MT",cursive;font-size:29px;letter-spacing:0;transition:background .25s ease}
+.home-category:last-child{border-right:0}.home-category:hover{background:rgba(41,40,36,.035)}.category-arrow{font-family:Arial,Helvetica,sans-serif;font-size:13px;margin-bottom:7px}
+.portfolio-covers-four{grid-template-columns:repeat(4,1fr);max-width:1180px}.portfolio-covers-four .cover{aspect-ratio:3/4}.portfolio-covers-four .cover-label{left:18px;bottom:18px}
+.about-copy>.script-title{font-size:48px;margin-bottom:24px}
+
+
+/* V3: sticky navigation */
+.site-header{position:sticky;top:0;z-index:100;height:64px;align-items:center;margin:-28px -38px 0;padding:12px 38px 10px;background:linear-gradient(180deg,rgba(207,202,191,.98) 0%,rgba(225,221,211,.96) 62%,rgba(242,240,233,.92) 100%);backdrop-filter:blur(10px);-webkit-backdrop-filter:blur(10px);border-bottom:1px solid rgba(41,40,36,.08)}
+.category-topline{display:flex;align-items:center;gap:22px}
+.home-back{width:38px;height:38px;border:1px solid rgba(41,40,36,.32);border-radius:50%;display:inline-flex;align-items:center;justify-content:center;flex:0 0 auto;transition:transform .25s ease,background .25s ease,border-color .25s ease}
+.home-back svg{width:17px;height:17px;fill:none;stroke:currentColor;stroke-width:1.25;stroke-linecap:round;stroke-linejoin:round}
+.home-back:hover{transform:translateX(-3px);background:rgba(41,40,36,.055);border-color:rgba(41,40,36,.58)}
+
+/* V4 — approved home direction */
+.home-body{min-height:100vh;background:#c9c3b9;color:#272622;overflow-x:hidden;font-family:"Inter","Helvetica Neue",Arial,sans-serif}
+.home-body .site-header{position:fixed;top:0;left:0;right:0;margin:0;height:88px;padding:25px 4.7vw;align-items:center;background:transparent;border:0;color:#292824;transition:background .35s ease,color .35s ease,box-shadow .35s ease;z-index:1000}
+.home-body .site-header.scrolled{background:linear-gradient(180deg,rgba(32,30,27,.88),rgba(32,30,27,.70));color:#f4f0e8;box-shadow:0 1px 0 rgba(255,255,255,.08);backdrop-filter:blur(10px);-webkit-backdrop-filter:blur(10px)}
+.home-body .signature{font-family:"Italianno","Snell Roundhand","Segoe Script",cursive;font-size:38px;line-height:1;color:inherit;text-shadow:0 1px 12px rgba(245,240,231,.18)}
+.home-body .nav{gap:39px;font-family:"Inter","Helvetica Neue",sans-serif;font-size:8px;font-weight:400;letter-spacing:.16em;color:inherit}
+.home-body .nav a{border:0;padding:5px 0}.home-body .nav a:hover{opacity:.55}
+.home-hero{position:relative;width:100%;height:100vh;min-height:620px;background-position:center center;background-size:cover;background-repeat:no-repeat}
+.home-hero::after{content:"";position:absolute;inset:0;background:linear-gradient(90deg,rgba(240,235,225,.06),transparent 48%,rgba(240,235,225,.04));pointer-events:none}
+.home-body .home-copy{position:absolute;z-index:2;left:68%;top:49%;transform:translateY(-50%);width:270px;color:#302f2b}
+.home-body .home-copy h1{font-family:"Inter","Helvetica Neue",sans-serif;font-size:26px;font-weight:500;line-height:1.42;letter-spacing:.15em;margin:0 0 58px;text-transform:uppercase}
+.home-body .cta{display:inline-flex;align-items:center;gap:20px;border:0;padding:0;font-family:"Inter","Helvetica Neue",sans-serif;font-size:12px;font-weight:700;letter-spacing:.19em;text-transform:uppercase;transition:gap .25s ease,opacity .25s ease}.home-body .cta:hover{gap:27px;opacity:.65}
+.home-footer{position:absolute;z-index:5;left:0;right:0;bottom:0;height:68px;padding:0 4.7vw 26px;display:flex;align-items:flex-end;justify-content:space-between;color:#eee9df;font-family:"Inter","Helvetica Neue",sans-serif;font-size:7px;font-weight:400;letter-spacing:.17em;text-transform:uppercase;text-shadow:0 1px 7px rgba(0,0,0,.25)}
+.home-socials{display:flex;align-items:center;gap:17px}.home-socials a{display:block;width:15px;height:15px}.home-socials svg{width:15px;height:15px;fill:none;stroke:currentColor;stroke-width:1.35;stroke-linecap:round;stroke-linejoin:round}
+
+/* V7 — signature logo + VB custom cursor */
+.logo-signature{display:block;width:190px;height:auto;line-height:0}
+.logo-signature img{display:block;width:100%;height:auto;object-fit:contain}
+.home-body .logo-signature{width:205px}
+.vb-cursor{position:fixed;left:0;top:0;z-index:99999;width:34px;height:34px;border:1px solid currentColor;border-radius:50%;display:flex;align-items:center;justify-content:center;font-family:"Bodoni Moda",serif;font-size:11px;font-weight:400;letter-spacing:.03em;color:#292824;pointer-events:none;transform:translate(-50%,-50%);transition:width .18s ease,height .18s ease,color .25s ease,background .25s ease,border-color .25s ease;mix-blend-mode:difference}
+.vb-cursor::after{content:"VB"}
+.vb-cursor.is-link{width:44px;height:44px}
+@media (pointer:fine){body,body a,body button{cursor:none}}
+@media (pointer:coarse),(max-width:800px){.vb-cursor{display:none!important}body,body a,body button{cursor:auto}}
+
+/* V8 — clean transparent signature + darker VB cursor */
+.logo-signature img{background:transparent!important}
+.vb-cursor{color:#11110f;border-color:#11110f;border-width:1.5px;background:rgba(17,17,15,.08);mix-blend-mode:normal;font-weight:500}
+.vb-cursor.is-link{background:rgba(17,17,15,.13)}
+
+
+/* V10 — Space Mono typography + refined portfolio hover */
+body,
+.nav,
+.lang button,
+.eyebrow,
+.cta,
+.cover-label,
+.cover-label small,
+.gallery-head > span,
+.about-copy,
+.about-copy h1,
+.about-copy p,
+.measurements,
+.measurement b,
+.measurement span,
+.contact-copy h1,
+.contact-copy p,
+.contact-details,
+.contact-details b,
+.footer,
+.home-body,
+.home-body .nav,
+.home-body .home-copy h1,
+.home-body .cta,
+.home-footer,
+.category-arrow,
+.empty,
+.placeholder,
+.menu-toggle {
+  font-family:'Space Mono',monospace;
+}
+
+/* About is intentionally NOT an editorial/script title. */
+.about-copy > .script-title {
+  font-family:'Space Mono',monospace;
+  font-weight:400;
+  letter-spacing:.08em;
+}
+
+/* These page titles keep the established editorial/script identity. */
+.portfolio-intro > .script-title,
+.category-topline > .script-title,
+.contact-copy > .script-title {
+  font-family:"Snell Roundhand","Segoe Script","Brush Script MT",cursive;
+  font-weight:400;
+  letter-spacing:0;
+}
+
+/* Elegant zoom for the four Portfolio cover images. */
+.portfolio-covers .cover img {
+  transform:scale(1);
+  transition:transform .85s cubic-bezier(.22,.61,.36,1), filter .55s ease;
+  will-change:transform;
+}
+.portfolio-covers .cover:hover img {
+  transform:scale(1.055);
+  filter:brightness(.88);
+}
+.portfolio-covers .cover-label {
+  transition:transform .55s cubic-bezier(.22,.61,.36,1);
+}
+.portfolio-covers .cover:hover .cover-label {
+  transform:translateY(-4px);
+}
+
+/* V11 — Portfolio footer uses the real signature asset and icon-only socials */
+.footer-logo{width:150px;height:auto;line-height:0;bottom:-4px}
+.footer-logo img{display:block;width:100%;height:auto;background:transparent;object-fit:contain}
+.footer-icons{display:flex;align-items:center;gap:17px}
+.footer-icons a{display:block;width:15px;height:15px;line-height:0}
+.footer-icons svg{display:block;width:15px;height:15px;fill:none;stroke:currentColor;stroke-width:1.35;stroke-linecap:round;stroke-linejoin:round}
+
+
+/* V12 repaired — breathing room, unified footer, reliable image reveal */
+.portfolio-page,.gallery-page{padding-bottom:72px}
+.home-back{display:inline-flex!important;align-items:center;justify-content:center;width:auto!important;height:auto!important;border:0!important;border-radius:0!important;font-family:"Space Mono",monospace;font-size:24px;font-weight:400;line-height:1;color:var(--ink);transition:transform .35s cubic-bezier(.22,.61,.36,1),opacity .25s ease}
+.home-back:hover{transform:translateX(-4px);opacity:.58}
+
+.footer-logo{position:absolute;left:50%;transform:translateX(-50%);width:150px;height:auto;line-height:0;bottom:-4px}
+.footer-logo img{display:block;width:100%;height:auto;background:transparent;object-fit:contain}
+.footer-icons{display:flex;align-items:center;gap:17px}
+.footer-icons a{display:block;width:15px;height:15px;line-height:0}
+.footer-icons svg{display:block;width:15px;height:15px;fill:none;stroke:currentColor;stroke-width:1.35;stroke-linecap:round;stroke-linejoin:round}
+
+/* Elements remain visible by default. JS only adds .reveal-ready when observer is active. */
+.portfolio-covers .cover img,.gallery-item img{transition:transform .8s cubic-bezier(.22,.61,.36,1),filter .55s ease}
+.portfolio-covers .cover:hover img,.gallery-item:hover img{transform:scale(1.035)}
+.reveal-ready{opacity:0;transform:translateY(26px);transition:opacity .82s ease,transform .82s cubic-bezier(.22,.61,.36,1)}
+.reveal-ready.is-visible{opacity:1;transform:translateY(0)}
+@media (prefers-reduced-motion:reduce){.reveal-ready{opacity:1!important;transform:none!important;transition:none!important}.portfolio-covers .cover img,.gallery-item img{transition:none!important}}
+
+/* V13 — Portfolio cinematic hover: muted at rest, full colour + VIEW on hover */
+.portfolio-covers .cover::after{
+  content:"";
+  position:absolute;
+  inset:0;
+  z-index:1;
+  background:rgba(18,17,15,.22);
+  pointer-events:none;
+  transition:background .75s cubic-bezier(.22,.61,.36,1);
+}
+.portfolio-covers .cover img{
+  filter:brightness(.72) saturate(.72);
+  transform:scale(1);
+  transition:transform .9s cubic-bezier(.22,.61,.36,1),filter .75s cubic-bezier(.22,.61,.36,1);
+}
+.portfolio-covers .cover:hover img{
+  filter:brightness(1) saturate(1);
+  transform:scale(1.07);
+}
+.portfolio-covers .cover:hover::after{background:rgba(18,17,15,.03)}
+.portfolio-covers .cover-label{z-index:2}
+.portfolio-covers .cover-label small{display:none}
+.portfolio-covers .cover::before{
+  content:"VIEW  →";
+  position:absolute;
+  left:50%;
+  top:50%;
+  z-index:3;
+  transform:translate(-50%,-38%);
+  opacity:0;
+  color:#fff;
+  font-family:'Space Mono',monospace;
+  font-size:10px;
+  font-weight:400;
+  letter-spacing:.20em;
+  line-height:1;
+  white-space:nowrap;
+  pointer-events:none;
+  transition:opacity .45s ease,transform .55s cubic-bezier(.22,.61,.36,1);
+}
+.portfolio-covers .cover:hover::before{
+  opacity:1;
+  transform:translate(-50%,-50%);
+}
+@media (hover:none){
+  .portfolio-covers .cover::before{display:none}
+  .portfolio-covers .cover img{filter:brightness(.84) saturate(.88)}
+}
+@media (prefers-reduced-motion:reduce){
+  .portfolio-covers .cover::before,.portfolio-covers .cover::after{transition:none!important}
+}
+
+/* V14 — slower, more visible VIEW entrance / exit */
+.portfolio-covers .cover::before{
+  font-size:16px;
+  font-weight:500;
+  letter-spacing:.24em;
+  transform:translate(-50%,-22%);
+  opacity:0;
+  transition:
+    opacity .85s cubic-bezier(.22,.61,.36,1),
+    transform 1.05s cubic-bezier(.16,1,.3,1),
+    letter-spacing 1.05s cubic-bezier(.16,1,.3,1);
+}
+.portfolio-covers .cover:hover::before{
+  opacity:1;
+  transform:translate(-50%,-50%);
+  letter-spacing:.18em;
+  transition-delay:.10s;
+}
+
+/* V15 — unified navigation typography */
+.nav,
+.home-body .nav {
+  font-size: 10px;
+  font-weight: 500;
+}
+
+
+/* V16 — About composition + truly transparent Home header at top */
+.about-wrap{display:block;max-width:1050px;margin:4vh auto}
+.about-top{display:grid;grid-template-columns:minmax(300px,440px) minmax(300px,520px);gap:7vw;align-items:start}
+.about-copy{padding-top:0}
+.about-copy>.script-title{margin-top:0}
+.about-inline-signature{width:190px;max-width:55%;height:auto;margin-top:28px;background:transparent;object-fit:contain}
+.about-wrap>.measurements{width:100%;margin-top:38px;padding-top:24px}
+.home-body .site-header:not(.scrolled){background:transparent!important;background-color:transparent!important;box-shadow:none!important;backdrop-filter:none!important;-webkit-backdrop-filter:none!important;border-bottom-color:transparent!important}
+
+
+/* V17 — requested refinements */
+.home-body .site-header.scrolled{
+  background:linear-gradient(180deg, rgb(32 30 27 / 33%), rgb(32 30 27 / 24%));
+  box-shadow:0 1px 0 rgba(255,255,255,.035);
+  backdrop-filter:blur(7px);
+  -webkit-backdrop-filter:blur(7px);
+}
+.about-wrap{margin-bottom:100px;}
+.contact-wrap{margin-bottom:100px;}
+.measurements-section{width:100%;border-top:1px solid var(--line);margin-top:38px;padding-top:24px;}
+.measurements-title{margin:0 0 26px;font-family:'Space Mono',monospace;font-size:10px;font-weight:500;letter-spacing:.14em;text-transform:uppercase;}
+.about-wrap>.measurements-section .measurements{border-top:0;margin-top:0;padding-top:0;}
+.home-back{font-size:0!important;line-height:0;}
+.home-back svg{width:27px;height:14px;fill:none;stroke:currentColor;stroke-width:.85;stroke-linecap:round;stroke-linejoin:round;overflow:visible;}
+
+/* V18 — full-width portfolio covers */
+.portfolio-covers.portfolio-covers-four{
+  width:100%;
+  max-width:none;
+  grid-template-columns:repeat(4,minmax(0,1fr));
+}
+
+
+/* V22 — Contact mobile hierarchy: title above, copy + photo below */
+.contact-mobile-title{display:none;}
+.contact-mobile-layout{max-width:1050px;margin:3vh auto;}
+.contact-mobile-layout>.contact-wrap{margin-left:0;margin-right:0;}
+
+
+/* V25 — unified About/Contact hierarchy on desktop and mobile */
+.about-page-title,.contact-page-title{display:block;margin:0 0 34px;}
+.about-copy-title{display:block;margin:0 0 18px;font-family:'Space Mono',monospace;font-size:12px;font-weight:500;line-height:1.35;letter-spacing:.12em;text-transform:uppercase;}
+.contact-mobile-layout>.contact-wrap{margin-top:0;}
+
+/* V28 — elegant contact form */
+.contact-form{margin-top:30px;display:grid;gap:20px;max-width:100%}.contact-form label{display:grid;gap:8px}.contact-form label>span{font-family:'Space Mono',monospace;font-size:8px;font-weight:700;letter-spacing:.16em;text-transform:uppercase}.contact-form input,.contact-form select,.contact-form textarea{width:100%;border:0;border-bottom:1px solid var(--line);border-radius:0;background:transparent;color:var(--ink);padding:7px 0 10px;font:400 10px/1.6 'Space Mono',monospace;letter-spacing:.04em;outline:none}.contact-form textarea{resize:vertical;min-height:74px}.contact-form select{appearance:none;-webkit-appearance:none;background-image:linear-gradient(45deg,transparent 50%,var(--ink) 50%),linear-gradient(135deg,var(--ink) 50%,transparent 50%);background-position:calc(100% - 8px) 50%,calc(100% - 4px) 50%;background-size:4px 4px,4px 4px;background-repeat:no-repeat;padding-right:20px}.contact-form input:focus,.contact-form select:focus,.contact-form textarea:focus{border-bottom-color:var(--ink)}.contact-form button{margin-top:4px;width:100%;border:1px solid var(--ink);background:var(--ink);color:var(--bg);padding:14px 18px;display:flex;justify-content:center;align-items:center;gap:24px;font:700 9px/1 'Space Mono',monospace;letter-spacing:.18em;text-transform:uppercase;cursor:pointer;transition:background .3s ease,color .3s ease}.contact-form button:hover{background:transparent;color:var(--ink)}
+
+/* V31 — Representation / interactive Europe map */
+.representation{position:relative;margin:110px 0 10px;padding:72px 0 46px;border-top:1px solid var(--line)}
+.representation-head{display:flex;justify-content:space-between;align-items:flex-end;gap:40px;margin-bottom:26px}
+.representation-kicker{margin:0 0 16px;font-family:'Space Mono',monospace;font-size:9px;font-weight:500;letter-spacing:.18em;text-transform:uppercase;color:var(--muted)}
+.representation-head h2{margin:0;font-family:"Snell Roundhand","Segoe Script","Brush Script MT",cursive;font-size:44px;font-weight:400;letter-spacing:0;line-height:1}
+.representation-copy{max-width:330px;margin:0 0 3px;font-family:'Space Mono',monospace;font-size:9px;line-height:1.8;letter-spacing:.05em;color:var(--muted)}
+.representation-map{position:relative;width:100%;height:min(61vw,650px);min-height:500px;overflow:hidden;background:linear-gradient(180deg,rgba(255,255,255,.08),rgba(255,255,255,0));border-top:1px solid rgba(41,40,36,.08);border-bottom:1px solid rgba(41,40,36,.08)}
+.europe-map{position:absolute;inset:3% 3% 0;width:94%;height:94%;overflow:visible}
+.map-lines{fill:rgba(41,40,36,.018);stroke:rgba(41,40,36,.31);stroke-width:1.1;vector-effect:non-scaling-stroke}
+.map-detail{fill:none;stroke:rgba(41,40,36,.10);stroke-width:.7;stroke-dasharray:2 7;vector-effect:non-scaling-stroke}
+.agency-marker{position:absolute;z-index:3;display:flex;align-items:center;gap:9px;transform:translate(-9px,-9px);font-family:'Space Mono',monospace}
+.agency-marker button{position:relative;width:18px;height:18px;padding:0;border:0;background:transparent;cursor:pointer}
+.agency-marker button::before{content:"";position:absolute;inset:1px;border:1px solid rgba(41,40,36,.35);border-radius:50%;transform:scale(.65);opacity:0;transition:transform .6s cubic-bezier(.16,1,.3,1),opacity .45s ease}
+.agency-marker button::after{content:"";position:absolute;inset:7px;border-radius:50%;background:var(--ink);transition:transform .45s cubic-bezier(.16,1,.3,1)}
+.agency-marker button span{position:absolute;inset:5px;border:1px solid rgba(41,40,36,.42);border-radius:50%;animation:agencyPulse 3.2s ease-out infinite}
+.agency-marker em{font-style:normal;font-size:8px;font-weight:500;letter-spacing:.12em;text-transform:uppercase;white-space:nowrap;transition:opacity .35s ease,transform .45s cubic-bezier(.16,1,.3,1)}
+.agency-marker:hover button::before,.agency-marker.is-active button::before{transform:scale(1.35);opacity:1}
+.agency-marker:hover button::after,.agency-marker.is-active button::after{transform:scale(1.7)}
+.agency-marker:hover em,.agency-marker.is-active em{transform:translateX(4px)}
+.marker-london{left:36.5%;top:43%}.marker-milan{left:52.7%;top:62.5%}.marker-barcelona{left:39.2%;top:70.5%}.marker-madrid{left:31.6%;top:72.5%}.marker-stockholm{left:62.4%;top:25%}
+.agency-card{position:absolute;z-index:4;right:5.5%;top:12%;width:min(330px,29vw);min-height:190px;padding:27px 28px 25px;background:rgba(242,240,233,.94);border:1px solid rgba(41,40,36,.22);box-shadow:0 20px 60px rgba(41,40,36,.07);backdrop-filter:blur(8px);-webkit-backdrop-filter:blur(8px);opacity:0;transform:translateY(14px);pointer-events:none;transition:opacity .5s ease,transform .65s cubic-bezier(.16,1,.3,1)}
+.agency-card::before{content:"";position:absolute;left:-72px;top:54px;width:72px;border-top:1px solid rgba(41,40,36,.30);transform:scaleX(0);transform-origin:right;transition:transform .7s cubic-bezier(.16,1,.3,1)}
+.agency-card.is-visible{opacity:1;transform:translateY(0);pointer-events:auto}.agency-card.is-visible::before{transform:scaleX(1)}
+
+.agency-card-city{margin:0 0 10px;font-family:'Space Mono',monospace;font-size:8px;letter-spacing:.12em;text-transform:uppercase;color:var(--muted)}
+.agency-card h3{margin:0 0 28px;font-family:'Space Mono',monospace;font-size:14px;font-weight:500;letter-spacing:.05em;text-transform:uppercase}
+.agency-card-link{display:inline-flex;align-items:center;gap:14px;padding-bottom:4px;border-bottom:1px solid var(--ink);font-family:'Space Mono',monospace;font-size:8px;letter-spacing:.14em;text-transform:uppercase}
+.agency-card-link span{transition:transform .3s ease}.agency-card-link:not(.is-disabled):hover span{transform:translateX(4px)}.agency-card-link.is-disabled{opacity:.38;pointer-events:none}
+.representation-note{margin:17px 0 0;text-align:right;font-family:'Space Mono',monospace;font-size:7px;letter-spacing:.16em;color:var(--muted)}
+@keyframes agencyPulse{0%{transform:scale(.6);opacity:.55}70%,100%{transform:scale(2.2);opacity:0}}
+@media(prefers-reduced-motion:reduce){.agency-marker button span{animation:none}.agency-card,.agency-card::before,.agency-marker *{transition:none!important}}
+
+/* V32 — recognisable Europe map + agency card anchored to each city */
+.representation-map{overflow:hidden}
+.europe-map{position:absolute;inset:3% 4% 3%;width:92%;height:94%;object-fit:contain;opacity:.72;filter:contrast(.9)}
+.marker-london{left:31.4%;top:53.7%}.marker-milan{left:48.5%;top:69.0%}.marker-barcelona{left:35.6%;top:79.0%}.marker-madrid{left:24.8%;top:81.5%}.marker-stockholm{left:64.7%;top:34.3%}
+.agency-card{left:0;right:auto;top:0;width:min(300px,28vw);min-height:176px;opacity:0;transform:translateY(8px);transition:opacity .35s ease,transform .5s cubic-bezier(.16,1,.3,1)}
+.agency-card::before{display:none}
+.agency-card.is-visible{transform:translateY(0)}
+.agency-connector{position:absolute;z-index:3;height:1px;background:rgba(41,40,36,.34);transform-origin:0 50%;opacity:0;pointer-events:none;transition:opacity .3s ease}
+.agency-connector.is-visible{opacity:1}
+
+/* V33 — refined map + elegant city hover */
+.agency-marker em{transform-origin:left center;transition:opacity .35s ease,transform .5s cubic-bezier(.16,1,.3,1),font-size .45s cubic-bezier(.16,1,.3,1),font-weight .35s ease,letter-spacing .45s ease}
+@media (hover:hover) and (pointer:fine){
+  .agency-marker:hover em,.agency-marker.is-active em{font-size:11px;font-weight:700;letter-spacing:.16em;transform:translateX(6px)}
+}
+.agency-card{transition:opacity .38s ease,transform .55s cubic-bezier(.16,1,.3,1),visibility 0s linear .38s;visibility:hidden}
+.agency-card.is-visible{visibility:visible;transition:opacity .38s ease,transform .55s cubic-bezier(.16,1,.3,1),visibility 0s linear 0s}
+.agency-connector{transition:opacity .38s ease,width .5s cubic-bezier(.16,1,.3,1)}
+
+/* V34 — geographic Europe silhouette, simplified from real coastline data */
+.marker-london{left:28.6%;top:55.0%}
+.marker-milan{left:48.3%;top:70.0%}
+.marker-barcelona{left:33.5%;top:77.6%}
+.marker-madrid{left:21.0%;top:82.6%}
+.marker-stockholm{left:63.8%;top:35.5%}
