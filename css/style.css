@@ -758,3 +758,24 @@ body.page-transition-in.is-visible{
   .menu-toggle span{display:block!important;flex:0 0 1px!important;width:26px!important;height:1px!important;min-height:1px!important;background:currentColor!important;opacity:1!important;transform:none!important}
   .home-body .menu-toggle{color:inherit!important}
 }
+
+/* V64 — the real destination page loads visibly underneath the category signature cover. */
+.category-transition{overflow:hidden;background:transparent!important;backdrop-filter:none!important;-webkit-backdrop-filter:none!important}
+.category-transition-preview{position:absolute;inset:0;width:100%;height:100%;border:0;background:var(--bg);z-index:0;opacity:0;transition:opacity .45s ease;pointer-events:none}
+.category-transition.is-active .category-transition-preview{opacity:1}
+.category-transition-wash{position:absolute;inset:0;z-index:1;background:rgba(242,240,233,.56);backdrop-filter:blur(2px);-webkit-backdrop-filter:blur(2px);pointer-events:none}
+.category-transition-signature{position:relative;z-index:2}
+@media(prefers-reduced-motion:reduce){.category-transition-preview{transition:none}}
+
+/* V65 — seamless category hand-off: after the 3s signature cover, the already-prepared
+   category must visually remain in place instead of performing a second page entrance. */
+html.category-prepared-arrival body,
+html.category-prepared-arrival body.page-transition-in,
+html.category-prepared-arrival body.page-transition-in.is-visible{
+  opacity:1!important;transform:none!important;filter:none!important;transition:none!important;
+}
+html.category-prepared-arrival .gallery-item{opacity:1!important;transform:none!important}
+html.category-prepared-arrival .page-transition-veil{display:none!important}
+\n\n/* V66 — continuity cover across the real HTML navigation.\n   The destination starts with the same completed signature/wash already covering it;\n   only after its gallery has rendered and decoded do we dissolve that cover away. */\nhtml.category-cover-arrival body::before,\nhtml.category-cover-arrival body::after{\n  content:"";position:fixed;inset:0;z-index:50000;pointer-events:none;opacity:1;\n}\nhtml.category-cover-arrival body::before{\n  background:rgba(242,240,233,.56);\n  backdrop-filter:blur(2px);-webkit-backdrop-filter:blur(2px);\n  transition:opacity .52s cubic-bezier(.4,0,.2,1);\n}\nhtml.category-cover-arrival body::after{\n  left:50%;top:50%;right:auto;bottom:auto;width:min(290px,52vw);height:120px;\n  transform:translate(-50%,-50%);\n  background:url('../assets/images/logo/valentina-bonanni-signature.png') center/contain no-repeat;\n  transition:opacity .46s cubic-bezier(.4,0,.2,1),filter .46s ease;\n}\nhtml.category-cover-arrival.category-cover-release body::before,\nhtml.category-cover-arrival.category-cover-release body::after{opacity:0}\nhtml.category-cover-arrival.category-cover-release body::after{filter:blur(.35px)}\n@media(prefers-reduced-motion:reduce){\n  html.category-cover-arrival body::before,html.category-cover-arrival body::after{transition:none!important}\n}\n
+/* V68 — SPA experiment: once the destination is already the live DOM, only lift the cover. */
+.category-transition.spa-release{opacity:0;visibility:visible;pointer-events:none;transition:opacity .62s cubic-bezier(.22,.61,.36,1)!important}

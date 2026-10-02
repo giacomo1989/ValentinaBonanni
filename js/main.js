@@ -1,10 +1,43 @@
 const qs=(s,p=document)=>p.querySelector(s), qsa=(s,p=document)=>[...p.querySelectorAll(s)];
+// V65 — when a Portfolio category has already been rendered/preloaded behind the signature,
+// suppress its second entrance choreography after URL hand-off.
+let vbCategoryPreparedArrival=false;
+try{
+  const prepared=sessionStorage.getItem('vb_category_prepared');
+  const here=(location.pathname.split('/').pop()||'index.html').toLowerCase();
+  if(prepared&&prepared.toLowerCase()===here){
+    vbCategoryPreparedArrival=true;
+    sessionStorage.removeItem('vb_category_prepared');
+    document.documentElement.classList.add('category-prepared-arrival');
+  }
+}catch(_){}
 async function getJSON(path){const r=await fetch(path);if(!r.ok)throw new Error(path);return r.json()}
 function pathRoot(){return document.body.dataset.root||'.'}
 async function applyI18n(){const root=pathRoot(),lang=localStorage.getItem('vb_lang')||'en';let t;try{t=await getJSON(`${root}/data/${lang}.json`)}catch{return}qsa('[data-i18n]').forEach(el=>{const v=el.dataset.i18n.split('.').reduce((o,k)=>o?.[k],t);if(v!==undefined)el.textContent=v});qsa('[data-lang]').forEach(b=>b.classList.toggle('active',b.dataset.lang===lang));}
-async function applyImages(){const root=pathRoot();let d;try{d=await getJSON(`${root}/data/portfolio.json`)}catch{return}qsa('[data-featured]').forEach(el=>{const src=d.featured[el.dataset.featured];if(!src)return; if(el.tagName==='IMG')el.src=`${root}/${src}`;else el.style.backgroundImage=`url('${root}/${src}')`});const gallery=qs('[data-gallery]');if(gallery){const cat=gallery.dataset.gallery;gallery.innerHTML=d.portfolio.filter(x=>x.category===cat).map(x=>`<figure class="gallery-item ${x.layout||'portrait'}"><img src="${root}/${x.src}" alt="${x.alt}" loading="lazy" onerror="this.parentElement.style.display='none'"></figure>`).join(''); initImageReveal(gallery.querySelectorAll('.gallery-item')); initGalleryParallax(gallery); initGalleryLightbox(gallery)}}
+async function applyImages(){const root=pathRoot();let d;try{d=await getJSON(`${root}/data/portfolio.json`)}catch{return}qsa('[data-featured]').forEach(el=>{const src=d.featured[el.dataset.featured];if(!src)return; if(el.tagName==='IMG')el.src=`${root}/${src}`;else el.style.backgroundImage=`url('${root}/${src}')`});const gallery=qs('[data-gallery]');if(gallery){const cat=gallery.dataset.gallery;gallery.innerHTML=d.portfolio.filter(x=>x.category===cat).map(x=>`<figure class="gallery-item ${x.layout||'portrait'}"><img src="${root}/${x.src}" alt="${x.alt}" loading="${vbCategoryPreparedArrival?'eager':'lazy'}" onerror="this.parentElement.style.display='none'"></figure>`).join(''); if(vbCategoryPreparedArrival){gallery.querySelectorAll('.gallery-item').forEach(el=>el.classList.add('is-visible'))}else{initImageReveal(gallery.querySelectorAll('.gallery-item'))} initGalleryParallax(gallery); initGalleryLightbox(gallery)}}
 document.addEventListener('click',e=>{const b=e.target.closest('[data-lang]');if(b){localStorage.setItem('vb_lang',b.dataset.lang);applyI18n()}const m=e.target.closest('.menu-toggle');if(m)qs('.nav')?.classList.toggle('open')});
-document.addEventListener('DOMContentLoaded',()=>{applyI18n();applyImages()});
+document.addEventListener('DOMContentLoaded',()=>{
+  const pageReady=Promise.all([applyI18n(),applyImages()]);
+  if(vbCategoryPreparedArrival){
+    pageReady.then(async()=>{
+      const imgs=[...document.querySelectorAll('[data-gallery] img')];
+      await Promise.allSettled(imgs.map(img=>{
+        if(img.complete)return img.decode?img.decode().catch(()=>{}):Promise.resolve();
+        return new Promise(resolve=>{img.addEventListener('load',resolve,{once:true});img.addEventListener('error',resolve,{once:true})});
+      }));
+      // V67 — keep the continuity cover perfectly still until the destination has
+      // painted for several real frames. This hides the document hand-off/reflow
+      // before the only visible action: the cover dissolving away.
+      if(document.fonts?.ready){try{await document.fonts.ready}catch(_){}}
+      requestAnimationFrame(()=>requestAnimationFrame(()=>requestAnimationFrame(()=>{
+        window.setTimeout(()=>{
+          document.documentElement.classList.add('category-cover-release');
+          window.setTimeout(()=>document.documentElement.classList.remove('category-cover-arrival','category-cover-release','category-prepared-arrival'),680);
+        },90);
+      })));
+    });
+  }
+});
 
 function initStickyHeader(){const h=qs('.home-body .site-header');if(!h)return;const sync=()=>h.classList.toggle('scrolled',window.scrollY>24);sync();window.addEventListener('scroll',sync,{passive:true});}
 document.addEventListener('DOMContentLoaded',initStickyHeader);
@@ -153,6 +186,16 @@ function initRepresentationMap(){
   card.addEventListener('mouseenter',cancelHide);
   card.addEventListener('mouseleave',scheduleHide);
   map.addEventListener('mouseleave',scheduleHide);
+
+  // V63 — touch/mobile popover behaviour: one tap outside the open card closes it.
+  // Marker taps are stopped above, so tapping another marker opens that card directly.
+  document.addEventListener('pointerdown',(event)=>{
+    if(fineHover.matches || !card.classList.contains('is-visible')) return;
+    if(card.contains(event.target)) return;
+    if(event.target.closest('.agency-marker')) return;
+    hide();
+  });
+
   window.addEventListener('resize',()=>{
     const active=markers.find(m=>m.classList.contains('is-active'));
     if(active&&card.classList.contains('is-visible'))placeCard(active);
@@ -195,6 +238,7 @@ document.addEventListener('DOMContentLoaded', () => {
 document.addEventListener('DOMContentLoaded', () => {
   const titles = document.querySelectorAll('.script-title, .representation-head h2');
   if (!titles.length) return;
+  if (vbCategoryPreparedArrival && document.querySelector('.gallery-page')) return;
   const reduced = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
 
   titles.forEach((title) => {
@@ -322,47 +366,112 @@ document.addEventListener('DOMContentLoaded',()=>{
   requestAnimationFrame(()=>logo.classList.add('home-entry-ink'));
 });
 
-// V61 — translucent three-second Portfolio -> category preload interlude.
-// The destination HTML and every gallery image start loading immediately. Navigation happens
-// only after BOTH the 3-second signature animation and the preload work have settled, so the
-// category opens from warm browser cache instead of waiting until after the interlude.
+// V68 — experimental SPA hand-off for Portfolio -> category.
+// The destination is fetched and installed into the CURRENT document while the signature
+// cover stays above it. There is no location.href at the end, so removing the cover reveals
+// the exact DOM that was already rendered underneath it.
+function vbInitSpaTitleReveal(){
+  const titles=document.querySelectorAll('.script-title, .representation-head h2');
+  if(!titles.length)return;
+  // Category arrived under the cover: show the title in its final state, without replaying entrance choreography.
+  titles.forEach(title=>{
+    if(title.closest('.title-reveal-mask'))return;
+    const mask=document.createElement('span'); mask.className='title-reveal-mask is-visible';
+    const inner=document.createElement('span'); inner.className='title-reveal-inner';
+    title.parentNode.insertBefore(mask,title); mask.appendChild(inner); inner.appendChild(title);
+  });
+}
+function vbInitSpaFooterSignature(){
+  const logos=[...document.querySelectorAll('.footer-logo')];
+  if(!logos.length)return;
+  if(window.matchMedia('(prefers-reduced-motion: reduce)').matches||!('IntersectionObserver' in window)){
+    logos.forEach(x=>x.classList.add('is-ink-written')); return;
+  }
+  const observer=new IntersectionObserver((entries,obs)=>entries.forEach(entry=>{
+    if(!entry.isIntersecting)return;
+    requestAnimationFrame(()=>entry.target.classList.add('is-ink-written')); obs.unobserve(entry.target);
+  }),{threshold:.35});
+  logos.forEach(x=>observer.observe(x));
+}
+async function vbSpaInstall(html,href){
+  const parsed=new DOMParser().parseFromString(html,'text/html');
+  const incoming=parsed.body;
+  if(!incoming)throw new Error('Missing destination body');
+  // main.js is already alive in this document; imported script tags must not execute a second copy.
+  incoming.querySelectorAll('script').forEach(x=>x.remove());
+  const cursor=document.querySelector('.vb-cursor');
+  document.body.className=incoming.className;
+  [...document.body.attributes].forEach(a=>{if(a.name!=='class')document.body.removeAttribute(a.name)});
+  [...incoming.attributes].forEach(a=>{if(a.name!=='class')document.body.setAttribute(a.name,a.value)});
+  document.body.replaceChildren(...[...incoming.childNodes].map(n=>document.importNode(n,true)));
+  if(cursor)document.body.appendChild(cursor);
+  document.title=parsed.title||document.title;
+  history.pushState({vbSpa:true},'',href);
+  window.scrollTo(0,0);
+  await Promise.all([applyI18n(),applyImages()]);
+  vbInitSpaTitleReveal();
+  vbInitSpaFooterSignature();
+}
+
 document.addEventListener('DOMContentLoaded',()=>{
   if(!document.body.querySelector('.portfolio-page'))return;
   const categoryLinks=[...document.querySelectorAll('.portfolio-covers a.cover[href]')].filter(a=>/\/(fashion|commercial|digitals|beauty)\.html$|^(fashion|commercial|digitals|beauty)\.html$/i.test(a.getAttribute('href')||''));
   if(!categoryLinks.length)return;
   const overlay=document.createElement('div');
   overlay.className='category-transition'; overlay.setAttribute('aria-hidden','true');
-  overlay.innerHTML='<img src="assets/images/logo/valentina-bonanni-signature.png" alt="">';
-  document.body.appendChild(overlay);
+  overlay.innerHTML='<div class="category-transition-wash"></div><img class="category-transition-signature" src="assets/images/logo/valentina-bonanni-signature.png" alt="">';
+  // Keep the cover outside <body>, because <body> is the part replaced by the SPA hand-off.
+  document.documentElement.appendChild(overlay);
   let running=false;
-  const preloadImage=src=>new Promise(resolve=>{
-    const img=new Image();
-    const done=()=>resolve();
-    img.onload=()=>{ if(img.decode){img.decode().catch(()=>{}).finally(done)} else done(); };
-    img.onerror=done;
-    img.src=src;
-  });
   categoryLinks.forEach(a=>a.addEventListener('click',async e=>{
     if(e.defaultPrevented||e.button!==0||e.metaKey||e.ctrlKey||e.shiftKey||e.altKey||running)return;
     e.preventDefault(); e.stopImmediatePropagation(); running=true;
-    overlay.classList.add('is-active');
     const href=a.getAttribute('href');
-    const category=(href.match(/(fashion|commercial|digitals|beauty)\.html/i)||[])[1]?.toLowerCase();
+    overlay.classList.add('is-active');
     const minimumDisplay=new Promise(resolve=>setTimeout(resolve,3000));
-    const preload=(async()=>{
-      try{
-        const [data]=await Promise.all([
-          getJSON(`${pathRoot()}/data/portfolio.json`),
-          fetch(href,{cache:'force-cache'}).catch(()=>null)
-        ]);
-        const sources=[...new Set(data.portfolio.filter(x=>x.category===category).map(x=>`${pathRoot()}/${x.src}`))];
-        await Promise.allSettled(sources.map(preloadImage));
-      }catch(_){ }
-    })();
-    await Promise.all([minimumDisplay,preload]);
-    location.href=href;
+
+    // V69 — the cover must win the first paint. Start downloading immediately,
+    // but NEVER install the destination DOM until the overlay is fully visible.
+    // This prevents a fast/local destination from flashing before the signature veil,
+    // while still using the veil time to download the next page on a real network.
+    const coverReady=new Promise(resolve=>{
+      let done=false;
+      const finish=()=>{if(done)return;done=true;overlay.removeEventListener('transitionend',onEnd);resolve()};
+      const onEnd=e=>{if(e.target===overlay&&e.propertyName==='opacity')finish()};
+      overlay.addEventListener('transitionend',onEnd);
+      requestAnimationFrame(()=>requestAnimationFrame(()=>{
+        if(getComputedStyle(overlay).opacity==='1')finish();
+        else window.setTimeout(finish,480);
+      }));
+    });
+    try{
+      const responsePromise=fetch(href,{cache:'force-cache'});
+      const response=await responsePromise;
+      if(!response.ok)throw new Error(href);
+      const html=await response.text();
+      await coverReady;
+      await vbSpaInstall(html,href);
+      const imgs=[...document.querySelectorAll('[data-gallery] img')];
+      await Promise.allSettled(imgs.map(img=>{
+        if(img.complete)return img.decode?img.decode().catch(()=>{}):Promise.resolve();
+        return new Promise(resolve=>{img.addEventListener('load',resolve,{once:true});img.addEventListener('error',resolve,{once:true})});
+      }));
+      if(document.fonts?.ready){try{await document.fonts.ready}catch(_){}}
+      await minimumDisplay;
+      await new Promise(resolve=>requestAnimationFrame(()=>requestAnimationFrame(resolve)));
+      overlay.classList.add('spa-release');
+      window.setTimeout(()=>overlay.remove(),700);
+    }catch(_){
+      // Safe fallback: if dynamic installation fails, preserve normal multi-page navigation.
+      location.href=href;
+    }
   },true));
 });
+
+// A pushed SPA history entry must still make the browser Back button semantically correct.
+// For this experiment we deliberately use a normal reload on popstate instead of expanding
+// the SPA router beyond the single Portfolio -> category transition being evaluated.
+window.addEventListener('popstate',()=>{ location.reload(); });
 
 // V57 — seamless cross-document dissolve.
 // Modern browsers use the native cross-document View Transition API: the old
