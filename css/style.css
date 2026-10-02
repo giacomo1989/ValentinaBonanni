@@ -703,3 +703,58 @@ body.page-transition-in.is-visible{
   ::view-transition-group(root),::view-transition-old(root),::view-transition-new(root){animation:none!important}
 }
 \n\n/* V58 — delayed, minimal loading indicator for slower page changes */\n.page-load-indicator{\n  position:fixed;inset:0;z-index:30000;display:grid;place-items:center;\n  pointer-events:none;opacity:0;visibility:hidden;\n  transition:opacity .22s ease,visibility 0s linear .22s;\n}\n.page-load-indicator.is-visible{opacity:1;visibility:visible;transition:opacity .22s ease,visibility 0s}\n.page-load-indicator span{\n  width:25px;height:25px;border-radius:50%;\n  border:1px solid rgba(41,40,36,.20);border-top-color:rgba(41,40,36,.88);\n  border-right-color:rgba(41,40,36,.52);\n  animation:vbLoaderSpin .9s linear infinite;\n}\n@keyframes vbLoaderSpin{to{transform:rotate(360deg)}}\n@media(prefers-reduced-motion:reduce){.page-load-indicator span{animation:none;border-color:rgba(41,40,36,.55)}}\n\n/* V58 — no numeric counter in the category lightbox */\n.gallery-lightbox-count{display:none!important}\n
+
+/* V60 — mobile/navigation polish + clean galleries */
+.gallery-item{background:transparent!important}
+.gallery-item .placeholder{display:none!important}
+.gallery-head>span{display:none!important}
+.menu-toggle{color:var(--ink);appearance:none;-webkit-appearance:none}
+.menu-toggle span{display:block;width:100%;height:1px;background:currentColor}
+
+/* Elegant directional dissolve inside the lightbox */
+.gallery-lightbox-photo{position:relative;display:grid;place-items:center;max-width:100%;max-height:86vh;overflow:hidden;touch-action:pan-y;pointer-events:auto;transition:opacity .21s ease,transform .38s cubic-bezier(.22,.61,.36,1),filter .28s ease}
+.gallery-lightbox-photo .gallery-lightbox-image{max-width:100%;max-height:86vh}
+.gallery-lightbox-photo.slide-out-left{opacity:0;transform:translateX(-18px) scale(.992);filter:blur(.45px)}
+.gallery-lightbox-photo.slide-out-right{opacity:0;transform:translateX(18px) scale(.992);filter:blur(.45px)}
+.gallery-lightbox-photo.slide-in-right{opacity:0;transform:translateX(18px) scale(.992);filter:blur(.45px)}
+.gallery-lightbox-photo.slide-in-left{opacity:0;transform:translateX(-18px) scale(.992);filter:blur(.45px)}
+@media(max-width:800px){
+  .gallery-lightbox-photo{max-width:86vw;max-height:78vh;touch-action:pan-y}
+  .gallery-lightbox-photo .gallery-lightbox-image{max-width:100%;max-height:78vh}
+  .menu-toggle{display:flex;width:26px;height:22px;padding:3px 0;flex-direction:column;justify-content:space-around;background:transparent;border:0;color:var(--ink)}
+}
+
+/* Touch map cards always stay inside the visible map and above the SVG. */
+@media(max-width:800px){
+  .representation-map{overflow:hidden;position:relative}
+  .agency-card{z-index:20;max-width:calc(100% - 20px);pointer-events:auto}
+  .agency-marker button{touch-action:manipulation}
+}
+
+/* Four-second editorial loading interlude for Portfolio -> category pages. */
+.category-transition{position:fixed;inset:0;z-index:40000;display:grid;place-items:center;background:var(--bg);opacity:0;visibility:hidden;pointer-events:none;transition:opacity .42s ease,visibility 0s linear .42s}
+.category-transition.is-active{opacity:1;visibility:visible;pointer-events:all;transition:opacity .42s ease,visibility 0s}
+.category-transition img{width:min(290px,52vw);height:auto;clip-path:polygon(0 0,0 0,0 10%,0 20%,0 30%,0 40%,0 50%,0 60%,0 70%,0 80%,0 90%,0 100%,0 100%);opacity:.2;filter:blur(.7px)}
+.category-transition.is-active img{animation:categorySignatureInk 3.45s .22s linear forwards}
+@keyframes categorySignatureInk{
+  0%{clip-path:polygon(0 0,0 0,0 10%,0 20%,0 30%,0 40%,0 50%,0 60%,0 70%,0 80%,0 90%,0 100%,0 100%);opacity:.18;filter:blur(.8px)}
+  20%{clip-path:polygon(0 0,17% 0,22% 10%,15% 20%,25% 30%,19% 40%,28% 50%,21% 60%,30% 70%,24% 80%,32% 90%,26% 100%,0 100%);opacity:.58;filter:blur(.56px)}
+  40%{clip-path:polygon(0 0,39% 0,45% 10%,36% 20%,49% 30%,42% 40%,53% 50%,45% 60%,56% 70%,49% 80%,58% 90%,52% 100%,0 100%);opacity:.77;filter:blur(.35px)}
+  60%{clip-path:polygon(0 0,61% 0,67% 10%,58% 20%,71% 30%,64% 40%,75% 50%,67% 60%,78% 70%,71% 80%,80% 90%,74% 100%,0 100%);opacity:.89;filter:blur(.2px)}
+  80%{clip-path:polygon(0 0,83% 0,89% 10%,80% 20%,93% 30%,86% 40%,97% 50%,89% 60%,100% 70%,93% 80%,100% 90%,96% 100%,0 100%);opacity:.97;filter:blur(.08px)}
+  100%{clip-path:polygon(0 0,100% 0,100% 10%,100% 20%,100% 30%,100% 40%,100% 50%,100% 60%,100% 70%,100% 80%,100% 90%,100% 100%,0 100%);opacity:1;filter:blur(0)}
+}
+@media(prefers-reduced-motion:reduce){.category-transition.is-active img{animation:none;clip-path:none;opacity:1;filter:none}}
+
+/* V61 — translucent three-second category preload interlude. */
+.category-transition{background:rgba(242,240,233,.68)!important;backdrop-filter:blur(3px);-webkit-backdrop-filter:blur(3px)}
+.category-transition img{width:min(290px,52vw)}
+.category-transition.is-active img{animation-duration:2.55s!important;animation-delay:.18s!important}
+
+
+/* V62 — mobile hamburger: exactly two crisp lines, matching Home. */
+@media(max-width:800px){
+  .menu-toggle{display:flex!important;width:26px!important;height:22px!important;padding:3px 0!important;flex-direction:column!important;justify-content:center!important;gap:7px!important;background:transparent!important;border:0!important;color:var(--ink)!important;line-height:0!important}
+  .menu-toggle span{display:block!important;flex:0 0 1px!important;width:26px!important;height:1px!important;min-height:1px!important;background:currentColor!important;opacity:1!important;transform:none!important}
+  .home-body .menu-toggle{color:inherit!important}
+}

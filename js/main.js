@@ -2,7 +2,7 @@ const qs=(s,p=document)=>p.querySelector(s), qsa=(s,p=document)=>[...p.querySele
 async function getJSON(path){const r=await fetch(path);if(!r.ok)throw new Error(path);return r.json()}
 function pathRoot(){return document.body.dataset.root||'.'}
 async function applyI18n(){const root=pathRoot(),lang=localStorage.getItem('vb_lang')||'en';let t;try{t=await getJSON(`${root}/data/${lang}.json`)}catch{return}qsa('[data-i18n]').forEach(el=>{const v=el.dataset.i18n.split('.').reduce((o,k)=>o?.[k],t);if(v!==undefined)el.textContent=v});qsa('[data-lang]').forEach(b=>b.classList.toggle('active',b.dataset.lang===lang));}
-async function applyImages(){const root=pathRoot();let d;try{d=await getJSON(`${root}/data/portfolio.json`)}catch{return}qsa('[data-featured]').forEach(el=>{const src=d.featured[el.dataset.featured];if(!src)return; if(el.tagName==='IMG')el.src=`${root}/${src}`;else el.style.backgroundImage=`url('${root}/${src}')`});const gallery=qs('[data-gallery]');if(gallery){const cat=gallery.dataset.gallery;gallery.innerHTML=d.portfolio.filter(x=>x.category===cat).map(x=>`<figure class="gallery-item ${x.layout||'portrait'}"><img src="${root}/${x.src}" alt="${x.alt}" loading="lazy" onerror="this.parentElement.innerHTML='<div class=\"placeholder\">${x.id.toString().padStart(2,'0')}</div>'"></figure>`).join(''); initImageReveal(gallery.querySelectorAll('.gallery-item')); initGalleryParallax(gallery); initGalleryLightbox(gallery)}}
+async function applyImages(){const root=pathRoot();let d;try{d=await getJSON(`${root}/data/portfolio.json`)}catch{return}qsa('[data-featured]').forEach(el=>{const src=d.featured[el.dataset.featured];if(!src)return; if(el.tagName==='IMG')el.src=`${root}/${src}`;else el.style.backgroundImage=`url('${root}/${src}')`});const gallery=qs('[data-gallery]');if(gallery){const cat=gallery.dataset.gallery;gallery.innerHTML=d.portfolio.filter(x=>x.category===cat).map(x=>`<figure class="gallery-item ${x.layout||'portrait'}"><img src="${root}/${x.src}" alt="${x.alt}" loading="lazy" onerror="this.parentElement.style.display='none'"></figure>`).join(''); initImageReveal(gallery.querySelectorAll('.gallery-item')); initGalleryParallax(gallery); initGalleryLightbox(gallery)}}
 document.addEventListener('click',e=>{const b=e.target.closest('[data-lang]');if(b){localStorage.setItem('vb_lang',b.dataset.lang);applyI18n()}const m=e.target.closest('.menu-toggle');if(m)qs('.nav')?.classList.toggle('open')});
 document.addEventListener('DOMContentLoaded',()=>{applyI18n();applyImages()});
 
@@ -100,12 +100,21 @@ function initRepresentationMap(){
     const cardW=card.offsetWidth, cardH=card.offsetHeight;
     const mx=markerRect.left-mapRect.left+markerRect.width/2;
     const my=markerRect.top-mapRect.top+markerRect.height/2;
-    const gap=window.innerWidth<=800?16:28, pad=10;
-    let left=mx+gap;
-    if(left+cardW>mapRect.width-pad) left=mx-cardW-gap;
-    left=Math.max(pad,Math.min(left,mapRect.width-cardW-pad));
-    let top=my-cardH/2;
-    top=Math.max(pad,Math.min(top,mapRect.height-cardH-pad));
+    const gap=window.innerWidth<=800?12:28, pad=10;
+    let left, top;
+    if(window.innerWidth<=800){
+      // On touch screens keep the card inside the map regardless of marker proximity to an edge.
+      left=Math.max(pad,Math.min(mx-cardW/2,mapRect.width-cardW-pad));
+      top=my-cardH-gap;
+      if(top<pad) top=my+gap;
+      top=Math.max(pad,Math.min(top,mapRect.height-cardH-pad));
+    }else{
+      left=mx+gap;
+      if(left+cardW>mapRect.width-pad) left=mx-cardW-gap;
+      left=Math.max(pad,Math.min(left,mapRect.width-cardW-pad));
+      top=my-cardH/2;
+      top=Math.max(pad,Math.min(top,mapRect.height-cardH-pad));
+    }
     card.style.left=`${left}px`; card.style.top=`${top}px`;
     const targetX=left>mx?left:left+cardW;
     const targetY=Math.max(top+18,Math.min(my,top+cardH-18));
@@ -129,10 +138,15 @@ function initRepresentationMap(){
     requestAnimationFrame(()=>placeCard(marker));
   };
   markers.forEach(marker=>{
-    marker.addEventListener('mouseenter',()=>show(marker));
-    marker.addEventListener('mouseleave',scheduleHide);
-    marker.querySelector('button').addEventListener('click',()=>{
-      if(marker.classList.contains('is-active')&&card.classList.contains('is-visible')) hide();
+    // Hover behavior only exists on real pointer devices. On touch screens a
+    // synthetic mouseenter can fire before click, which made the first tap
+    // open and immediately close the card (appearing to require two taps).
+    marker.addEventListener('mouseenter',()=>{if(fineHover.matches)show(marker)});
+    marker.addEventListener('mouseleave',()=>{if(fineHover.matches)scheduleHide()});
+    marker.querySelector('button').addEventListener('click',(event)=>{
+      event.preventDefault();
+      event.stopPropagation();
+      if(fineHover.matches && marker.classList.contains('is-active') && card.classList.contains('is-visible')) hide();
       else show(marker);
     });
   });
@@ -237,7 +251,7 @@ function initGalleryParallax(root=document){
 
 document.addEventListener('DOMContentLoaded',()=>initGalleryParallax());
 
-// V50 — overlay lightbox: browse the current gallery without leaving the page.
+// V60 — editorial lightbox with reliable touch/pointer swipe and animated photo changes.
 function initGalleryLightbox(root=document){
   const gallery=root.matches?.('[data-gallery]')?root:root.querySelector?.('[data-gallery]');
   if(!gallery || gallery.dataset.lightboxBound==='1')return;
@@ -247,60 +261,33 @@ function initGalleryLightbox(root=document){
 
   const overlay=document.createElement('div');
   overlay.className='gallery-lightbox';
-  overlay.setAttribute('role','dialog');
-  overlay.setAttribute('aria-modal','true');
-  overlay.setAttribute('aria-label','Gallery viewer');
-  overlay.innerHTML=`<div class="gallery-lightbox-stage">
-    <button class="gallery-lightbox-close" type="button" aria-label="Close">×</button>
-    <div class="gallery-lightbox-viewer">
-      <button class="gallery-lightbox-nav gallery-lightbox-prev" type="button" aria-label="Previous image"><svg viewBox="0 0 28 48" aria-hidden="true"><path d="M22 5L7 24l15 19"/></svg></button>
-      <img class="gallery-lightbox-image" alt="">
-      <button class="gallery-lightbox-nav gallery-lightbox-next" type="button" aria-label="Next image"><svg viewBox="0 0 28 48" aria-hidden="true"><path d="M6 5l15 19L6 43"/></svg></button>
-    </div>
-  </div>`;
+  overlay.setAttribute('role','dialog'); overlay.setAttribute('aria-modal','true'); overlay.setAttribute('aria-label','Gallery viewer');
+  overlay.innerHTML=`<div class="gallery-lightbox-stage"><button class="gallery-lightbox-close" type="button" aria-label="Close">×</button><div class="gallery-lightbox-viewer"><button class="gallery-lightbox-nav gallery-lightbox-prev" type="button" aria-label="Previous image"><svg viewBox="0 0 28 48" aria-hidden="true"><path d="M22 5L7 24l15 19"/></svg></button><div class="gallery-lightbox-photo"><img class="gallery-lightbox-image" alt=""></div><button class="gallery-lightbox-nav gallery-lightbox-next" type="button" aria-label="Next image"><svg viewBox="0 0 28 48" aria-hidden="true"><path d="M6 5l15 19L6 43"/></svg></button></div></div>`;
   document.body.appendChild(overlay);
-  const image=overlay.querySelector('.gallery-lightbox-image');
-  const closeBtn=overlay.querySelector('.gallery-lightbox-close');
-  const prevBtn=overlay.querySelector('.gallery-lightbox-prev');
-  const nextBtn=overlay.querySelector('.gallery-lightbox-next');
-  let index=0, lastFocus=null, touchX=null;
-
-  const render=(nextIndex)=>{
-    index=(nextIndex+items.length)%items.length;
-    const source=items[index].querySelector('img');
-    if(!source)return;
-    image.src=source.currentSrc||source.src;
-    image.alt=source.alt||'';
+  const photo=overlay.querySelector('.gallery-lightbox-photo'), image=overlay.querySelector('.gallery-lightbox-image');
+  const closeBtn=overlay.querySelector('.gallery-lightbox-close'), prevBtn=overlay.querySelector('.gallery-lightbox-prev'), nextBtn=overlay.querySelector('.gallery-lightbox-next');
+  let index=0,lastFocus=null,startX=null,startY=null,animating=false;
+  const sourceAt=i=>items[(i+items.length)%items.length].querySelector('img');
+  const setImage=i=>{ index=(i+items.length)%items.length; const src=sourceAt(index); if(src){image.src=src.currentSrc||src.src;image.alt=src.alt||'';} };
+  const change=(nextIndex,direction)=>{
+    if(animating)return; const target=(nextIndex+items.length)%items.length; if(target===index)return;
+    if(window.matchMedia('(prefers-reduced-motion: reduce)').matches){setImage(target);return;}
+    animating=true; photo.classList.remove('slide-in-left','slide-in-right'); photo.classList.add(direction>0?'slide-out-left':'slide-out-right');
+    window.setTimeout(()=>{setImage(target);photo.classList.remove('slide-out-left','slide-out-right');photo.classList.add(direction>0?'slide-in-right':'slide-in-left');requestAnimationFrame(()=>requestAnimationFrame(()=>photo.classList.remove('slide-in-right','slide-in-left')));window.setTimeout(()=>animating=false,390);},210);
   };
-  const open=(i)=>{
-    lastFocus=document.activeElement;
-    render(i);
-    overlay.classList.add('is-open');
-    document.body.classList.add('lightbox-open');
-    requestAnimationFrame(()=>closeBtn.focus({preventScroll:true}));
-  };
-  const close=()=>{
-    overlay.classList.remove('is-open');
-    document.body.classList.remove('lightbox-open');
-    if(lastFocus?.focus)lastFocus.focus({preventScroll:true});
-  };
-  const prev=()=>render(index-1), next=()=>render(index+1);
-
-  items.forEach((item,i)=>{
-    item.tabIndex=0;
-    item.setAttribute('role','button');
-    item.setAttribute('aria-label',`Open image ${i+1} of ${items.length}`);
-    item.addEventListener('click',()=>open(i));
-    item.addEventListener('keydown',e=>{if(e.key==='Enter'||e.key===' '){e.preventDefault();open(i)}});
-  });
-  closeBtn.addEventListener('click',close); prevBtn.addEventListener('click',prev); nextBtn.addEventListener('click',next);
+  const open=i=>{lastFocus=document.activeElement;setImage(i);overlay.classList.add('is-open');document.body.classList.add('lightbox-open');requestAnimationFrame(()=>closeBtn.focus({preventScroll:true}));};
+  const close=()=>{overlay.classList.remove('is-open');document.body.classList.remove('lightbox-open');if(lastFocus?.focus)lastFocus.focus({preventScroll:true});};
+  const prev=()=>change(index-1,-1), next=()=>change(index+1,1);
+  items.forEach((item,i)=>{item.tabIndex=0;item.setAttribute('role','button');item.setAttribute('aria-label','Open image');item.addEventListener('click',()=>open(i));item.addEventListener('keydown',e=>{if(e.key==='Enter'||e.key===' '){e.preventDefault();open(i)}})});
+  closeBtn.addEventListener('click',e=>{e.stopPropagation();close()}); prevBtn.addEventListener('click',e=>{e.stopPropagation();prev()}); nextBtn.addEventListener('click',e=>{e.stopPropagation();next()});
   overlay.addEventListener('click',e=>{if(e.target===overlay)close()});
-  document.addEventListener('keydown',e=>{
-    if(!overlay.classList.contains('is-open'))return;
-    if(e.key==='Escape')close(); else if(e.key==='ArrowLeft')prev(); else if(e.key==='ArrowRight')next();
-  });
-  overlay.addEventListener('touchstart',e=>{touchX=e.changedTouches[0]?.clientX??null},{passive:true});
-  overlay.addEventListener('touchend',e=>{if(touchX===null)return;const dx=(e.changedTouches[0]?.clientX??touchX)-touchX;touchX=null;if(Math.abs(dx)>45)(dx>0?prev:next)()},{passive:true});
+  document.addEventListener('keydown',e=>{if(!overlay.classList.contains('is-open'))return;if(e.key==='Escape')close();else if(e.key==='ArrowLeft')prev();else if(e.key==='ArrowRight')next()});
+  const swipeStart=(x,y)=>{startX=x;startY=y};
+  const swipeEnd=(x,y)=>{if(startX===null)return;const dx=x-startX,dy=y-startY;startX=startY=null;if(Math.abs(dx)>=38&&Math.abs(dx)>Math.abs(dy)*1.15)(dx>0?prev:next)();};
+  photo.addEventListener('touchstart',e=>{const t=e.changedTouches[0];if(t)swipeStart(t.clientX,t.clientY)},{passive:true});
+  photo.addEventListener('touchend',e=>{const t=e.changedTouches[0];if(t)swipeEnd(t.clientX,t.clientY)},{passive:true});
+  photo.addEventListener('pointerdown',e=>{if(e.pointerType==='touch'){swipeStart(e.clientX,e.clientY);try{photo.setPointerCapture(e.pointerId)}catch(_){}}});
+  photo.addEventListener('pointerup',e=>{if(e.pointerType==='touch')swipeEnd(e.clientX,e.clientY)});
 }
 
 // V52 — reveal the real footer signature like ink being written when it enters view.
@@ -333,6 +320,48 @@ document.addEventListener('DOMContentLoaded',()=>{
   try{sessionStorage.setItem(key,'1')}catch(e){}
   if(window.matchMedia('(prefers-reduced-motion: reduce)').matches)return;
   requestAnimationFrame(()=>logo.classList.add('home-entry-ink'));
+});
+
+// V61 — translucent three-second Portfolio -> category preload interlude.
+// The destination HTML and every gallery image start loading immediately. Navigation happens
+// only after BOTH the 3-second signature animation and the preload work have settled, so the
+// category opens from warm browser cache instead of waiting until after the interlude.
+document.addEventListener('DOMContentLoaded',()=>{
+  if(!document.body.querySelector('.portfolio-page'))return;
+  const categoryLinks=[...document.querySelectorAll('.portfolio-covers a.cover[href]')].filter(a=>/\/(fashion|commercial|digitals|beauty)\.html$|^(fashion|commercial|digitals|beauty)\.html$/i.test(a.getAttribute('href')||''));
+  if(!categoryLinks.length)return;
+  const overlay=document.createElement('div');
+  overlay.className='category-transition'; overlay.setAttribute('aria-hidden','true');
+  overlay.innerHTML='<img src="assets/images/logo/valentina-bonanni-signature.png" alt="">';
+  document.body.appendChild(overlay);
+  let running=false;
+  const preloadImage=src=>new Promise(resolve=>{
+    const img=new Image();
+    const done=()=>resolve();
+    img.onload=()=>{ if(img.decode){img.decode().catch(()=>{}).finally(done)} else done(); };
+    img.onerror=done;
+    img.src=src;
+  });
+  categoryLinks.forEach(a=>a.addEventListener('click',async e=>{
+    if(e.defaultPrevented||e.button!==0||e.metaKey||e.ctrlKey||e.shiftKey||e.altKey||running)return;
+    e.preventDefault(); e.stopImmediatePropagation(); running=true;
+    overlay.classList.add('is-active');
+    const href=a.getAttribute('href');
+    const category=(href.match(/(fashion|commercial|digitals|beauty)\.html/i)||[])[1]?.toLowerCase();
+    const minimumDisplay=new Promise(resolve=>setTimeout(resolve,3000));
+    const preload=(async()=>{
+      try{
+        const [data]=await Promise.all([
+          getJSON(`${pathRoot()}/data/portfolio.json`),
+          fetch(href,{cache:'force-cache'}).catch(()=>null)
+        ]);
+        const sources=[...new Set(data.portfolio.filter(x=>x.category===category).map(x=>`${pathRoot()}/${x.src}`))];
+        await Promise.allSettled(sources.map(preloadImage));
+      }catch(_){ }
+    })();
+    await Promise.all([minimumDisplay,preload]);
+    location.href=href;
+  },true));
 });
 
 // V57 — seamless cross-document dissolve.
