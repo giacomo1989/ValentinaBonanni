@@ -261,7 +261,7 @@
 /* V6 — requested Home mobile-only composition */
 @media (max-width: 800px) {
   .home-body .logo-signature {
-    margin-top: 246%;
+    margin-top: 110%;
     margin-left: 0%;
     margin-right: -6%;
   }
@@ -283,5 +283,57 @@
   }
   .home-body .home-hero {
     background-position: 68% center;
+  }
+}
+
+/* Production footer — mobile composition */
+@media (max-width:800px){
+  .footer.footer-production{display:flex;flex-direction:column;gap:18px;padding-top:26px;min-height:126px}
+  .footer-production .footer-row{display:grid;width:100%;grid-template-columns:1fr 1fr;gap:14px 18px}
+  .footer-production .footer-row-main{display:grid;grid-template-columns:minmax(0,1fr) auto;grid-template-rows:auto auto;align-items:center;width:100%;gap:18px 12px}
+  .footer-production .footer-logo{grid-column:1/-1;grid-row:1;justify-self:center;width:132px!important;margin:0 auto!important}
+  .footer-production .footer-copyright{grid-column:1;grid-row:2;justify-self:start;align-self:center;min-width:0}
+  .footer-production .footer-socials{grid-column:2;grid-row:2;justify-self:end;align-self:center}
+  .footer-production .footer-row-meta{grid-template-columns:1fr 1fr;margin-top:0}
+  .footer-production .footer-legal{justify-self:start}
+  .footer-production .footer-powered{justify-self:end;text-align:right}
+}
+
+/* Home mobile — desktop-style navigation, always visible in the top-right */
+@media (max-width:800px){
+  .home-body .menu-toggle{display:none!important}
+  .home-body .site-header{align-items:flex-start}
+  .home-body .nav{
+    display:flex!important;
+    position:absolute!important;
+    top:20px!important;
+    right:20px!important;
+    width:auto!important;
+    padding:0!important;
+    margin:0!important;
+    flex-direction:row!important;
+    align-items:center!important;
+    justify-content:flex-end!important;
+    gap:13px!important;
+    background:transparent!important;
+    box-shadow:none!important;
+    backdrop-filter:none!important;
+    -webkit-backdrop-filter:none!important;
+    color:#e1ded4!important;
+    font-size:7px!important;
+    font-weight:400!important;
+    letter-spacing:.10em!important;
+    white-space:nowrap;
+  }
+  .home-body .nav a{color:#e1ded4!important;padding:3px 0!important;border:0!important}
+}
+@media (max-width:480px){
+  .home-body .nav{right:14px!important;top:18px!important;gap:9px!important;font-size:6.5px!important;letter-spacing:.07em!important}
+}
+
+/* Fashion gallery — mobile stays at 2 columns */
+@media (max-width: 800px) {
+  .gallery[data-gallery="fashion"] {
+    columns: 2;
   }
 }
