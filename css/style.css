@@ -1,14 +1,15 @@
+@import url('https://fonts.googleapis.com/css2?family=Questrial&display=swap');
 @import url('https://fonts.googleapis.com/css2?family=Space+Mono:wght@400;700&display=swap');
-:root{--bg:#f2f0e9;--ink:#292824;--muted:#77736b;--line:#d5d0c6;--gap:18px}*{box-sizing:border-box}html{scroll-behavior:smooth}body{margin:0;background:var(--bg);color:var(--ink);font-family:Arial,Helvetica,sans-serif;font-size:12px;letter-spacing:.08em}a{color:inherit;text-decoration:none}img{display:block;width:100%}.shell{min-height:100vh;padding:28px 38px 22px;display:flex;flex-direction:column}.site-header{height:52px;display:flex;align-items:flex-start;justify-content:space-between;position:relative;z-index:5}.signature{font-family:"Brush Script MT","Segoe Script",cursive;font-size:26px;letter-spacing:0;line-height:1}.nav{display:flex;gap:28px;align-items:center;text-transform:uppercase;font-size:9px;letter-spacing:.14em}.nav a{padding:4px 0;border-bottom:1px solid transparent}.nav a:hover,.nav a.active{border-color:var(--ink)}.lang{display:flex;gap:8px;margin-left:12px}.lang button{border:0;background:none;padding:0;font:inherit;font-size:8px;color:var(--muted);cursor:pointer}.lang button.active{color:var(--ink);text-decoration:underline}.page{flex:1}.footer{min-height:38px;display:flex;justify-content:space-between;align-items:flex-end;text-transform:uppercase;font-size:8px;letter-spacing:.16em}.socials{display:flex;gap:12px}.script-title{font-family:"Brush Script MT","Segoe Script",cursive;font-size:48px;font-weight:400;letter-spacing:0;margin:0 0 14px}.eyebrow{text-transform:uppercase;line-height:1.6;font-size:10px}.arrow{margin-left:10px}.home-page{display:grid;grid-template-columns:minmax(0,1.25fr) minmax(300px,.75fr);gap:5vw;align-items:center}.home-photo{height:calc(100vh - 140px);min-height:520px;background:#d8d4cb url('../assets/images/home/hero.jpg') center/cover no-repeat}.home-copy{max-width:270px}.home-copy h1{font-size:19px;line-height:1.5;letter-spacing:.18em;font-weight:500;margin:0 0 42px}.cta{text-transform:uppercase;font-size:9px;letter-spacing:.18em;border-bottom:1px solid var(--ink);padding-bottom:5px}.portfolio-intro{padding:5vh 0 4vh;max-width:420px}.portfolio-covers{display:grid;grid-template-columns:1fr 1fr;gap:22px;max-width:900px}.cover{position:relative;aspect-ratio:1.12/1;overflow:hidden;background:#d6d2ca}.cover img{height:100%;object-fit:cover;filter:brightness(.82)}.cover-label{position:absolute;left:24px;bottom:24px;color:#fff;text-transform:uppercase;font-size:16px;letter-spacing:.14em}.cover-label small{display:block;font-size:8px;margin-top:14px}.gallery-head{display:flex;justify-content:space-between;align-items:flex-start;padding:4vh 0 3vh}.gallery{columns:3;column-gap:var(--gap)}.gallery-item{break-inside:avoid;margin:0 0 var(--gap);overflow:hidden;background:#ddd8cf}.gallery-item img{width:100%;height:auto;transition:transform .5s ease}.gallery-item:hover img{transform:scale(1.015)}.gallery-item.tall img{aspect-ratio:3/4.6;object-fit:cover}.gallery-item.portrait img{aspect-ratio:3/4;object-fit:cover}.gallery-item.square img{aspect-ratio:1/1;object-fit:cover}.gallery-item.landscape img{aspect-ratio:4/3;object-fit:cover}.about-wrap{display:grid;grid-template-columns:minmax(300px,440px) minmax(300px,520px);gap:7vw;align-items:center;max-width:1050px;margin:4vh auto}.about-photo{aspect-ratio:4/5;background:#d8d4cb}.about-photo img{height:100%;object-fit:cover}.about-copy h1,.contact-copy h1{font-size:15px;letter-spacing:.14em}.about-copy p,.contact-copy p{line-height:1.8;letter-spacing:.05em;color:#514f49}.measurements{border-top:1px solid var(--line);margin-top:38px;padding-top:24px;display:grid;grid-template-columns:repeat(4,1fr);gap:26px}.measurement b{display:block;font-size:8px;text-transform:uppercase;margin-bottom:8px}.measurement span{font-size:9px;color:#55524c}.contact-wrap{display:grid;grid-template-columns:1fr minmax(300px,440px);gap:8vw;align-items:center;max-width:1050px;margin:3vh auto}.contact-copy{max-width:410px}.contact-copy .script-title{margin-bottom:65px}.contact-copy h1{font-size:21px;line-height:1.35;margin-bottom:24px}.contact-details{margin-top:35px;display:grid;gap:24px}.contact-details b{display:block;font-size:9px;text-transform:uppercase;margin-bottom:8px}.contact-photo{aspect-ratio:4/5;background:#d8d4cb}.contact-photo img{height:100%;object-fit:cover}.placeholder{height:100%;display:grid;place-items:center;color:#77736b;text-transform:uppercase;font-size:9px;letter-spacing:.16em;border:1px solid #d4cfc5}.menu-toggle{display:none;border:0;background:none;font-size:20px}.empty{padding:80px 0;color:var(--muted)}
+:root{--bg:#f2f0e9;--ink:#292824;--muted:#77736b;--line:#d5d0c6;--gap:18px}*{box-sizing:border-box}html{scroll-behavior:smooth}body{margin:0;background:var(--bg);color:var(--ink);font-family:Arial,Helvetica,sans-serif;font-size:12px;letter-spacing:.08em}a{color:inherit;text-decoration:none}img{display:block;width:100%}.shell{min-height:100vh;padding:28px 38px 22px;display:flex;flex-direction:column}.site-header{height:52px;display:flex;align-items:flex-start;justify-content:space-between;position:relative;z-index:5}.signature{font-family:"Brush Script MT","Segoe Script",cursive;font-size:26px;letter-spacing:0;line-height:1}.nav{display:flex;gap:28px;align-items:center;text-transform:uppercase;font-size:9px;letter-spacing:.14em}.nav a{padding:4px 0;border-bottom:1px solid transparent}.nav a:hover,.nav a.active{border-color:var(--ink)}.lang{display:flex;gap:8px;margin-left:12px}.lang button{border:0;background:none;padding:0;font:inherit;font-size:8px;color:var(--muted);cursor:pointer}.lang button.active{color:var(--ink);text-decoration:underline}.page{flex:1}.footer{min-height:38px;display:flex;justify-content:space-between;align-items:flex-end;text-transform:uppercase;font-size:8px;letter-spacing:.16em}.socials{display:flex;gap:12px}.script-title{font-family:"Brush Script MT","Segoe Script",cursive;font-size:48px;font-weight:400;letter-spacing:0;margin:0 0 14px}.eyebrow{text-transform:uppercase;line-height:1.6;font-size:10px}.arrow{margin-left:10px}.home-page{display:grid;grid-template-columns:minmax(0,1.25fr) minmax(300px,.75fr);gap:5vw;align-items:center}.home-photo{height:calc(100vh - 140px);min-height:520px;background:#d8d4cb url('../assets/images/home/hero.jpg') center/cover no-repeat}.home-copy{max-width:270px}.home-copy h1{font-size:19px;line-height:1.5;letter-spacing:.18em;font-weight:500;margin:0 0 42px}.cta{text-transform:uppercase;font-size:9px;letter-spacing:.18em;border-bottom:1px solid var(--ink);padding-bottom:5px}.portfolio-intro{padding:5vh 0 4vh;max-width:420px}.portfolio-covers{display:grid;grid-template-columns:1fr 1fr;gap:22px;max-width:900px}.cover{position:relative;aspect-ratio:1.12/1;overflow:hidden;background:#d6d2ca}.cover img{height:100%;object-fit:cover;filter:brightness(.82)}.cover-label{position:absolute;left:24px;bottom:24px;color:#fff;text-transform:uppercase;font-size:16px;letter-spacing:.14em}.cover-label small{display:block;font-size:8px;margin-top:14px}.gallery-head{display:flex;justify-content:space-between;align-items:flex-start;padding:4vh 0 3vh}.gallery{columns:3;column-gap:var(--gap)}.gallery-item{break-inside:avoid;margin:0 0 var(--gap);overflow:hidden;background:#ddd8cf}.gallery-item img{width:100%;height:auto;transition:transform .5s ease}.gallery-item:hover img{transform:scale(1.015)}.gallery-item.tall img{aspect-ratio:3/4.6;object-fit:cover}.gallery-item.portrait img{aspect-ratio:3/4;object-fit:cover}.gallery-item.square img{aspect-ratio:1/1;object-fit:cover}.gallery-item.landscape img{aspect-ratio:4/3;object-fit:cover}.about-wrap{display:grid;grid-template-columns:minmax(300px,440px) minmax(300px,520px);gap:7vw;align-items:center;max-width:1050px;margin:4vh auto}.about-photo{aspect-ratio:4/5;background:#d8d4cb}.about-photo img{height:100%;object-fit:cover}.about-copy h1,.contact-copy h1{font-size:15px;letter-spacing:.14em}.about-copy p,.contact-copy p{line-height:1.8;letter-spacing:.05em;color:#514f49}.measurements{border-top:1px solid var(--line);margin-top:38px;padding-top:24px;display:grid;grid-template-columns:repeat(4,1fr);gap:26px}.measurement b{display:block;font-size:8px;text-transform:uppercase;margin-bottom:8px}.measurement span{font-size:9px;color:#55524c}.contact-wrap{display:grid;grid-template-columns:1fr minmax(300px,440px);gap:8vw;align-items:center;max-width:1050px;margin:3vh auto}.contact-copy{max-width:410px}.contact-copy .script-title{margin-bottom:65px}.contact-copy h1{font-size:21px;line-height:1.35;margin-bottom:24px}.contact-details{margin-top:35px;display:grid;gap:24px}.contact-details b{display:block;font-size:9px;text-transform:uppercase;margin-bottom:8px}.contact-photo img{height:100%;object-fit:cover}.placeholder{height:100%;display:grid;place-items:center;color:#77736b;text-transform:uppercase;font-size:9px;letter-spacing:.16em;border:1px solid #d4cfc5}.menu-toggle{display:none;border:0;background:none;font-size:20px}.empty{padding:80px 0;color:var(--muted)}
 
 /* V2: signature identity + four portfolio worlds */
-.signature,.footer-signature,.script-title{font-family:"Snell Roundhand","Segoe Script","Brush Script MT",cursive;font-weight:400;letter-spacing:0}
+.signature,.footer-signature,.script-title{font-family:"Snell Roundhand","Segoe Script","Brush Script MT",cursive;font-weight:400;letter-spacing:3.5px}
 .footer{position:relative}
 .footer-signature{position:absolute;left:50%;transform:translateX(-50%);bottom:-1px;font-size:23px;white-space:nowrap;text-transform:none}
 .home-categories{display:grid;grid-template-columns:repeat(4,1fr);border-top:1px solid var(--line);border-bottom:1px solid var(--line);margin:34px 0 28px}
 .home-category{min-height:112px;padding:22px 20px;display:flex;align-items:flex-end;justify-content:space-between;border-right:1px solid var(--line);font-family:"Snell Roundhand","Segoe Script","Brush Script MT",cursive;font-size:29px;letter-spacing:0;transition:background .25s ease}
 .home-category:last-child{border-right:0}.home-category:hover{background:rgba(41,40,36,.035)}.category-arrow{font-family:Arial,Helvetica,sans-serif;font-size:13px;margin-bottom:7px}
-.portfolio-covers-four{grid-template-columns:repeat(4,1fr);max-width:1180px}.portfolio-covers-four .cover{aspect-ratio:3/4}.portfolio-covers-four .cover-label{left:18px;bottom:18px}
+.portfolio-covers-four{grid-template-columns:repeat(4,1fr);max-width:1180px}.portfolio-covers-four .cover{aspect-ratio:4/6}.portfolio-covers-four .cover-label{left:18px;bottom:18px}
 .about-copy>.script-title{font-size:48px;margin-bottom:24px}
 
 
@@ -261,7 +262,7 @@ body,
 
 
 /* V25 — unified About/Contact hierarchy on desktop and mobile */
-.about-page-title,.contact-page-title{display:block;margin:0 0 34px;}
+.about-page-title,.contact-page-title{display:block;margin:0 0 34px;letter-spacing: 3.5px;}
 .about-copy-title{display:block;margin:0 0 18px;font-family:'Space Mono',monospace;font-size:12px;font-weight:500;line-height:1.35;letter-spacing:.12em;text-transform:uppercase;}
 .contact-mobile-layout>.contact-wrap{margin-top:0;}
 
@@ -1149,4 +1150,506 @@ html.category-prepared-arrival .page-transition-veil{display:none!important}
 @media (prefers-reduced-motion:reduce){
   .portfolio-covers .cover .cover-loading-signature,
   .portfolio-covers .cover.cover-image-loaded > img[data-featured]{transition:none!important}
+}
+
+/* Portfolio desktop — full-bleed covers, no footer. Mobile remains unchanged. */
+@media (min-width: 801px) {
+  .portfolio-covers.portfolio-covers-four {
+    width: calc(100% + 76px);
+    max-width: none;
+    margin-left: -38px;
+    margin-right: -38px;
+    margin-bottom: -22px;
+    padding: 0;
+    gap: 0;
+    grid-template-columns: repeat(4, minmax(0, 1fr));
+  }
+
+  .portfolio-page + .footer.footer-production {
+    display: none;
+  }
+}
+
+/* Portfolio desktop — sequential bottom-to-top reveal for the four full-bleed covers */
+@media (min-width: 801px) {
+  .portfolio-covers-four .cover.cinematic-ready {
+    opacity: 1;
+    transform: none;
+    clip-path: inset(100% 0 0 0);
+    -webkit-clip-path: inset(100% 0 0 0);
+    transition: clip-path 1.05s cubic-bezier(.22,.61,.36,1), -webkit-clip-path 1.05s cubic-bezier(.22,.61,.36,1);
+    will-change: clip-path;
+  }
+
+  .portfolio-covers-four .cover.cinematic-ready.cinematic-visible {
+    opacity: 1;
+    transform: none;
+    clip-path: inset(0 0 0 0);
+    -webkit-clip-path: inset(0 0 0 0);
+  }
+}
+
+@media (min-width: 801px) and (prefers-reduced-motion: reduce) {
+  .portfolio-covers-four .cover.cinematic-ready,
+  .portfolio-covers-four .cover.cinematic-ready.cinematic-visible {
+    opacity: 1 !important;
+    transform: none !important;
+    clip-path: none !important;
+    -webkit-clip-path: none !important;
+    transition: none !important;
+  }
+}
+
+
+/* Global typography: Questrial */
+html body, html body * {
+  font-family: 'Questrial', sans-serif !important;
+}
+
+
+/* V89 — Home desktop identity: role + CTA centered under the signature */
+@media (min-width: 801px) {
+  .home-body .home-identity {
+    width: 400px;
+    margin-top: 6%;
+    margin-left: 23%;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+  }
+
+  .home-body .home-identity .logo-signature {
+    width: 400px;
+    margin: 0;
+  }
+
+  .home-body .home-identity-copy {
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    text-align: center;
+    color: #e1ded4;
+    margin-top: 12px;
+  }
+
+  .home-body .home-role {
+    display: block;
+    white-space: nowrap;
+    font-family: 'Questrial', sans-serif !important;
+    font-weight: 300;
+    font-size: 15.5px;
+    line-height: 1.2;
+    letter-spacing: .08em;
+  }
+
+  .home-body .home-identity-cta {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    gap: 9px;
+    margin-top: 12px;
+    font-family: 'Questrial', sans-serif !important;
+    font-weight: 300;
+    font-size: 11.7px;
+    line-height: 1.2;
+    letter-spacing: .08em;
+    white-space: nowrap;
+    text-transform: uppercase;
+    transition: opacity .25s ease, gap .25s ease;
+  }
+
+  .home-body .home-identity-cta:hover {
+    opacity: .62;
+    gap: 13px;
+  }
+
+  /* The original hero CTA is kept for mobile only. */
+  .home-body .home-copy {
+    display: none;
+  }
+}
+
+@media (max-width: 800px) {
+  .home-body .home-identity-copy {
+    display: none;
+  }
+}
+
+
+/* V90 — Home desktop identity alignment correction */
+@media (min-width: 801px) {
+  .home-body .home-identity {
+    width: 400px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+  }
+
+  .home-body .home-identity .logo-signature {
+    display: block;
+    width: 400px;
+    margin: 0;
+  }
+
+  .home-body .home-identity-copy {
+    width: 400px;
+    margin-top: 12px;
+    display: grid;
+    grid-template-columns: 1fr;
+    justify-items: center;
+    align-items: center;
+    text-align: center;
+  }
+
+  .home-body .home-role {
+    display: block;
+    width: max-content;
+    margin: 0 auto;
+    font-family: 'Questrial', sans-serif !important;
+    font-weight: 300;
+    font-size: 15.5px;
+    line-height: 1.2;
+    white-space: nowrap;
+  }
+
+  .home-body .home-identity-cta {
+    display: flex;
+    width: max-content;
+    margin: 12px auto 0;
+    align-items: center;
+    justify-content: center;
+    gap: 9px;
+    font-family: 'Questrial', sans-serif !important;
+    font-weight: 300;
+    font-size: 11.7px;
+    line-height: 1.2;
+    white-space: nowrap;
+  }
+}
+
+
+/* V91 — Home desktop identity is an independent movable block below the navigation */
+@media (min-width: 801px) {
+  .home-body .home-hero > .home-identity {
+    position: absolute;
+    top: 120px;
+    left: 23%;
+    width: 400px;
+    margin: 0;
+    z-index: 6;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+  }
+
+  .home-body .home-hero > .home-identity .logo-signature {
+    display: block;
+    width: 400px;
+    margin: 0;
+  }
+
+  .home-body .home-hero > .home-identity .home-identity-copy {
+    width: 100%;
+    margin-top: 12px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    text-align: center;
+    color: #e1ded4;
+  }
+
+  .home-body .home-hero > .home-identity .home-role {
+    display: block;
+    width: max-content;
+    margin: 0 auto;
+    font-family: 'Questrial', sans-serif !important;
+    font-weight: 300;
+    font-size: 15.5px;
+    line-height: 1.2;
+    white-space: nowrap;
+  }
+
+  .home-body .home-hero > .home-identity .home-identity-cta {
+    display: flex;
+    width: max-content;
+    margin: 12px auto 0;
+    align-items: center;
+    justify-content: center;
+    gap: 9px;
+    font-family: 'Questrial', sans-serif !important;
+    font-weight: 300;
+    font-size: 11.7px;
+    line-height: 1.2;
+    white-space: nowrap;
+  }
+}
+
+/* V92 — Home desktop: navigation right + requested identity position */
+@media (min-width: 801px) {
+  .home-body .site-header.home-header {
+    justify-content: flex-end;
+  }
+
+  .home-body .site-header.home-header .nav {
+    margin-left: auto;
+  }
+
+  .home-body .home-hero > .home-identity {
+    position: absolute;
+    top: 95px;
+    left: 53%;
+    width: 400px;
+    margin: 0;
+    z-index: 6;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+  }
+}
+
+
+/* Portfolio desktop — page ends exactly at the bottom edge of the covers */
+@media (min-width: 801px) {
+  .portfolio-body .shell {
+    min-height: 0;
+    padding-bottom: 0;
+  }
+
+  .portfolio-body .portfolio-page {
+    flex: 0 0 auto;
+    padding-bottom: 0;
+  }
+
+  .portfolio-body .portfolio-covers.portfolio-covers-four {
+    margin-bottom: 0;
+  }
+}
+
+/* Portfolio desktop — covers always close the viewport with no background strip below */
+@media (min-width: 801px) {
+  .portfolio-body .shell {
+    min-height: 100vh;
+    padding-bottom: 0;
+  }
+
+  .portfolio-body .portfolio-page {
+    flex: 1 1 auto;
+    min-height: 0;
+    padding-bottom: 0;
+    display: flex;
+    flex-direction: column;
+  }
+
+  .portfolio-body .portfolio-covers.portfolio-covers-four {
+    flex: 1 1 auto;
+    min-height: 0;
+    margin-bottom: 0;
+    align-items: stretch;
+  }
+
+  .portfolio-body .portfolio-covers.portfolio-covers-four .cover {
+    height: 100%;
+    min-height: 0;
+    aspect-ratio: auto;
+  }
+}
+\n\n/* V93 — About desktop: tall portrait left, copy + representation stacked right */
+@media (min-width: 801px) {
+  .about-shell .about-wrap {
+    max-width: 1180px;
+    margin-top: 4vh;
+  }
+
+  .about-shell .about-top {
+    display: grid;
+    grid-template-columns: minmax(320px, 440px) minmax(0, 1fr);
+    gap: 7vw;
+    align-items: stretch;
+    min-height: 825px;
+  }
+
+  .about-shell .about-photo {
+    width: 100%;
+    height: 100%;
+    min-height: 825px;
+    aspect-ratio: auto;
+  }
+
+  .about-shell .about-photo img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+  }
+
+  .about-shell .about-right {
+    min-width: 0;
+    height: 100%;
+    display: grid;
+    grid-template-rows: auto minmax(0, 1fr);
+    gap: 34px;
+  }
+
+  .about-shell .about-copy {
+    min-width: 0;
+  }
+
+  .about-shell .about-right > .representation {
+    width: 100%;
+    min-height: 0;
+    height: 100%;
+    margin: 0;
+    padding: 0;
+    border-top: 0;
+  }
+
+  .about-shell .about-right > .representation .representation-map {
+    width: 100%;
+    height: 100%;
+    min-height: 0;
+    margin: 0;
+  }
+
+  .about-shell .about-right > .representation .map-coordinate-stage {
+    width: 96%;
+  }
+}
+
+/* V94 — About desktop: wider layout + map flush below copy */
+@media (min-width: 801px) {
+  .about-shell .about-wrap {
+    width: 100%;
+    max-width: 1250px;
+  }
+
+  .about-shell .about-right {
+    gap: 0;
+  }
+
+  .about-shell .about-right > .representation {
+    margin-top: 0;
+    padding-top: 0;
+  }
+
+  .about-shell .about-right > .representation .representation-map {
+    height: 100%;
+    min-height: 0;
+  }
+}
+
+/* V95 — About desktop: 700px photo + visible representation map */
+@media (min-width: 801px) {
+  .about-shell .about-top {
+    height: 700px;
+    min-height: 0;
+    align-items: stretch;
+  }
+
+  .about-shell .about-photo {
+    height: 700px;
+    min-height: 0;
+  }
+
+  .about-shell .about-photo img {
+    height: 700px;
+    object-fit: cover;
+  }
+
+  .about-shell .about-right {
+    height: 700px;
+    min-height: 0;
+    grid-template-rows: auto minmax(0, 1fr);
+  }
+
+  .about-shell .about-right > .representation {
+    min-height: 0;
+    height: auto;
+    overflow: hidden;
+  }
+
+  .about-shell .about-right > .representation .representation-map {
+    position: relative;
+    width: 100%;
+    height: 100%;
+    min-height: 0;
+    overflow: hidden;
+  }
+}
+
+/* V96 — About desktop: copy inset + guaranteed visible representation map */
+@media (min-width: 801px) {
+  .about-shell .about-right {
+    height: 700px;
+    min-height: 700px;
+    padding-left: 50px;
+    box-sizing: border-box;
+    display: grid;
+    grid-template-rows: auto minmax(300px, 1fr);
+    gap: 0;
+  }
+
+  .about-shell .about-copy {
+    width: 100%;
+    min-width: 0;
+  }
+
+  .about-shell .about-right > .representation {
+    position: relative;
+    width: 100%;
+    height: 100%;
+    min-height: 300px;
+    margin: 0;
+    padding: 0;
+    overflow: hidden;
+  }
+
+  .about-shell .about-right > .representation .representation-map {
+    position: absolute;
+    inset: 0;
+    width: 100%;
+    height: 100%;
+    min-height: 300px;
+    margin: 0;
+    overflow: hidden;
+  }
+
+  .about-shell .about-right > .representation .map-coordinate-stage {
+    left: 50%;
+    top: 50%;
+    width: min(92%, 760px);
+    transform: translate(-50%, -50%);
+  }
+}
+
+/* V97 — About desktop: 1000px balanced columns; extra height goes to map */
+@media (min-width: 801px) {
+  .about-shell .about-top {
+    height: 1000px;
+    min-height: 1000px;
+    align-items: stretch;
+  }
+
+  .about-shell .about-photo {
+    height: 1000px;
+    min-height: 1000px;
+  }
+
+  .about-shell .about-photo img {
+    height: 1000px;
+    object-fit: cover;
+  }
+
+  .about-shell .about-right {
+    height: 1000px;
+    min-height: 1000px;
+    grid-template-rows: auto minmax(600px, 1fr);
+  }
+
+  .about-shell .about-right > .representation {
+    min-height: 600px;
+  }
+
+  .about-shell .about-right > .representation .representation-map {
+    min-height: 600px;
+  }
 }

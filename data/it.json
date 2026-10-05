@@ -14,7 +14,7 @@
     "beauty": "Beauty"
   },
   "portfolio": {
-    "title": "Portfolio",
+    "title": "PORTFOLIO",
     "subtitle": "Una selezione dei miei lavori fashion e commercial.",
     "fashion": "Fashion",
     "commercial": "Commercial",
@@ -23,13 +23,13 @@
     "beauty": "Beauty"
   },
   "fashion": {
-    "title": "Fashion"
+    "title": "FASHION"
   },
   "commercial": {
-    "title": "Commercial"
+    "title": "COMMERCIAL"
   },
   "about": {
-    "heading": "About",
+    "heading": "ABOUT",
     "body": "Sono Valentina, modella con base a Barcellona, con una forte passione per la moda, lo storytelling visivo e il mondo creativo. Mi piace portare personalità, movimento e autenticità in ogni progetto, adattandomi con naturalezza a concept, stili e ambienti diversi. Il mio lavoro spazia tra fashion, commercial ed editorial, sempre con la stessa attenzione ai dettagli e un approccio professionale sul set. Amo collaborare con fotografi, designer, stylist e brand, creando immagini contemporanee, eleganti e autentiche. Per me fare la modella non significa soltanto stare davanti all'obiettivo, ma comprendere una visione e contribuire a trasformarla in immagini. Sono curiosa, versatile e sempre aperta a nuove esperienze, sfide creative e collaborazioni che mi permettano di crescere ed esplorare nuove prospettive.",
     "measurements": "MISURE",
     "height": "ALTEZZA",
@@ -41,7 +41,7 @@
     "eyes": "OCCHI"
   },
   "contact": {
-    "title": "Contatti",
+    "title": "CONTATTI",
     "heading": "LAVORIAMO INSIEME",
     "body": "Per booking, collaborazioni o qualsiasi richiesta, contattami.",
     "email": "EMAIL",
@@ -67,9 +67,9 @@
     "location": "POWERED BY GEIVI STUDIO"
   },
   "digitals": {
-    "title": "Digitals"
+    "title": "DIGITALS"
   },
   "beauty": {
-    "title": "Beauty"
+    "title": "BEAUTY"
   }
 }
