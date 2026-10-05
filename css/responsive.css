@@ -333,7 +333,9 @@
 
 /* Fashion gallery — mobile stays at 2 columns */
 @media (max-width: 800px) {
-  .gallery[data-gallery="fashion"] {
+  .gallery[data-gallery="fashion"],
+  .gallery[data-gallery="commercial"],
+  .gallery[data-gallery="beauty"] {
     columns: 2;
   }
 }
