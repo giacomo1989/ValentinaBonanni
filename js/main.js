@@ -111,6 +111,7 @@ function initRepresentationMap(){
   const cityEl=card.querySelector('.agency-card-city');
   const nameEl=card.querySelector('h3');
   const linkEl=card.querySelector('.agency-card-link');
+  const photoEl=card.querySelector('.agency-card-photo');
   const fineHover=window.matchMedia('(hover:hover) and (pointer:fine)');
   let hideTimer=null;
 
@@ -165,6 +166,10 @@ function initRepresentationMap(){
     markers.forEach(m=>m.classList.toggle('is-active',m===marker));
     cityEl.textContent=`${marker.dataset.city} · ${marker.dataset.country}`;
     nameEl.textContent=marker.dataset.agency||'Agency name';
+    if(photoEl && marker.dataset.photo){
+      photoEl.src=marker.dataset.photo;
+      photoEl.alt=`${marker.dataset.city} profile`;
+    }
     if(marker.dataset.url){linkEl.href=marker.dataset.url;linkEl.classList.remove('is-disabled');linkEl.removeAttribute('aria-disabled');}
     else{linkEl.href='#';linkEl.classList.add('is-disabled');linkEl.setAttribute('aria-disabled','true');}
     card.classList.add('is-visible');
@@ -353,17 +358,13 @@ document.addEventListener('DOMContentLoaded',()=>{
   logos.forEach(logo=>observer.observe(logo));
 });
 
-// V54 — write the home signature only on the first Home entry of this browsing session.
+// Home signature — replay the ink drawing every time Home is entered/loaded.
 document.addEventListener('DOMContentLoaded',()=>{
   const logo=document.querySelector('.home-body .logo-signature');
   if(!logo)return;
-  const key='vb_home_signature_seen';
-  let seen=false;
-  try{seen=sessionStorage.getItem(key)==='1'}catch(e){}
-  if(seen)return;
-  try{sessionStorage.setItem(key,'1')}catch(e){}
   if(window.matchMedia('(prefers-reduced-motion: reduce)').matches)return;
-  requestAnimationFrame(()=>logo.classList.add('home-entry-ink'));
+  logo.classList.remove('home-entry-ink');
+  requestAnimationFrame(()=>requestAnimationFrame(()=>logo.classList.add('home-entry-ink')));
 });
 
 // V68 — experimental SPA hand-off for Portfolio -> category.
@@ -555,3 +556,41 @@ window.addEventListener('popstate',()=>{ location.reload(); });
     veil.classList.remove('is-visible');
   });
 })();
+
+// V80 — Home: after 1s the dark veil fades in for 2s; Europe starts at 3s; copy remains visible.
+document.addEventListener('DOMContentLoaded',()=>{
+  const body=document.body;
+  const overlay=document.querySelector('.home-map-overlay');
+  const rep=overlay?.querySelector('.home-hero-representation');
+  if(!overlay||!rep)return;
+
+  const order=['barcelona','madrid','milan','london','stockholm'];
+  const markers=order.map(city=>overlay.querySelector('.marker-'+city)).filter(Boolean);
+  const reduced=window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+  const timers=[];
+
+  const reveal=()=>{
+    body.classList.add('home-map-active');
+    rep.classList.remove('is-map-drawn');
+    void rep.offsetWidth;
+    rep.classList.add('is-map-drawn');
+
+    if(reduced){
+      markers.forEach(m=>m.classList.add('is-sequenced'));
+      return;
+    }
+
+    // First draw Europe, then reveal Barcelona → Madrid → Milan → London → Stockholm.
+    markers.forEach((m,i)=>timers.push(setTimeout(()=>m.classList.add('is-sequenced'),4200+i*420)));
+  };
+
+  if(reduced){
+    body.classList.add('home-veil-active');
+    reveal();
+  }else{
+    // Let the untouched hero breathe for 1s, then darken it smoothly over 2s.
+    timers.push(setTimeout(()=>body.classList.add('home-veil-active'),1000));
+    // Start drawing Europe exactly as the 2s veil transition completes.
+    timers.push(setTimeout(reveal,3000));
+  }
+});

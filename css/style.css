@@ -128,7 +128,7 @@ body,
 .home-back{display:inline-flex!important;align-items:center;justify-content:center;width:auto!important;height:auto!important;border:0!important;border-radius:0!important;font-family:"Space Mono",monospace;font-size:24px;font-weight:400;line-height:1;color:var(--ink);transition:transform .35s cubic-bezier(.22,.61,.36,1),opacity .25s ease}
 .home-back:hover{transform:translateX(-4px);opacity:.58}
 
-.footer-logo{position:absolute;left:50%;transform:translateX(-50%);width:150px;height:auto;line-height:0;bottom:-4px}
+.footer-logo{position:absolute;left:88%;transform:translateX(-50%);width:150px;height:auto;line-height:0;bottom:-4px}
 .footer-logo img{display:block;width:100%;height:auto;background:transparent;object-fit:contain}
 .footer-icons{display:flex;align-items:center;gap:17px}
 .footer-icons a{display:block;width:15px;height:15px;line-height:0}
@@ -240,6 +240,7 @@ body,
 .about-wrap{margin-bottom:100px;}
 .contact-wrap{margin-bottom:100px;}
 .measurements-section{width:100%;border-top:1px solid var(--line);margin-top:38px;padding-top:24px;}
+.measurements-section{margin-bottom:80px;}
 .measurements-title{margin:0 0 26px;font-family:'Space Mono',monospace;font-size:10px;font-weight:500;letter-spacing:.14em;text-transform:uppercase;}
 .about-wrap>.measurements-section .measurements{border-top:0;margin-top:0;padding-top:0;}
 .home-back{font-size:0!important;line-height:0;}
@@ -437,10 +438,10 @@ body,
   overflow:visible;
 }
 .map-coordinate-stage .agency-marker{z-index:3;}
-.map-coordinate-stage .marker-london{left:27.0%;top:55.3%;}
-.map-coordinate-stage .marker-milan{left:50.3%;top:71.3%;}
+.map-coordinate-stage .marker-london{left:27.0%;top:50.3%;}
+.map-coordinate-stage .marker-milan{left:49.3%;top:66.3%;}
 .map-coordinate-stage .marker-barcelona{left:32.1%;top:79.4%;}
-.map-coordinate-stage .marker-madrid{left:18.5%;top:84.7%;}
+.map-coordinate-stage .marker-madrid{left:18.5%;top:81.7%;}
 .map-coordinate-stage .marker-stockholm{left:65.0%;top:34.6%;}
 
 /* V44 — zoom out the Europe stage while keeping SVG + markers locked together */
@@ -779,3 +780,276 @@ html.category-prepared-arrival .page-transition-veil{display:none!important}
 \n\n/* V66 — continuity cover across the real HTML navigation.\n   The destination starts with the same completed signature/wash already covering it;\n   only after its gallery has rendered and decoded do we dissolve that cover away. */\nhtml.category-cover-arrival body::before,\nhtml.category-cover-arrival body::after{\n  content:"";position:fixed;inset:0;z-index:50000;pointer-events:none;opacity:1;\n}\nhtml.category-cover-arrival body::before{\n  background:rgba(242,240,233,.56);\n  backdrop-filter:blur(2px);-webkit-backdrop-filter:blur(2px);\n  transition:opacity .52s cubic-bezier(.4,0,.2,1);\n}\nhtml.category-cover-arrival body::after{\n  left:50%;top:50%;right:auto;bottom:auto;width:min(290px,52vw);height:120px;\n  transform:translate(-50%,-50%);\n  background:url('../assets/images/logo/valentina-bonanni-signature.png') center/contain no-repeat;\n  transition:opacity .46s cubic-bezier(.4,0,.2,1),filter .46s ease;\n}\nhtml.category-cover-arrival.category-cover-release body::before,\nhtml.category-cover-arrival.category-cover-release body::after{opacity:0}\nhtml.category-cover-arrival.category-cover-release body::after{filter:blur(.35px)}\n@media(prefers-reduced-motion:reduce){\n  html.category-cover-arrival body::before,html.category-cover-arrival body::after{transition:none!important}\n}\n
 /* V68 — SPA experiment: once the destination is already the live DOM, only lift the cover. */
 .category-transition.spa-release{opacity:0;visibility:visible;pointer-events:none;transition:opacity .62s cubic-bezier(.22,.61,.36,1)!important}
+\n\n/* V70 — editorial portrait markers + profile image in agency card */
+.agency-marker{transform:translate(-19px,-19px);gap:10px}
+.agency-marker button{width:38px;height:38px;border-radius:50%;isolation:isolate}
+.agency-marker button img{position:absolute;inset:3px;width:32px;height:32px;border-radius:50%;object-fit:cover;object-position:center;display:block;z-index:2;border:1px solid rgba(242,240,233,.92);box-shadow:0 0 0 1px rgba(29,28,25,.42);filter:grayscale(1);transition:transform .45s cubic-bezier(.16,1,.3,1),box-shadow .35s ease}
+.agency-marker button::before{inset:0;border:1px solid rgba(29,28,25,.34);transform:scale(.88);z-index:0}
+.agency-marker button::after{display:none}
+.agency-marker button span{inset:1px;z-index:0;border:1px solid rgba(29,28,25,.42);animation:agencyPortraitPulseA 3s cubic-bezier(.22,.61,.36,1) infinite}
+.agency-marker button span::after{inset:-1px;border:1px solid rgba(29,28,25,.30);animation:agencyPortraitPulseB 3s cubic-bezier(.22,.61,.36,1) infinite}
+.agency-marker:hover button img,.agency-marker.is-active button img,.agency-marker:focus-within button img{transform:scale(1.08);box-shadow:0 0 0 1px rgba(29,28,25,.65)}
+.agency-marker:hover button::before,.agency-marker.is-active button::before{transform:scale(1.08);opacity:1}
+@keyframes agencyPortraitPulseA{0%{transform:scale(.92);opacity:.65}58%{transform:scale(1.55);opacity:.08}72%,100%{transform:scale(1.62);opacity:0}}
+@keyframes agencyPortraitPulseB{0%,20%{transform:scale(.92);opacity:0}27%{opacity:.5}72%{transform:scale(1.58);opacity:.05}86%,100%{transform:scale(1.64);opacity:0}}
+.agency-card-profile{display:flex;align-items:flex-end;justify-content:space-between;gap:18px;margin-top:2px}
+.agency-card-photo{width:62px;height:78px;object-fit:cover;object-position:center;display:block;filter:grayscale(1);border:1px solid rgba(41,40,36,.14);opacity:0;transform:translateY(6px);transition:opacity .25s ease,transform .42s cubic-bezier(.16,1,.3,1)}
+.agency-card.is-visible .agency-card-photo{opacity:1;transform:none;transition-delay:.32s}
+.agency-card h3{margin-bottom:18px}
+.agency-card-link{margin-bottom:2px}
+@media(prefers-reduced-motion:reduce){.agency-marker button span,.agency-marker button span::after{animation:none!important;opacity:0}.agency-card-photo{opacity:1;transform:none;transition:none!important}}
+
+/* V71 — the portrait medallion itself breathes; one restrained halo follows it. */
+.agency-marker button img{
+  transform-origin:center;
+  animation:agencyPortraitMedallionBreath 3.4s cubic-bezier(.45,0,.25,1) infinite;
+  will-change:transform;
+}
+.agency-marker button span{
+  inset:0;
+  border:1px solid rgba(29,28,25,.34);
+  animation:agencyPortraitHaloBreath 3.4s cubic-bezier(.45,0,.25,1) infinite;
+}
+.agency-marker button span::after{display:none!important;animation:none!important}
+@keyframes agencyPortraitMedallionBreath{
+  0%,100%{transform:scale(1)}
+  48%{transform:scale(1.167)}
+}
+@keyframes agencyPortraitHaloBreath{
+  0%,100%{transform:scale(.94);opacity:.28}
+  52%{transform:scale(1.16);opacity:.58}
+}
+.agency-marker:hover button img,
+.agency-marker.is-active button img,
+.agency-marker:focus-within button img{
+  animation-play-state:paused;
+  transform:scale(1.10);
+}
+.agency-marker:hover button span,
+.agency-marker.is-active button span,
+.agency-marker:focus-within button span{
+  animation-play-state:paused;
+  transform:scale(1.10);
+  opacity:.34;
+}
+@media(prefers-reduced-motion:reduce){
+  .agency-marker button img,.agency-marker button span{animation:none!important}
+}
+
+/* V73 — stronger portrait breath: 30px -> 42px -> 30px. */
+.agency-marker button img{
+  inset:4px;
+  width:30px;
+  height:30px;
+}
+@keyframes agencyPortraitMedallionBreath{
+  0%,100%{transform:scale(1)}
+  48%{transform:scale(1.4)}
+}
+
+/* V75 — Home hierarchy: International Model + portfolio categories + Across Europe */
+.home-role-categories{margin:-30px 0 34px;font-family:"Space Mono",monospace;font-size:8px;font-weight:500;line-height:1.7;letter-spacing:.13em;white-space:nowrap;text-transform:uppercase;}
+.home-representation-wrap{background:var(--bg);color:var(--ink);padding:1px 38px 22px;}
+.home-representation-wrap .representation{margin-top:76px;}
+
+
+/* V76 — stronger Home typography + standard footer below Across Europe */
+.home-body .home-role-categories{font-size:10px;}
+.home-body .cta{font-size:14px;}
+.home-body .home-footer{font-size:9px;}
+.home-standard-footer{margin:0 38px;padding:24px 0 0;min-height:72px;border-top:1px solid var(--line);color:var(--ink);}
+
+/* V78 — one-scene home: Europe unfolds directly over the hero */
+.home-body{background:#11100f;}
+.home-hero{height:100vh;min-height:620px;position:sticky;top:0;overflow:hidden;}
+.home-body::after{content:"";display:block;height:72vh;pointer-events:none;}
+.home-map-overlay{position:absolute;inset:0;z-index:4;pointer-events:none;opacity:0;transition:opacity .45s ease;}
+.home-map-overlay::before{content:"";position:absolute;inset:0;background:rgba(20,19,17,.28);opacity:0;transition:opacity .55s ease;}
+.home-map-overlay .home-hero-representation{position:absolute;inset:72px 2vw 58px;margin:0;padding:0;border:0;}
+.home-map-overlay .representation-map{position:absolute;inset:0;width:100%;height:100%;min-height:0;border:0;background:none;overflow:visible;}
+.home-map-overlay .map-coordinate-stage{width:min(78%,1000px);top:51%;}
+.home-map-overlay .europe-map g{stroke:#f0ece3;opacity:.72;}
+.home-map-overlay .agency-marker{opacity:0;transform:translate(-50%,-50%) scale(.58);transition:opacity .5s ease,transform .65s cubic-bezier(.22,.61,.36,1);pointer-events:none;}
+.home-map-overlay .agency-marker.is-sequenced{opacity:1;transform:translate(-50%,-50%) scale(1);pointer-events:auto;}
+.home-map-overlay .agency-marker em{color:#f2eee5;text-shadow:0 1px 7px rgba(0,0,0,.45);}
+.home-map-overlay .agency-card{pointer-events:auto;}
+.home-map-overlay .agency-connector{background:rgba(242,238,229,.62);}
+.home-body.home-map-active .home-map-overlay{opacity:1;}
+.home-body.home-map-active .home-map-overlay::before{opacity:1;}
+.home-body.home-map-active .home-copy{opacity:0;transform:translateY(-50%) translateY(-12px);pointer-events:none;}
+.home-body .home-copy{transition:opacity .5s ease,transform .55s ease;}
+.home-body.home-map-active .home-footer{opacity:.45;}
+.home-footer{transition:opacity .45s ease;}
+@media(max-width:800px){
+  .home-body::after{height:62vh;}
+  .home-map-overlay .home-hero-representation{inset:76px 0 62px;}
+  .home-map-overlay .map-coordinate-stage{width:96%;top:50%;}
+}
+@media(prefers-reduced-motion:reduce){
+  .home-map-overlay,.home-map-overlay .agency-marker,.home-copy{transition:none!important;}
+}
+
+/* V79 — timed one-scene Home: copy stays, Europe starts 3s after load */
+.home-body{height:100vh;overflow:hidden;}
+.home-body::after{display:none!important;content:none!important;}
+.home-hero{height:100vh;min-height:620px;position:relative;top:auto;overflow:hidden;}
+.home-body .home-copy{top:67%;z-index:5;opacity:1!important;pointer-events:auto!important;}
+.home-body.home-map-active .home-copy{opacity:1!important;transform:translateY(-50%)!important;pointer-events:auto!important;}
+.home-body.home-map-active .home-footer{opacity:1;}
+.home-map-overlay{z-index:4;}
+@media(max-width:800px){
+  .home-body{height:100vh;overflow:hidden;}
+  .home-body .home-copy{top:67%;}
+}
+
+/* V80 — cinematic Home veil: wait 1s, fade for 2s, then draw Europe */
+.home-map-overlay{opacity:1;}
+.home-map-overlay::before{opacity:0;transition:opacity 2s ease;}
+.home-body.home-veil-active .home-map-overlay::before{opacity:1;}
+.home-map-overlay .home-hero-representation{opacity:0;transition:opacity .18s ease;}
+.home-body.home-map-active .home-map-overlay .home-hero-representation{opacity:1;}
+@media (prefers-reduced-motion:reduce){
+  .home-map-overlay::before,.home-map-overlay .home-hero-representation{transition:none!important;}
+}
+
+
+/* V83 — Representation returns below the Hero; standard Portfolio footer */
+.home-body{height:auto;overflow-x:hidden;overflow-y:auto;background:var(--bg);}
+.home-body .home-hero{height:100vh;min-height:620px;position:relative;overflow:hidden;}
+.home-body .home-representation-wrap{position:relative;background:var(--bg);color:var(--ink);padding:1px 38px 22px;}
+.home-body .home-representation-wrap .representation{margin:76px 0 10px;padding:72px 0 46px;border-top:1px solid var(--line);}
+.home-body .home-representation-wrap .representation-map{position:relative;width:100%;height:min(61vw,650px);min-height:500px;overflow:hidden;background:linear-gradient(180deg,rgba(255,255,255,.08),rgba(255,255,255,0));border-top:1px solid rgba(41,40,36,.08);border-bottom:1px solid rgba(41,40,36,.08);}
+.home-body .home-representation-wrap .map-coordinate-stage{width:min(76%,1000px);top:50%;}
+.home-body > .footer{margin:0 38px;}
+@media(max-width:800px){
+  .home-body .home-representation-wrap{padding:1px 18px 16px;}
+  .home-body .home-representation-wrap .representation{margin-top:46px;padding-top:46px;}
+  .home-body .home-representation-wrap .representation-map{min-height:430px;}
+  .home-body .home-representation-wrap .map-coordinate-stage{width:96%;top:50%;}
+  .home-body > .footer{margin:0 18px;}
+}
+
+/* V84 — Home measurements / About representation swap */
+.home-measurements-wrap{background:var(--bg);color:var(--ink);padding:58px 38px 72px;}
+.home-measurements-wrap .measurements-section{max-width:1180px;margin:0 auto;padding-top:24px;}
+.about-wrap>.representation{width:100%;grid-column:1/-1;margin-top:56px;}
+.about-wrap>.representation .representation-map{width:100%;}
+@media(max-width:800px){
+  .home-measurements-wrap{padding:42px 22px 52px;}
+  .about-wrap>.representation{margin-top:38px;}
+}
+
+/* V88 measurements refinement */
+.measurements {
+    border-top: 1px solid var(--line);
+    margin-top: 24px;
+    padding-top: 24px;
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap: 26px;
+}
+.measurements-title {
+    margin: 0 0 26px;
+    font-family: 'Space Mono', monospace;
+    font-size: 18px;
+    font-weight: 500;
+    letter-spacing: 0.34em;
+    text-transform: uppercase;
+}
+.measurement b {
+    display: block;
+    font-size: 13px;
+    text-transform: uppercase;
+    margin-bottom: 8px;
+}
+.measurement span {
+    font-size: 10px;
+    color: #55524c;
+}
+
+/* Home-only signature treatment */
+.home-body .logo-signature {
+    width: 400px;
+    margin-top: 30%;
+}
+.home-body .logo-signature img {
+    filter: brightness(0) invert(1);
+}
+.home-body .logo-signature.home-entry-ink img {
+    filter: brightness(0) invert(1) blur(.65px);
+}
+@media (prefers-reduced-motion: reduce) {
+    .home-body .logo-signature.home-entry-ink img {
+        filter: brightness(0) invert(1) !important;
+    }
+}
+
+/* Home ivory typography */
+.home-body .logo-signature img {
+    filter: brightness(0) saturate(100%) invert(94%) sepia(4%) saturate(321%) hue-rotate(4deg) brightness(95%) contrast(92%);
+}
+.home-body .logo-signature.home-entry-ink img {
+    filter: brightness(0) saturate(100%) invert(94%) sepia(4%) saturate(321%) hue-rotate(4deg) brightness(95%) contrast(92%) blur(.65px);
+}
+.home-body .nav,
+.home-body .home-copy {
+    color: #e1ded4;
+}
+.home-body .nav a:hover,
+.home-body .nav a.active {
+    border-color: #e1ded4;
+}
+@media (prefers-reduced-motion: reduce) {
+    .home-body .logo-signature.home-entry-ink img {
+        filter: brightness(0) saturate(100%) invert(94%) sepia(4%) saturate(321%) hue-rotate(4deg) brightness(95%) contrast(92%) !important;
+    }
+}
+
+/* Home signature positioning + slower entry drawing */
+.home-body .logo-signature {
+    width: 400px;
+    margin-top: 6%;
+    margin-left: 23%;
+}
+.home-body .logo-signature.home-entry-ink img {
+    animation-duration: 10s;
+}
+
+/* Home desktop composition — keep the photographic scale stable on wide screens */
+@media (min-width: 801px) {
+  .home-body .home-hero {
+    background-position: center center;
+    background-size: cover;
+  }
+}
+
+/* On extra-wide displays, scale from the hero height instead of continuing to enlarge with width. */
+@media (min-width: 1600px) and (min-aspect-ratio: 16/9) {
+  .home-body .home-hero {
+    background-size: auto 100%;
+    background-position: center center;
+    background-color: #1f1d1b;
+  }
+}
+
+/* Keep the Home signature in the requested ivory tone during the full 10s drawing animation. */
+.home-body .logo-signature img {
+  filter: brightness(0) saturate(100%) invert(94%) sepia(4%) saturate(321%) hue-rotate(4deg) brightness(95%) contrast(92%);
+}
+.home-body .logo-signature.home-entry-ink img {
+  animation-duration: 10s;
+  filter: brightness(0) saturate(100%) invert(94%) sepia(4%) saturate(321%) hue-rotate(4deg) brightness(95%) contrast(92%) blur(.65px);
+}
+
+
+/* V5 — Home signature uses an exact pre-coloured #e1ded4 asset. No CSS colour approximation. */
+.home-body .logo-signature img {
+  filter: none !important;
+}
+.home-body .logo-signature.home-entry-ink img {
+  animation-duration: 10s;
+  filter: blur(.65px) !important;
+}
+@media (prefers-reduced-motion: reduce) {
+  .home-body .logo-signature.home-entry-ink img { filter: none !important; }
+}
