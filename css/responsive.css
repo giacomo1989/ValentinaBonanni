@@ -124,10 +124,8 @@
 @media(max-width:800px){
   .about-shell,.contact-shell{min-height:72vh;}
   .about-shell .page,.contact-shell .page{flex:0 0 auto;}
-  .about-shell .footer,.contact-shell .footer{margin-top:clamp(90px,24vh,230px);}
 }
 @media(max-width:480px){
-  .about-shell .footer,.contact-shell .footer{margin-top:clamp(70px,20vh,180px);}
 }
 
 
@@ -158,7 +156,7 @@
 
 /* V31 — Representation map responsive */
 @media(max-width:800px){
-  .representation{margin-top:70px;padding:48px 0 24px}
+  .representation{margin-top:70px;padding:0 0 24px}
   .representation-head{display:block;margin-bottom:22px}
   .representation-head h2{font-size:36px}
   .representation-copy{margin-top:18px;max-width:290px;font-size:8px}
@@ -263,7 +261,7 @@
 /* V6 — requested Home mobile-only composition */
 @media (max-width: 800px) {
   .home-body .logo-signature {
-    margin-top: 290%;
+    margin-top: 246%;
     margin-left: 0%;
     margin-right: -6%;
   }

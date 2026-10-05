@@ -215,21 +215,45 @@ document.addEventListener('DOMContentLoaded', () => {
   if (!section) return;
 
   const reducedMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+  const order = ['barcelona','madrid','milan','london','stockholm'];
+  const markers = order.map(city => section.querySelector('.marker-' + city)).filter(Boolean);
+  let markerTimers = [];
+
+  const clearMarkerTimers = () => {
+    markerTimers.forEach(clearTimeout);
+    markerTimers = [];
+  };
+  const resetMarkers = () => markers.forEach(marker => marker.classList.remove('is-sequenced'));
+  const revealMarkers = () => {
+    clearMarkerTimers();
+    markers.forEach((marker, index) => {
+      markerTimers.push(setTimeout(() => marker.classList.add('is-sequenced'), 4200 + index * 420));
+    });
+  };
+
   if (reducedMotion || !('IntersectionObserver' in window)) {
     section.classList.add('is-map-drawn');
+    markers.forEach(marker => marker.classList.add('is-sequenced'));
     return;
   }
+
+  section.classList.add('representation-sequence-ready');
+  resetMarkers();
 
   let wasVisible = false;
   const observer = new IntersectionObserver((entries) => {
     entries.forEach((entry) => {
       const visible = entry.isIntersecting && entry.intersectionRatio >= 0.22;
       if (visible && !wasVisible) {
-        // Force a clean restart even after repeated scroll entries.
+        // Restart the map, then reveal Barcelona → Madrid → Milan → London → Stockholm.
         section.classList.remove('is-map-drawn');
+        resetMarkers();
         void section.offsetWidth;
         section.classList.add('is-map-drawn');
+        revealMarkers();
       } else if (!entry.isIntersecting) {
+        clearMarkerTimers();
+        resetMarkers();
         section.classList.remove('is-map-drawn');
       }
       wasVisible = visible;
@@ -452,13 +476,36 @@ document.addEventListener('DOMContentLoaded',()=>{
       const html=await response.text();
       await coverReady;
       await vbSpaInstall(html,href);
-      const imgs=[...document.querySelectorAll('[data-gallery] img')];
-      await Promise.allSettled(imgs.map(img=>{
-        if(img.complete)return img.decode?img.decode().catch(()=>{}):Promise.resolve();
-        return new Promise(resolve=>{img.addEventListener('load',resolve,{once:true});img.addEventListener('error',resolve,{once:true})});
-      }));
-      if(document.fonts?.ready){try{await document.fonts.ready}catch(_){}}
-      await minimumDisplay;
+
+      // Fashion has a large, lazy-loaded gallery. Do not keep the transition veil
+      // waiting for all gallery images: many of them intentionally load only as the
+      // visitor scrolls. Let the signature finish, hold it for 1 second, then reveal
+      // the page while the gallery continues loading naturally in the background.
+      const isFashion=/^(?:.*\/)?fashion\.html(?:[?#].*)?$/i.test(href);
+      if(isFashion){
+        const signature=overlay.querySelector('.category-transition-signature');
+        await new Promise(resolve=>{
+          let done=false;
+          const finish=()=>{
+            if(done)return;
+            done=true;
+            signature?.removeEventListener('animationend',onEnd);
+            window.setTimeout(resolve,1000);
+          };
+          const onEnd=e=>{if(e.target===signature)finish()};
+          signature?.addEventListener('animationend',onEnd);
+          // Fallback for reduced motion / browsers that do not emit animationend.
+          window.setTimeout(finish,3200);
+        });
+      }else{
+        const imgs=[...document.querySelectorAll('[data-gallery] img')];
+        await Promise.allSettled(imgs.map(img=>{
+          if(img.complete)return img.decode?img.decode().catch(()=>{}):Promise.resolve();
+          return new Promise(resolve=>{img.addEventListener('load',resolve,{once:true});img.addEventListener('error',resolve,{once:true})});
+        }));
+        if(document.fonts?.ready){try{await document.fonts.ready}catch(_){}}
+        await minimumDisplay;
+      }
       await new Promise(resolve=>requestAnimationFrame(()=>requestAnimationFrame(resolve)));
       overlay.classList.add('spa-release');
       window.setTimeout(()=>overlay.remove(),700);

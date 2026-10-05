@@ -269,7 +269,7 @@ body,
 .contact-form{margin-top:30px;display:grid;gap:20px;max-width:100%}.contact-form label{display:grid;gap:8px}.contact-form label>span{font-family:'Space Mono',monospace;font-size:8px;font-weight:700;letter-spacing:.16em;text-transform:uppercase}.contact-form input,.contact-form select,.contact-form textarea{width:100%;border:0;border-bottom:1px solid var(--line);border-radius:0;background:transparent;color:var(--ink);padding:7px 0 10px;font:400 10px/1.6 'Space Mono',monospace;letter-spacing:.04em;outline:none}.contact-form textarea{resize:vertical;min-height:74px}.contact-form select{appearance:none;-webkit-appearance:none;background-image:linear-gradient(45deg,transparent 50%,var(--ink) 50%),linear-gradient(135deg,var(--ink) 50%,transparent 50%);background-position:calc(100% - 8px) 50%,calc(100% - 4px) 50%;background-size:4px 4px,4px 4px;background-repeat:no-repeat;padding-right:20px}.contact-form input:focus,.contact-form select:focus,.contact-form textarea:focus{border-bottom-color:var(--ink)}.contact-form button{margin-top:4px;width:100%;border:1px solid var(--ink);background:var(--ink);color:var(--bg);padding:14px 18px;display:flex;justify-content:center;align-items:center;gap:24px;font:700 9px/1 'Space Mono',monospace;letter-spacing:.18em;text-transform:uppercase;cursor:pointer;transition:background .3s ease,color .3s ease}.contact-form button:hover{background:transparent;color:var(--ink)}
 
 /* V31 — Representation / interactive Europe map */
-.representation{position:relative;margin:110px 0 10px;padding:72px 0 46px;border-top:1px solid var(--line)}
+.representation{position:relative}
 .representation-head{display:flex;justify-content:space-between;align-items:flex-end;gap:40px;margin-bottom:26px}
 .representation-kicker{margin:0 0 16px;font-family:'Space Mono',monospace;font-size:9px;font-weight:500;letter-spacing:.18em;text-transform:uppercase;color:var(--muted)}
 .representation-head h2{margin:0;font-family:"Snell Roundhand","Segoe Script","Brush Script MT",cursive;font-size:44px;font-weight:400;letter-spacing:0;line-height:1}
@@ -846,6 +846,12 @@ html.category-prepared-arrival .page-transition-veil{display:none!important}
   0%,100%{transform:scale(1)}
   48%{transform:scale(1.4)}
 }
+
+
+/* V81 — Across Europe: reveal agency markers in sequence after the map draw. */
+.representation.representation-sequence-ready .agency-marker{opacity:0;transform:translate(-50%,-50%) scale(.58);pointer-events:none;transition:opacity .5s ease,transform .65s cubic-bezier(.22,.61,.36,1);}
+.representation.representation-sequence-ready .agency-marker.is-sequenced{opacity:1;transform:translate(-50%,-50%) scale(1);pointer-events:auto;}
+@media(prefers-reduced-motion:reduce){.representation.representation-sequence-ready .agency-marker{opacity:1;transform:translate(-50%,-50%) scale(1);pointer-events:auto;}}
 
 /* V75 — Home hierarchy: International Model + portfolio categories + Across Europe */
 .home-role-categories{margin:-30px 0 34px;font-family:"Space Mono",monospace;font-size:8px;font-weight:500;line-height:1.7;letter-spacing:.13em;white-space:nowrap;text-transform:uppercase;}
