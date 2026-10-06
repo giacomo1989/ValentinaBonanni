@@ -64,9 +64,9 @@ function initPortfolioCoverEntrance(){
     cover.classList.add('cinematic-ready');
     const isMobilePortfolioCheck=window.matchMedia('(max-width: 800px)').matches;
     if(!isMobilePortfolioCheck){
-      cover.style.transitionDelay=(i*620)+'ms';
+      cover.style.transitionDelay=(i*800)+'ms';
     } else {
-      cover.style.transitionDelay=(i*400)+'ms';
+      cover.style.transitionDelay=(i*500)+'ms';
     }
     const img=cover.querySelector('img');
     if(img) img.style.transitionDelay=(i*120)+'ms';
@@ -83,7 +83,7 @@ function initPortfolioCoverEntrance(){
       // before starting the transform. Without this, the initial and final transforms
       // can be committed in the same paint and the side entrance is not visible.
       if(isMobilePortfolio){
-        window.setTimeout(()=>covers.forEach(cover=>cover.classList.add('cinematic-visible')),0);
+        window.setTimeout(()=>covers.forEach(cover=>cover.classList.add('cinematic-visible')),600);
       }else{
         covers.forEach(cover=>cover.classList.add('cinematic-visible'));
       }
@@ -91,7 +91,7 @@ function initPortfolioCoverEntrance(){
       // Desktop only: once the last entrance animation is complete, wait 1s,
       // then restore colour one cover at a time at 1s intervals.
       if(!isMobilePortfolio){
-        const entranceDuration=1200;
+        const entranceDuration=2000;
         const lastEntranceDelay=(covers.length-1)*120;
         const firstColourAt=entranceDuration+lastEntranceDelay+1000;
         // Move a clean, full-colour zoom focus across the covers.
@@ -107,7 +107,7 @@ function initPortfolioCoverEntrance(){
       } else {
         // Mobile: alternate entrances from left/right. Once all four cards are in,
         // reveal their real colour in order: Fashion, Commercial, Beauty, Digitals.
-        const entranceDuration=900;
+        const entranceDuration=1700;
         const lastEntranceDelay=(covers.length-1)*120;
         const firstColourAt=900+entranceDuration+lastEntranceDelay;
         covers.forEach((cover,i)=>{
