@@ -473,7 +473,18 @@ async function vbSpaInstall(html,href){
   document.title=parsed.title||document.title;
   history.pushState({vbSpa:true},'',href);
   window.scrollTo(0,0);
-  await Promise.all([applyI18n(),applyImages()]);
+  // SPA category hand-off must reproduce the already-prepared category state used
+  // by the normal Portfolio -> category transition: build every gallery item eagerly
+  // and in its final visible state while the signature veil is still covering the page.
+  // Without this, the freshly replaced body can leave lazy/reveal items waiting for an
+  // IntersectionObserver cycle that may never be delivered on mobile until a reload.
+  const previousPreparedArrival=vbCategoryPreparedArrival;
+  vbCategoryPreparedArrival=true;
+  try{
+    await Promise.all([applyI18n(),applyImages()]);
+  }finally{
+    vbCategoryPreparedArrival=previousPreparedArrival;
+  }
   vbInitSpaTitleReveal();
   vbInitSpaFooterSignature();
 }

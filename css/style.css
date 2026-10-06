@@ -1780,25 +1780,34 @@ html body, html body * {
 }
 
 
-/* Portfolio mobile — alternating side entrance in B/W, then sequential true-colour reveal */
+/* Portfolio mobile — single canonical entrance definition.
+   Same approved behaviour: off-canvas from first paint, alternating sides,
+   .9s entrance, B/W -> sequential colour reveal. */
 @media (max-width: 800px) {
+  .portfolio-body { overflow-x: hidden; }
+
+  .portfolio-covers-four .cover,
   .portfolio-covers-four .cover.cinematic-ready {
     opacity: 1;
     transition: transform .9s cubic-bezier(.22,.61,.36,1);
     will-change: transform;
   }
 
+  .portfolio-covers-four .cover:nth-child(odd),
   .portfolio-covers-four .cover.cinematic-ready:nth-child(odd) {
-    transform: translateX(-110%);
+    transform: translate3d(-100vw,0,0);
   }
 
+  .portfolio-covers-four .cover:nth-child(even),
   .portfolio-covers-four .cover.cinematic-ready:nth-child(even) {
-    transform: translateX(110%);
+    transform: translate3d(100vw,0,0);
   }
 
+  .portfolio-covers-four .cover.cinematic-visible,
   .portfolio-covers-four .cover.cinematic-ready.cinematic-visible {
     opacity: 1;
-    transform: translateX(0);
+    transform: translate3d(0,0,0);
+    border-radius: 10px;
   }
 
   .portfolio-covers-four .cover.cinematic-ready img,
@@ -1815,6 +1824,7 @@ html body, html body * {
 }
 
 @media (max-width: 800px) and (prefers-reduced-motion: reduce) {
+  .portfolio-covers-four .cover,
   .portfolio-covers-four .cover.cinematic-ready,
   .portfolio-covers-four .cover.cinematic-ready.cinematic-visible {
     transform: none !important;
@@ -1827,21 +1837,6 @@ html body, html body * {
   }
 }
 
-
-/* Portfolio mobile — make the alternating side entrance unmistakable */
-@media (max-width: 800px) {
-  .portfolio-body { overflow-x: hidden; }
-  .portfolio-covers-four .cover.cinematic-ready:nth-child(odd) {
-    transform: translate3d(-100vw, 0, 0);
-  }
-  .portfolio-covers-four .cover.cinematic-ready:nth-child(even) {
-    transform: translate3d(100vw, 0, 0);
-  }
-  .portfolio-covers-four .cover.cinematic-ready.cinematic-visible {
-    transform: translate3d(0, 0, 0);
-    border-radius: 10px;
-  }
-}
 
 /* Portfolio desktop — travelling automatic focus during B/W -> colour sequence */
 @media (min-width: 801px) {
@@ -1857,26 +1852,6 @@ html body, html body * {
     opacity: 0;
   }
 }
-
-/* Portfolio mobile — cards are off-canvas from the very first paint.
-   This prevents the visible "move outward then return" flash. */
-@media (max-width: 800px) {
-  .portfolio-covers-four .cover {
-    opacity: 1;
-    transition: transform .9s cubic-bezier(.22,.61,.36,1);
-    will-change: transform;
-  }
-  .portfolio-covers-four .cover:nth-child(odd) {
-    transform: translate3d(-100vw,0,0);
-  }
-  .portfolio-covers-four .cover:nth-child(even) {
-    transform: translate3d(100vw,0,0);
-  }
-  .portfolio-covers-four .cover.cinematic-visible {
-    transform: translate3d(0,0,0);
-  }
-}
-
 
 /* Portfolio mobile — travelling clean zoom focus during colour reveal */
 @media (max-width: 800px) {
