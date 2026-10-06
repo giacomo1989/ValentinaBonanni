@@ -134,11 +134,25 @@ document.addEventListener('DOMContentLoaded',initPortfolioCoverEntrance);
     applyFormPlaceholders();
     document.querySelectorAll('[data-lang]').forEach(b=>b.addEventListener('click',()=>setTimeout(applyFormPlaceholders,80)));
     const form=document.getElementById('contactForm');
-    if(form)form.addEventListener('submit',e=>{
-      e.preventDefault(); const fd=new FormData(form);
-      const subject=`${fd.get('project')||'Booking'} — ${fd.get('name')||''}`;
-      const body=`Name: ${fd.get('name')||''}\nEmail: ${fd.get('email')||''}\nProject type: ${fd.get('project')||''}\n\n${fd.get('message')||''}`;
-      window.location.href=`mailto:valentinabonanni@gmail.com?subject=${encodeURIComponent(subject)}&body=${encodeURIComponent(body)}`;
+    const status=document.getElementById('contactFormStatus');
+    if(form&&status)form.addEventListener('submit',async e=>{
+      e.preventDefault();
+      status.textContent='';
+      status.classList.remove('is-visible','is-error');
+      const submit=form.querySelector('button[type="submit"]');
+      if(submit)submit.disabled=true;
+      try{
+        const response=await fetch(form.action,{method:'POST',body:new FormData(form),headers:{Accept:'application/json'}});
+        if(!response.ok)throw new Error('Formspree submission failed');
+        form.reset();
+        status.textContent='Messaggio inviato';
+        status.classList.add('is-visible');
+      }catch(err){
+        status.textContent='Invio non riuscito. Riprova.';
+        status.classList.add('is-visible','is-error');
+      }finally{
+        if(submit)submit.disabled=false;
+      }
     });
   });
 })();
