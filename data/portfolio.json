@@ -200,7 +200,7 @@
     },
     {
       "id": 13,
-      "src": "assets/images/digitals/digitals-01.jpeg",
+      "src": "assets/images/digitals/digitals-04.jpeg",
       "alt": "Digitals image 01",
       "category": "digitals",
       "layout": "portrait"
@@ -214,28 +214,28 @@
     },
     {
       "id": 15,
-      "src": "assets/images/digitals/digitals-03.jpeg",
+      "src": "assets/images/digitals/digitals-01.jpeg",
       "alt": "Digitals image 03",
       "category": "digitals",
       "layout": "portrait"
     },
     {
       "id": 16,
-      "src": "assets/images/digitals/digitals-04.jpeg",
+      "src": "assets/images/digitals/digitals-06.jpeg",
       "alt": "Digitals image 04",
       "category": "digitals",
       "layout": "tall"
     },
     {
       "id": 17,
-      "src": "assets/images/digitals/digitals-05.jpeg",
+      "src": "assets/images/digitals/digitals-03.jpeg",
       "alt": "Digitals image 05",
       "category": "digitals",
       "layout": "portrait"
     },
     {
       "id": 18,
-      "src": "assets/images/digitals/digitals-06.jpeg",
+      "src": "assets/images/digitals/digitals-05.jpeg",
       "alt": "Digitals image 06",
       "category": "digitals",
       "layout": "tall"

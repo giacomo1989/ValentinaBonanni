@@ -337,8 +337,35 @@
 @media (max-width: 800px) {
   .gallery[data-gallery="fashion"],
   .gallery[data-gallery="commercial"],
-  .gallery[data-gallery="beauty"] {
+  .gallery[data-gallery="beauty"],
+  .gallery[data-gallery="digitals"] {
     columns: 2;
+  }
+}
+
+/* Digitals mobile — force real 2-column grid on Safari/iOS */
+@media (max-width: 800px) {
+  .gallery[data-gallery="digitals"] {
+    columns: initial !important;
+    column-count: initial !important;
+
+    display: grid !important;
+    grid-template-columns: repeat(2, minmax(0, 1fr)) !important;
+    gap: 14px !important;
+    align-items: start;
+  }
+
+  .gallery[data-gallery="digitals"] .gallery-item {
+    width: 100% !important;
+    margin: 0 !important;
+    break-inside: auto !important;
+    display: block;
+  }
+
+  .gallery[data-gallery="digitals"] .gallery-item img {
+    display: block;
+    width: 100% !important;
+    height: auto !important;
   }
 }
 
