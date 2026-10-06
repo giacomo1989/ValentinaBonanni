@@ -332,6 +332,7 @@ document.addEventListener('DOMContentLoaded', () => {
   const reduced = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
 
   titles.forEach((title) => {
+    if (title.closest('.portfolio-page')) return;
     if (title.closest('.title-reveal-mask')) return;
     const mask = document.createElement('span');
     mask.className = 'title-reveal-mask';

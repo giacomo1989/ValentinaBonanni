@@ -272,8 +272,8 @@
     filter: blur(.65px) !important;
   }
   .home-body .cta {
-    font-size: 13px;
-    opacity: 0.5;
+    font-size: 14px;
+    opacity: 0.6;
   }
 }
 @media (max-width: 480px) {
