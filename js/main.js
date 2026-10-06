@@ -71,7 +71,47 @@ function initPortfolioCoverEntrance(){
   const observer=new IntersectionObserver(entries=>{
     entries.forEach(entry=>{
       if(!entry.isIntersecting)return;
-      covers.forEach(cover=>cover.classList.add('cinematic-visible'));
+      const isMobilePortfolio=window.matchMedia('(max-width: 800px)').matches;
+      // On mobile give the browser one real painted frame with the cards off-screen
+      // before starting the transform. Without this, the initial and final transforms
+      // can be committed in the same paint and the side entrance is not visible.
+      if(isMobilePortfolio){
+        window.setTimeout(()=>covers.forEach(cover=>cover.classList.add('cinematic-visible')),180);
+      }else{
+        covers.forEach(cover=>cover.classList.add('cinematic-visible'));
+      }
+
+      // Desktop only: once the last entrance animation is complete, wait 1s,
+      // then restore colour one cover at a time at 1s intervals.
+      if(!isMobilePortfolio){
+        const entranceDuration=1050;
+        const lastEntranceDelay=(covers.length-1)*120;
+        const firstColourAt=entranceDuration+lastEntranceDelay+1000;
+        // Move a clean, full-colour zoom focus across the covers.
+        // When focus leaves a cover it stays in colour, but returns to the normal muted rest state.
+        covers.forEach((cover,i)=>{
+          const focusAt=firstColourAt+(i*1000);
+          window.setTimeout(()=>{
+            cover.classList.add('portfolio-color-revealed','portfolio-auto-focus');
+            if(i>0) covers[i-1].classList.remove('portfolio-auto-focus');
+          },focusAt);
+        });
+        window.setTimeout(()=>covers[covers.length-1].classList.remove('portfolio-auto-focus'),firstColourAt+(covers.length*1000));
+      } else {
+        // Mobile: alternate entrances from left/right. Once all four cards are in,
+        // reveal their real colour in order: Fashion, Commercial, Beauty, Digitals.
+        const entranceDuration=900;
+        const lastEntranceDelay=(covers.length-1)*120;
+        const firstColourAt=180+entranceDuration+lastEntranceDelay;
+        covers.forEach((cover,i)=>{
+          const focusAt=firstColourAt+(i*1000);
+          window.setTimeout(()=>{
+            cover.classList.add('portfolio-color-revealed','portfolio-mobile-focus');
+            if(i>0) covers[i-1].classList.remove('portfolio-mobile-focus');
+          },focusAt);
+        });
+        window.setTimeout(()=>covers[covers.length-1].classList.remove('portfolio-mobile-focus'),firstColourAt+(covers.length*1000));
+      }
       observer.disconnect();
     });
   },{threshold:.18,rootMargin:'0px 0px -5% 0px'});
@@ -439,21 +479,27 @@ async function vbSpaInstall(html,href){
 }
 
 document.addEventListener('DOMContentLoaded',()=>{
-  if(!document.body.querySelector('.portfolio-page'))return;
-  const categoryLinks=[...document.querySelectorAll('.portfolio-covers a.cover[href]')].filter(a=>/\/(fashion|commercial|digitals|beauty)\.html$|^(fashion|commercial|digitals|beauty)\.html$/i.test(a.getAttribute('href')||''));
-  if(!categoryLinks.length)return;
+  if(!document.body.querySelector('.portfolio-page, .gallery-page'))return;
+  const isCategoryTransitionLink=(a)=>{
+    if(!a || !a.matches('.portfolio-covers a.cover[href], .gallery-page .mobile-gallery-tabs a[href]')) return false;
+    return /\/(fashion|commercial|digitals|beauty)\.html$|^(fashion|commercial|digitals|beauty)\.html$/i.test(a.getAttribute('href')||'');
+  };
+  if(!document.querySelector('.portfolio-covers a.cover[href], .gallery-page .mobile-gallery-tabs a[href]'))return;
   const overlay=document.createElement('div');
   overlay.className='category-transition'; overlay.setAttribute('aria-hidden','true');
   overlay.innerHTML='<div class="category-transition-wash"></div><img class="category-transition-signature" src="assets/images/logo/valentina-bonanni-signature.png" alt="">';
   // Keep the cover outside <body>, because <body> is the part replaced by the SPA hand-off.
   document.documentElement.appendChild(overlay);
   let running=false;
-  categoryLinks.forEach(a=>a.addEventListener('click',async e=>{
+  document.addEventListener('click',async e=>{
+    const a=e.target.closest?.('a[href]');
+    if(!isCategoryTransitionLink(a))return;
     if(e.defaultPrevented||e.button!==0||e.metaKey||e.ctrlKey||e.shiftKey||e.altKey||running)return;
     e.preventDefault(); e.stopImmediatePropagation(); running=true;
     const href=a.getAttribute('href');
     overlay.classList.add('is-active');
-    const minimumDisplay=new Promise(resolve=>setTimeout(resolve,3000));
+    const transitionStartedAt=performance.now();
+    const minimumDisplay=new Promise(resolve=>setTimeout(resolve,4000));
 
     // V69 — the cover must win the first paint. Start downloading immediately,
     // but NEVER install the destination DOM until the overlay is fully visible.
@@ -477,35 +523,10 @@ document.addEventListener('DOMContentLoaded',()=>{
       await coverReady;
       await vbSpaInstall(html,href);
 
-      // Fashion has a large, lazy-loaded gallery. Do not keep the transition veil
-      // waiting for all gallery images: many of them intentionally load only as the
-      // visitor scrolls. Let the signature finish, hold it for 1 second, then reveal
-      // the page while the gallery continues loading naturally in the background.
-      const isFashion=/^(?:.*\/)?fashion\.html(?:[?#].*)?$/i.test(href);
-      if(isFashion){
-        const signature=overlay.querySelector('.category-transition-signature');
-        await new Promise(resolve=>{
-          let done=false;
-          const finish=()=>{
-            if(done)return;
-            done=true;
-            signature?.removeEventListener('animationend',onEnd);
-            window.setTimeout(resolve,1000);
-          };
-          const onEnd=e=>{if(e.target===signature)finish()};
-          signature?.addEventListener('animationend',onEnd);
-          // Fallback for reduced motion / browsers that do not emit animationend.
-          window.setTimeout(finish,3200);
-        });
-      }else{
-        const imgs=[...document.querySelectorAll('[data-gallery] img')];
-        await Promise.allSettled(imgs.map(img=>{
-          if(img.complete)return img.decode?img.decode().catch(()=>{}):Promise.resolve();
-          return new Promise(resolve=>{img.addEventListener('load',resolve,{once:true});img.addEventListener('error',resolve,{once:true})});
-        }));
-        if(document.fonts?.ready){try{await document.fonts.ready}catch(_){}}
-        await minimumDisplay;
-      }
+      // V79 — keep the existing signature transition visible for exactly the same
+      // minimum duration on every category navigation, independently of image loading.
+      // The destination is installed underneath while the veil is visible.
+      await minimumDisplay;
       await new Promise(resolve=>requestAnimationFrame(()=>requestAnimationFrame(resolve)));
       overlay.classList.add('spa-release');
       window.setTimeout(()=>overlay.remove(),700);
@@ -513,7 +534,7 @@ document.addEventListener('DOMContentLoaded',()=>{
       // Safe fallback: if dynamic installation fails, preserve normal multi-page navigation.
       location.href=href;
     }
-  },true));
+  },true);
 });
 
 // A pushed SPA history entry must still make the browser Back button semantically correct.

@@ -1,4 +1,4 @@
-@media(max-width:800px){.shell{padding:22px 20px 18px}.menu-toggle{display:block}.nav{display:none;position:absolute;top:44px;right:0;background:var(--bg);padding:20px;flex-direction:column;align-items:flex-end;gap:18px}.nav.open{display:flex}.home-page{grid-template-columns:1fr;gap:30px}.home-photo{height:62vh;min-height:430px}.home-copy{padding:5px 4px 30px}.portfolio-covers{grid-template-columns:1fr}.gallery{columns:2;column-gap:10px}.gallery-item{margin-bottom:10px}.about-wrap,.contact-wrap{grid-template-columns:1fr;gap:35px;margin-top:20px}.about-photo,.contact-photo{max-width:520px}.measurements{grid-template-columns:repeat(2,1fr)}.contact-copy .script-title{margin-bottom:35px}.footer{padding-top:25px}.script-title{font-size:42px}}@media(max-width:480px){.gallery{columns:2}.signature{font-size:22px}.home-copy h1{font-size:17px}.footer{font-size:7px}}
+@media(max-width:800px){.shell{padding:22px 20px 18px}.menu-toggle{display:block}.nav{display:none;position:absolute;top:44px;right:0;background:var(--bg);padding:20px;flex-direction:column;align-items:flex-end;gap:18px}.nav.open{display:flex}.home-page{grid-template-columns:1fr;gap:30px}.home-photo{height:62vh;min-height:430px}.home-copy{padding:5px 4px 30px}.portfolio-covers{grid-template-columns:1fr}.gallery{columns:2;column-gap:10px}.gallery-item{margin-bottom:10px}.about-wrap,.contact-wrap{grid-template-columns:1fr;gap:35px;margin-top:20px}.about-photo,.contact-photo{max-width:520px}.measurements{grid-template-columns:repeat(2,1fr)}.contact-copy .script-title{margin-bottom:35px}.footer{padding-top:25px}.script-title{font-size:25px}}@media(max-width:480px){.gallery{columns:2}.signature{font-size:22px}.home-copy h1{font-size:17px}.footer{font-size:7px}}
 
 @media(max-width:800px){.home-categories{grid-template-columns:repeat(2,1fr);margin-top:10px}.home-category{min-height:105px;border-bottom:1px solid var(--line)}.home-category:nth-child(2n){border-right:0}.home-category:nth-last-child(-n+2){border-bottom:0}.portfolio-covers-four{grid-template-columns:repeat(2,1fr)}.footer-signature{position:static;transform:none;order:2;font-size:20px}.footer{gap:12px;flex-wrap:wrap}.footer>span:first-child{order:1}.socials{order:3}}
 @media(max-width:480px){.home-category{font-size:25px;padding:18px 14px}.portfolio-covers-four{gap:10px}.footer-signature{width:100%;text-align:center;order:1}.footer>span:first-child{order:2}.socials{order:3}}
@@ -215,7 +215,9 @@
 @media(max-width:480px){
   .agency-card{width:min(176px,56vw)!important;padding:12px 13px 11px!important}
 }
-\n\n/* V70 — portrait markers/card on touch layouts */
+
+
+/* V70 — portrait markers/card on touch layouts */
 @media(max-width:800px){
   .agency-marker{transform:translate(-16px,-16px);gap:6px}
   .agency-marker button{width:32px;height:32px}
@@ -328,7 +330,7 @@
   .home-body .nav a{color:#e1ded4!important;padding:3px 0!important;border:0!important}
 }
 @media (max-width:480px){
-  .home-body .nav{right:14px!important;top:18px!important;gap:9px!important;font-size:6.5px!important;letter-spacing:.07em!important}
+  .home-body .nav{right:14px!important;top:18px!important;gap:9px!important;font-size:10px!important;letter-spacing:.07em!important}
 }
 
 /* Fashion gallery — mobile stays at 2 columns */
@@ -448,3 +450,266 @@
     gap: 14px;
   }
 }
+
+/* V74 — Mobile gallery category navigation (safe: gallery DOM untouched) */
+@media (max-width: 800px) {
+  .gallery-page .gallery-head {
+    position: sticky;
+    top: 60px;
+    z-index: 90;
+    display: grid;
+    grid-template-columns: auto minmax(0,1fr);
+    align-items: center;
+    gap: 10px;
+    margin: 0 -20px;
+    padding: 18px 20px 14px;
+    background: var(--bg);
+    transition: padding .28s ease, box-shadow .28s ease;
+  }
+  .gallery-page .category-topline { display:flex; align-items:center; gap:10px; min-width:0; }
+  .gallery-page .category-topline .script-title { font-size:15px !important; margin:0; white-space:nowrap; }
+  .gallery-page .category-topline .home-back { flex:0 0 30px; width:30px; height:30px; }
+  .mobile-gallery-tabs {
+    min-width:0; display:grid; grid-template-columns:repeat(4,minmax(0,1fr)); align-items:center; gap:5px;
+  }
+  .mobile-gallery-tabs a {
+    min-width:0; text-align:center; font-size:8px; line-height:1; letter-spacing:0; text-transform:uppercase; white-space:nowrap;
+  }
+  .mobile-gallery-tabs a.active { text-decoration:underline; text-underline-offset:4px; }
+  .gallery-page .gallery-head.is-stuck {
+    grid-template-columns:30px minmax(0,1fr); padding-top:10px; padding-bottom:10px;
+    box-shadow:0 8px 18px rgba(41,40,36,.08);
+  }
+  .gallery-page .gallery-head.is-stuck .category-topline { width:30px; gap:0; }
+  .gallery-page .gallery-head.is-stuck .category-topline .script-title { display:none; }
+  .gallery-page .gallery-head.is-stuck .mobile-gallery-tabs { gap:2px; }
+  .gallery-page .gallery-head.is-stuck .mobile-gallery-tabs a { font-size:8px; }
+}
+
+/* V76 — exact mobile gallery sticky states */
+@media (max-width: 800px) {
+  .mobile-gallery-sticky-sentinel {
+    display: block;
+    width: 1px;
+    height: 1px;
+    margin: 0;
+    padding: 0;
+    pointer-events: none;
+  }
+
+  /* Initial state: arrow + page title | four category buttons */
+  .gallery-page .gallery-head:not(.is-stuck) .category-topline .script-title {
+    display: block !important;
+    font-size: 15px !important;
+  }
+
+  /* Sticky state: arrow | four category buttons. Only the page title disappears. */
+  .gallery-page .gallery-head.is-stuck {
+    grid-template-columns: 30px minmax(0, 1fr);
+  }
+  .gallery-page .gallery-head.is-stuck .category-topline {
+    width: 30px;
+    min-width: 30px;
+  }
+  .gallery-page .gallery-head.is-stuck .category-topline .script-title {
+    display: none !important;
+  }
+  .gallery-page .gallery-head.is-stuck .mobile-gallery-tabs {
+    width: 100%;
+    grid-template-columns: repeat(4, minmax(0, 1fr));
+  }
+}
+
+
+/* V77 — Mobile gallery nav: current page is always first via category-topline; only the other 3 categories follow. */
+@media (max-width: 800px) {
+  .gallery-page .gallery-head,
+  .gallery-page .gallery-head.is-stuck {
+    grid-template-columns: auto minmax(0, 1fr);
+  }
+
+  .gallery-page .category-topline,
+  .gallery-page .gallery-head.is-stuck .category-topline {
+    display: flex;
+    width: auto;
+    min-width: 0;
+    gap: 10px;
+    align-items: center;
+  }
+
+  .gallery-page .category-topline .script-title,
+  .gallery-page .gallery-head.is-stuck .category-topline .script-title {
+    display: block !important;
+    font-size: 15px !important;
+    white-space: nowrap;
+  }
+
+  .gallery-page .mobile-gallery-tabs,
+  .gallery-page .gallery-head.is-stuck .mobile-gallery-tabs {
+    display: grid;
+    grid-template-columns: repeat(3, minmax(0, 1fr));
+    width: 100%;
+    gap: 5px;
+  }
+
+  .gallery-page .mobile-gallery-tabs a,
+  .gallery-page .gallery-head.is-stuck .mobile-gallery-tabs a {
+    font-size: 8px;
+  }
+}
+
+
+/* V78 — Definitive mobile gallery nav: same complete row before and during sticky scroll. */
+@media (max-width: 800px) {
+  .gallery-page .gallery-head {
+    position: sticky;
+    top: 60px;
+    z-index: 90;
+    display: grid;
+    grid-template-columns: auto minmax(0, 1fr) !important;
+    align-items: center;
+    gap: 10px;
+    margin: 0 -20px;
+    padding: 18px 20px 14px;
+    background: #f2f0e9fc;
+  }
+
+  .gallery-page .category-topline {
+    display: flex !important;
+    align-items: center;
+    gap: 10px !important;
+    width: auto !important;
+    min-width: 0 !important;
+  }
+
+  .gallery-page .category-topline .home-back {
+    display: flex !important;
+    flex: 0 0 30px;
+    width: 30px;
+    height: 30px;
+  }
+
+  .gallery-page .category-topline .title-reveal-mask,
+  .gallery-page .category-topline .title-reveal-inner {
+    display: block !important;
+    width: auto !important;
+    overflow: visible !important;
+  }
+
+  .gallery-page .category-topline .script-title {
+    display: block !important;
+    visibility: visible !important;
+    opacity: 1 !important;
+    font-size: 15px !important;
+    margin: 0 !important;
+    white-space: nowrap;
+  }
+
+  .gallery-page .mobile-gallery-tabs {
+    display: grid !important;
+    grid-template-columns: repeat(3, minmax(0, 1fr)) !important;
+    width: 100% !important;
+    gap: 5px !important;
+  }
+
+  .gallery-page .mobile-gallery-tabs a {
+    font-size: 10px !important;
+    text-transform: uppercase;
+    white-space: nowrap;
+    text-align: center;
+  }
+}
+
+
+/* V74 — universal mobile footer: powered left; socials + copyright right */
+@media (max-width: 800px) {
+  /* Internal pages */
+  .footer.footer-production {
+    display: grid !important;
+    grid-template-columns: minmax(0, 1fr) auto !important;
+    grid-template-rows: auto auto !important;
+    column-gap: 20px !important;
+    row-gap: 7px !important;
+    align-items: center !important;
+    min-height: 78px !important;
+    padding-top: 20px !important;
+  }
+
+  .footer-production .footer-row,
+  .footer-production .footer-row-main,
+  .footer-production .footer-row-meta {
+    display: contents !important;
+  }
+
+  .footer-production .footer-logo,
+  .footer-production .footer-legal {
+    display: none !important;
+  }
+
+  .footer-production .footer-powered {
+    display: block !important;
+    grid-column: 1 !important;
+    grid-row: 1 / 3 !important;
+    justify-self: start !important;
+    align-self: center !important;
+    text-align: left !important;
+    white-space: nowrap !important;
+  }
+
+  .footer-production .footer-socials {
+    display: flex !important;
+    grid-column: 2 !important;
+    grid-row: 1 !important;
+    justify-self: end !important;
+    align-self: end !important;
+    gap: 14px !important;
+  }
+
+  .footer-production .footer-copyright {
+    display: block !important;
+    grid-column: 2 !important;
+    grid-row: 2 !important;
+    justify-self: end !important;
+    align-self: start !important;
+    text-align: right !important;
+    white-space: nowrap !important;
+  }
+
+  /* Home: same information hierarchy, preserving overlay treatment */
+  .home-footer {
+    display: grid !important;
+    grid-template-columns: minmax(0, 1fr) auto !important;
+    grid-template-rows: auto auto !important;
+    column-gap: 20px !important;
+    row-gap: 7px !important;
+    align-items: end !important;
+  }
+
+  .home-footer .home-powered {
+    grid-column: 1 !important;
+    grid-row: 1 / 3 !important;
+    justify-self: start !important;
+    align-self: center !important;
+    white-space: nowrap !important;
+  }
+
+  .home-footer .home-socials {
+    grid-column: 2 !important;
+    grid-row: 1 !important;
+    justify-self: end !important;
+    align-self: end !important;
+    display: flex !important;
+  }
+
+  .home-footer .home-copyright {
+    display: block !important;
+    grid-column: 2 !important;
+    grid-row: 2 !important;
+    justify-self: end !important;
+    align-self: start !important;
+    text-align: right !important;
+    white-space: nowrap !important;
+  }
+}
+
+@media (max-width: 800px) { .home-footer .home-legal { display:none !important; } }

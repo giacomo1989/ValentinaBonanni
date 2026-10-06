@@ -1,6 +1,6 @@
 @import url('https://fonts.googleapis.com/css2?family=Questrial&display=swap');
 @import url('https://fonts.googleapis.com/css2?family=Space+Mono:wght@400;700&display=swap');
-:root{--bg:#f2f0e9;--ink:#292824;--muted:#77736b;--line:#d5d0c6;--gap:18px}*{box-sizing:border-box}html{scroll-behavior:smooth}body{margin:0;background:var(--bg);color:var(--ink);font-family:Arial,Helvetica,sans-serif;font-size:12px;letter-spacing:.08em}a{color:inherit;text-decoration:none}img{display:block;width:100%}.shell{min-height:100vh;padding:28px 38px 22px;display:flex;flex-direction:column}.site-header{height:52px;display:flex;align-items:flex-start;justify-content:space-between;position:relative;z-index:5}.signature{font-family:"Brush Script MT","Segoe Script",cursive;font-size:26px;letter-spacing:0;line-height:1}.nav{display:flex;gap:28px;align-items:center;text-transform:uppercase;font-size:9px;letter-spacing:.14em}.nav a{padding:4px 0;border-bottom:1px solid transparent}.nav a:hover,.nav a.active{border-color:var(--ink)}.lang{display:flex;gap:8px;margin-left:12px}.lang button{border:0;background:none;padding:0;font:inherit;font-size:8px;color:var(--muted);cursor:pointer}.lang button.active{color:var(--ink);text-decoration:underline}.page{flex:1}.footer{min-height:38px;display:flex;justify-content:space-between;align-items:flex-end;text-transform:uppercase;font-size:8px;letter-spacing:.16em}.socials{display:flex;gap:12px}.script-title{font-family:"Brush Script MT","Segoe Script",cursive;font-size:48px;font-weight:400;letter-spacing:0;margin:0 0 14px}.eyebrow{text-transform:uppercase;line-height:1.6;font-size:10px}.arrow{margin-left:10px}.home-page{display:grid;grid-template-columns:minmax(0,1.25fr) minmax(300px,.75fr);gap:5vw;align-items:center}.home-photo{height:calc(100vh - 140px);min-height:520px;background:#d8d4cb url('../assets/images/home/hero.jpg') center/cover no-repeat}.home-copy{max-width:270px}.home-copy h1{font-size:19px;line-height:1.5;letter-spacing:.18em;font-weight:500;margin:0 0 42px}.cta{text-transform:uppercase;font-size:9px;letter-spacing:.18em;border-bottom:1px solid var(--ink);padding-bottom:5px}.portfolio-intro{padding:5vh 0 4vh;max-width:420px}.portfolio-covers{display:grid;grid-template-columns:1fr 1fr;gap:22px;max-width:900px}.cover{position:relative;aspect-ratio:1.12/1;overflow:hidden;background:#d6d2ca}.cover img{height:100%;object-fit:cover;filter:brightness(.82)}.cover-label{position:absolute;left:24px;bottom:24px;color:#fff;text-transform:uppercase;font-size:16px;letter-spacing:.14em}.cover-label small{display:block;font-size:8px;margin-top:14px}.gallery-head{display:flex;justify-content:space-between;align-items:flex-start;padding:4vh 0 3vh}.gallery{columns:3;column-gap:var(--gap)}.gallery-item{break-inside:avoid;margin:0 0 var(--gap);overflow:hidden;background:#ddd8cf}.gallery-item img{width:100%;height:auto;transition:transform .5s ease}.gallery-item:hover img{transform:scale(1.015)}.gallery-item.tall img{aspect-ratio:3/4.6;object-fit:cover}.gallery-item.portrait img{aspect-ratio:3/4;object-fit:cover}.gallery-item.square img{aspect-ratio:1/1;object-fit:cover}.gallery-item.landscape img{aspect-ratio:4/3;object-fit:cover}.about-wrap{display:grid;grid-template-columns:minmax(300px,440px) minmax(300px,520px);gap:7vw;align-items:center;max-width:1050px;margin:4vh auto}.about-photo{aspect-ratio:4/5;background:#d8d4cb}.about-photo img{height:100%;object-fit:cover}.about-copy h1,.contact-copy h1{font-size:15px;letter-spacing:.14em}.about-copy p,.contact-copy p{line-height:1.8;letter-spacing:.05em;color:#514f49}.measurements{border-top:1px solid var(--line);margin-top:38px;padding-top:24px;display:grid;grid-template-columns:repeat(4,1fr);gap:26px}.measurement b{display:block;font-size:8px;text-transform:uppercase;margin-bottom:8px}.measurement span{font-size:9px;color:#55524c}.contact-wrap{display:grid;grid-template-columns:1fr minmax(300px,440px);gap:8vw;align-items:center;max-width:1050px;margin:3vh auto}.contact-copy{max-width:410px}.contact-copy .script-title{margin-bottom:65px}.contact-copy h1{font-size:21px;line-height:1.35;margin-bottom:24px}.contact-details{margin-top:35px;display:grid;gap:24px}.contact-details b{display:block;font-size:9px;text-transform:uppercase;margin-bottom:8px}.contact-photo img{height:100%;object-fit:cover}.placeholder{height:100%;display:grid;place-items:center;color:#77736b;text-transform:uppercase;font-size:9px;letter-spacing:.16em;border:1px solid #d4cfc5}.menu-toggle{display:none;border:0;background:none;font-size:20px}.empty{padding:80px 0;color:var(--muted)}
+:root{--bg:#f2f0e9;--ink:#292824;--muted:#77736b;--line:#d5d0c6;--gap:18px}*{box-sizing:border-box}html{scroll-behavior:smooth}body{margin:0;background:var(--bg);color:var(--ink);font-family:Arial,Helvetica,sans-serif;font-size:12px;letter-spacing:.08em}a{color:inherit;text-decoration:none}img{display:block;width:100%}.shell{min-height:100vh;padding:28px 38px 22px;display:flex;flex-direction:column}.site-header{height:52px;display:flex;align-items:flex-start;justify-content:space-between;position:relative;z-index:5}.signature{font-family:"Brush Script MT","Segoe Script",cursive;font-size:26px;letter-spacing:0;line-height:1}.nav{display:flex;gap:28px;align-items:center;text-transform:uppercase;font-size:9px;letter-spacing:.14em}.nav a{padding:4px 0;border-bottom:1px solid transparent}.nav a:hover,.nav a.active{border-color:var(--ink)}.lang{display:flex;gap:8px;margin-left:12px}.lang button{border:0;background:none;padding:0;font:inherit;font-size:8px;color:var(--muted);cursor:pointer}.lang button.active{color:var(--ink);text-decoration:underline}.page{flex:1}.footer{min-height:38px;display:flex;justify-content:space-between;align-items:flex-end;text-transform:uppercase;font-size:8px;letter-spacing:.16em}.socials{display:flex;gap:12px}.script-title{font-family:"Brush Script MT","Segoe Script",cursive;font-size:35px;font-weight:400;letter-spacing:0;margin:0 0 14px}.eyebrow{text-transform:uppercase;line-height:1.6;font-size:10px}.arrow{margin-left:10px}.home-page{display:grid;grid-template-columns:minmax(0,1.25fr) minmax(300px,.75fr);gap:5vw;align-items:center}.home-photo{height:calc(100vh - 140px);min-height:520px;background:#d8d4cb url('../assets/images/home/hero.jpg') center/cover no-repeat}.home-copy{max-width:270px}.home-copy h1{font-size:19px;line-height:1.5;letter-spacing:.18em;font-weight:500;margin:0 0 42px}.cta{text-transform:uppercase;font-size:9px;letter-spacing:.18em;border-bottom:1px solid var(--ink);padding-bottom:5px}.portfolio-intro{padding:5vh 0 4vh;max-width:420px}.portfolio-covers{display:grid;grid-template-columns:1fr 1fr;gap:22px;max-width:900px}.cover{position:relative;aspect-ratio:1.12/1;overflow:hidden;background:#d6d2ca}.cover img{height:100%;object-fit:cover;filter:brightness(.82)}.cover-label{position:absolute;left:24px;bottom:24px;color:#fff;text-transform:uppercase;font-size:16px;letter-spacing:.14em}.cover-label small{display:block;font-size:8px;margin-top:14px}.gallery-head{display:flex;justify-content:space-between;align-items:flex-start;padding:4vh 0 3vh}.gallery{columns:3;column-gap:var(--gap)}.gallery-item{break-inside:avoid;margin:0 0 var(--gap);overflow:hidden;background:#ddd8cf}.gallery-item img{width:100%;height:auto;transition:transform .5s ease}.gallery-item:hover img{transform:scale(1.015)}.gallery-item.tall img{aspect-ratio:3/4.6;object-fit:cover}.gallery-item.portrait img{object-fit:cover}.gallery-item.square img{aspect-ratio:1/1;object-fit:cover}.gallery-item.landscape img{aspect-ratio:4/3;object-fit:cover}.about-wrap{display:grid;grid-template-columns:minmax(300px,440px) minmax(300px,520px);gap:7vw;align-items:center;max-width:1050px;margin:4vh auto}.about-photo{aspect-ratio:4/5;background:#d8d4cb}.about-photo img{height:100%;object-fit:cover}.about-copy h1,.contact-copy h1{font-size:15px;letter-spacing:.14em}.about-copy p,.contact-copy p{line-height:1.8;letter-spacing:.05em;color:#514f49}.measurements{border-top:1px solid var(--line);margin-top:38px;padding-top:24px;display:grid;grid-template-columns:repeat(4,1fr);gap:26px}.measurement b{display:block;font-size:8px;text-transform:uppercase;margin-bottom:8px}.measurement span{font-size:9px;color:#55524c}.contact-wrap{display:grid;grid-template-columns:1fr minmax(300px,440px);gap:8vw;align-items:center;max-width:1050px;margin:3vh auto}.contact-copy{max-width:410px}.contact-copy .script-title{margin-bottom:65px}.contact-copy h1{font-size:21px;line-height:1.35;margin-bottom:24px}.contact-details{margin-top:35px;display:grid;gap:24px}.contact-details b{display:block;font-size:9px;text-transform:uppercase;margin-bottom:8px}.contact-photo img{height:100%;object-fit:cover}.placeholder{height:100%;display:grid;place-items:center;color:#77736b;text-transform:uppercase;font-size:9px;letter-spacing:.16em;border:1px solid #d4cfc5}.menu-toggle{display:none;border:0;background:none;font-size:20px}.empty{padding:80px 0;color:var(--muted)}
 
 /* V2: signature identity + four portfolio worlds */
 .signature,.footer-signature,.script-title{font-family:"Snell Roundhand","Segoe Script","Brush Script MT",cursive;font-weight:400;letter-spacing:3.5px}
@@ -139,7 +139,7 @@ body,
 .portfolio-covers .cover img,.gallery-item img{transition:transform .8s cubic-bezier(.22,.61,.36,1),filter .55s ease}
 .portfolio-covers .cover:hover img,.gallery-item:hover img{transform:scale(1.035)}
 .reveal-ready{opacity:0;transform:translateY(26px);transition:opacity .82s ease,transform .82s cubic-bezier(.22,.61,.36,1)}
-.reveal-ready.is-visible{opacity:1;transform:translateY(0)}
+.reveal-ready.is-visible{opacity:1;transform:translateY(0);border-radius: 10px;}
 @media (prefers-reduced-motion:reduce){.reveal-ready{opacity:1!important;transform:none!important;transition:none!important}.portfolio-covers .cover img,.gallery-item img{transition:none!important}}
 
 /* V13 — Portfolio cinematic hover: muted at rest, full colour + VIEW on hover */
@@ -442,7 +442,7 @@ body,
 .map-coordinate-stage .marker-london{left:27.0%;top:50.3%;}
 .map-coordinate-stage .marker-milan{left:49.3%;top:66.3%;}
 .map-coordinate-stage .marker-barcelona{left:36.1%;top:85.4%;}
-.map-coordinate-stage .marker-madrid{left:21.5%;top:78.7%;}
+.map-coordinate-stage .marker-madrid{left:25.5%;top:75.7%;}
 .map-coordinate-stage .marker-stockholm{left:65.0%;top:34.6%;}
 
 /* V44 — zoom out the Europe stage while keeping SVG + markers locked together */
@@ -1755,5 +1755,336 @@ html body, html body * {
   .about-page-title,
   .contact-page-title {
     font-size: 40px;
+  }
+}
+
+/* Portfolio desktop — covers enter in B/W, then develop into colour sequentially */
+@media (min-width: 801px) {
+  .portfolio-covers-four .cover.cinematic-ready img {
+    filter: grayscale(1) brightness(.72) saturate(0);
+    transition: transform .9s cubic-bezier(.22,.61,.36,1), filter .8s cubic-bezier(.22,.61,.36,1);
+  }
+  .portfolio-covers-four .cover.cinematic-ready.portfolio-color-revealed img {
+    filter: grayscale(0) brightness(.72) saturate(.72);
+  }
+  .portfolio-covers-four .cover.cinematic-ready.cinematic-visible.portfolio-color-revealed:hover img {
+    filter: grayscale(0) brightness(1) saturate(1);
+    transform: scale(1.07);
+  }
+}
+@media (min-width: 801px) and (prefers-reduced-motion: reduce) {
+  .portfolio-covers-four .cover.cinematic-ready img,
+  .portfolio-covers-four .cover.cinematic-ready.portfolio-color-revealed img {
+    filter: brightness(.72) saturate(.72) !important;
+  }
+}
+
+
+/* Portfolio mobile — alternating side entrance in B/W, then sequential true-colour reveal */
+@media (max-width: 800px) {
+  .portfolio-covers-four .cover.cinematic-ready {
+    opacity: 1;
+    transition: transform .9s cubic-bezier(.22,.61,.36,1);
+    will-change: transform;
+  }
+
+  .portfolio-covers-four .cover.cinematic-ready:nth-child(odd) {
+    transform: translateX(-110%);
+  }
+
+  .portfolio-covers-four .cover.cinematic-ready:nth-child(even) {
+    transform: translateX(110%);
+  }
+
+  .portfolio-covers-four .cover.cinematic-ready.cinematic-visible {
+    opacity: 1;
+    transform: translateX(0);
+  }
+
+  .portfolio-covers-four .cover.cinematic-ready img,
+  .portfolio-covers-four .cover.cinematic-ready.cinematic-visible img {
+    transform: none;
+    filter: grayscale(1);
+    transition: filter .8s cubic-bezier(.22,.61,.36,1);
+  }
+
+  .portfolio-covers-four .cover.cinematic-ready.portfolio-color-revealed img,
+  .portfolio-covers-four .cover.cinematic-ready.cinematic-visible.portfolio-color-revealed img {
+    filter: grayscale(0) brightness(1) saturate(1);
+  }
+}
+
+@media (max-width: 800px) and (prefers-reduced-motion: reduce) {
+  .portfolio-covers-four .cover.cinematic-ready,
+  .portfolio-covers-four .cover.cinematic-ready.cinematic-visible {
+    transform: none !important;
+    transition: none !important;
+  }
+  .portfolio-covers-four .cover.cinematic-ready img,
+  .portfolio-covers-four .cover.cinematic-ready.portfolio-color-revealed img {
+    filter: none !important;
+    transition: none !important;
+  }
+}
+
+
+/* Portfolio mobile — make the alternating side entrance unmistakable */
+@media (max-width: 800px) {
+  .portfolio-body { overflow-x: hidden; }
+  .portfolio-covers-four .cover.cinematic-ready:nth-child(odd) {
+    transform: translate3d(-100vw, 0, 0);
+  }
+  .portfolio-covers-four .cover.cinematic-ready:nth-child(even) {
+    transform: translate3d(100vw, 0, 0);
+  }
+  .portfolio-covers-four .cover.cinematic-ready.cinematic-visible {
+    transform: translate3d(0, 0, 0);
+    border-radius: 10px;
+  }
+}
+
+/* Portfolio desktop — travelling automatic focus during B/W -> colour sequence */
+@media (min-width: 801px) {
+  .portfolio-covers-four .cover.cinematic-ready.portfolio-auto-focus img {
+    filter: grayscale(0) brightness(1) saturate(1);
+    transform: scale(1.07);
+  }
+  .portfolio-covers-four .cover.cinematic-ready.portfolio-auto-focus::after {
+    background: rgba(18,17,15,.03);
+  }
+  /* Automatic focus copies only the clean image zoom, never the VIEW overlay. */
+  .portfolio-covers-four .cover.cinematic-ready.portfolio-auto-focus::before {
+    opacity: 0;
+  }
+}
+
+/* Portfolio mobile — cards are off-canvas from the very first paint.
+   This prevents the visible "move outward then return" flash. */
+@media (max-width: 800px) {
+  .portfolio-covers-four .cover {
+    opacity: 1;
+    transition: transform .9s cubic-bezier(.22,.61,.36,1);
+    will-change: transform;
+  }
+  .portfolio-covers-four .cover:nth-child(odd) {
+    transform: translate3d(-100vw,0,0);
+  }
+  .portfolio-covers-four .cover:nth-child(even) {
+    transform: translate3d(100vw,0,0);
+  }
+  .portfolio-covers-four .cover.cinematic-visible {
+    transform: translate3d(0,0,0);
+  }
+}
+
+
+/* Portfolio mobile — travelling clean zoom focus during colour reveal */
+@media (max-width: 800px) {
+  .portfolio-covers-four .cover.cinematic-ready img {
+    transition: transform .72s cubic-bezier(.22,.61,.36,1), filter .8s cubic-bezier(.22,.61,.36,1);
+  }
+  .portfolio-covers-four .cover.cinematic-ready.portfolio-mobile-focus img {
+    transform: scale(1.07);
+    filter: grayscale(0) brightness(1) saturate(1);
+  }
+  .portfolio-covers-four .cover.cinematic-ready.portfolio-mobile-focus::after {
+    background: rgba(18,17,15,.03);
+  }
+  .portfolio-covers-four .cover.cinematic-ready.portfolio-mobile-focus::before {
+    opacity: 0;
+  }
+}
+
+
+/* Home footer copyright is mobile-only */
+.home-copyright{display:none;}
+
+
+/* V81 — Portfolio / About / Contact header signature: 4s ink reveal on every page load */
+.portfolio-body .site-header > .logo-signature img,
+.about-body .site-header > .logo-signature img,
+.contact-body .site-header > .logo-signature img {
+  clip-path: polygon(0 0,0 0,0 10%,0 20%,0 30%,0 40%,0 50%,0 60%,0 70%,0 80%,0 90%,0 100%,0 100%);
+  opacity: .18;
+  filter: blur(.8px);
+  will-change: clip-path, opacity, filter;
+  animation: footerSignatureInk 4s linear forwards;
+}
+@media (prefers-reduced-motion: reduce) {
+  .portfolio-body .site-header > .logo-signature img,
+  .about-body .site-header > .logo-signature img,
+  .contact-body .site-header > .logo-signature img {
+    clip-path: none !important;
+    opacity: 1 !important;
+    filter: none !important;
+    animation: none !important;
+  }
+}
+
+
+/* V82 — explicit 4s header signature reveal for Portfolio / About / Contact */
+@keyframes headerSignatureInk4s {
+  0% {
+    clip-path: polygon(0 0,0 0,0 10%,0 20%,0 30%,0 40%,0 50%,0 60%,0 70%,0 80%,0 90%,0 100%,0 100%);
+    opacity: .18;
+    filter: blur(.8px);
+  }
+  100% {
+    clip-path: polygon(0 0,100% 0,100% 10%,100% 20%,100% 30%,100% 40%,100% 50%,100% 60%,100% 70%,100% 80%,100% 90%,100% 100%,0 100%);
+    opacity: 1;
+    filter: blur(0);
+  }
+}
+.portfolio-body .site-header .logo-signature img,
+.about-body .site-header .logo-signature img,
+.contact-body .site-header .logo-signature img {
+  animation: headerSignatureInk4s 4s linear forwards !important;
+}
+
+/* Desktop production footer: signature centered, social icons locked to the right */
+@media (min-width: 801px) {
+  .footer-production .footer-row-main {
+    grid-template-columns: 1fr auto 1fr;
+  }
+  .footer-production .footer-logo {
+    grid-column: 2;
+    justify-self: center !important;
+  }
+  .footer-production .footer-socials {
+    grid-column: 3;
+    justify-self: end !important;
+    margin-left: auto;
+  }
+}
+
+/* Desktop production footer — no signature, socials aligned right */
+@media (min-width: 801px) {
+  .footer-production .footer-logo {
+    display: none !important;
+  }
+  .footer-production .footer-row-main {
+    grid-template-columns: 1fr 1fr !important;
+  }
+  .footer-production .footer-copyright {
+    grid-column: 1 !important;
+    justify-self: start !important;
+  }
+  .footer-production .footer-socials {
+    grid-column: 2 !important;
+    justify-self: end !important;
+    margin-left: auto !important;
+  }
+}
+
+
+/* V82 — Home desktop footer: same legal/copyright structure as production footers */
+@media (min-width: 801px) {
+  .home-footer {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    grid-template-rows: auto auto;
+    column-gap: 20px;
+    row-gap: 8px;
+    align-items: end;
+  }
+  .home-footer .home-powered {
+    grid-column: 1;
+    grid-row: 1;
+    justify-self: start;
+  }
+  .home-footer .home-socials {
+    grid-column: 2;
+    grid-row: 1;
+    justify-self: end;
+  }
+  .home-footer .home-legal {
+    display: block;
+    grid-column: 1;
+    grid-row: 2;
+    justify-self: start;
+    white-space: nowrap;
+  }
+  .home-footer .home-copyright {
+    display: block;
+    grid-column: 2;
+    grid-row: 2;
+    justify-self: end;
+    text-align: right;
+    white-space: nowrap;
+  }
+}
+
+/* V101 — Desktop gallery category navigation: sticky row matching mobile structure */
+@media (min-width: 801px) {
+  .gallery-page .gallery-head {
+    position: sticky;
+    top: 64px;
+    z-index: 90;
+    display: flex;
+    align-items: center;
+    justify-content: flex-start;
+    gap: 34px;
+    margin: 0 -38px;
+    padding: 22px 38px 18px;
+    background: #f2f0e9fc;
+  }
+
+  .gallery-page .category-topline {
+    display: flex;
+    align-items: center;
+    gap: 14px;
+    flex: 0 0 auto;
+  }
+
+  .gallery-page .category-topline .script-title {
+    margin: 0;
+    font-size: 35px;
+    text-transform: uppercase;
+    white-space: nowrap;
+  }
+
+  .gallery-page .mobile-gallery-tabs {
+    display: flex;
+    align-items: center;
+    gap: 28px;
+    width: auto;
+    text-transform: uppercase;
+    font-size: 15px;
+    letter-spacing: .14em;
+  }
+
+  .gallery-page .mobile-gallery-tabs a {
+    padding: 4px 0;
+    border-bottom: 1px solid transparent;
+    text-transform: uppercase;
+    transition: border-color .2s ease;
+    white-space: nowrap;
+  }
+
+  .gallery-page .mobile-gallery-tabs a:hover,
+  .gallery-page .mobile-gallery-tabs a.active {
+    border-color: var(--ink);
+  }
+}
+
+/* V102 — Contact desktop editorial overlap: photo overlays copy by 25% without resizing copy */
+@media (min-width: 801px) {
+  .contact-page-title + .contact-wrap,
+  .contact-mobile-layout .contact-wrap {
+    position: relative;
+  }
+
+  .contact-mobile-layout .contact-copy {
+    position: relative;
+    z-index: 1;
+    width: 100%;
+    max-width: 410px;
+    min-width: 0;
+  }
+
+  .contact-mobile-layout .contact-photo {
+    position: relative;
+    z-index: 2;
+    transform: translateX(-226px);
   }
 }
