@@ -93,7 +93,7 @@
   .contact-desktop-title{display:none;}
   .contact-mobile-layout>.contact-wrap{margin-top:0;margin-bottom:0;grid-template-columns:minmax(0,1.08fr) minmax(0,.92fr);gap:22px;align-items:stretch;}
   .contact-mobile-layout .contact-photo{height:auto;min-height:100%;align-self:stretch;}
-  .contact-mobile-layout .contact-photo img{width:100%;height:100%;object-fit:cover;}
+  .contact-mobile-layout .contact-photo img{width:108%;height:100%;object-fit:cover;}
 }
 @media(max-width:480px){
   .contact-mobile-layout{margin-bottom:18px;}
