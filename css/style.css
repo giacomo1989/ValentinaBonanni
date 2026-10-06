@@ -704,7 +704,27 @@ body.page-transition-in.is-visible{
 @media (prefers-reduced-motion:reduce){
   ::view-transition-group(root),::view-transition-old(root),::view-transition-new(root){animation:none!important}
 }
-\n\n/* V58 — delayed, minimal loading indicator for slower page changes */\n.page-load-indicator{\n  position:fixed;inset:0;z-index:30000;display:grid;place-items:center;\n  pointer-events:none;opacity:0;visibility:hidden;\n  transition:opacity .22s ease,visibility 0s linear .22s;\n}\n.page-load-indicator.is-visible{opacity:1;visibility:visible;transition:opacity .22s ease,visibility 0s}\n.page-load-indicator span{\n  width:25px;height:25px;border-radius:50%;\n  border:1px solid rgba(41,40,36,.20);border-top-color:rgba(41,40,36,.88);\n  border-right-color:rgba(41,40,36,.52);\n  animation:vbLoaderSpin .9s linear infinite;\n}\n@keyframes vbLoaderSpin{to{transform:rotate(360deg)}}\n@media(prefers-reduced-motion:reduce){.page-load-indicator span{animation:none;border-color:rgba(41,40,36,.55)}}\n\n/* V58 — no numeric counter in the category lightbox */\n.gallery-lightbox-count{display:none!important}\n
+
+
+/* V58 — delayed, minimal loading indicator for slower page changes */
+.page-load-indicator{
+  position:fixed;inset:0;z-index:30000;display:grid;place-items:center;
+  pointer-events:none;opacity:0;visibility:hidden;
+  transition:opacity .22s ease,visibility 0s linear .22s;
+}
+.page-load-indicator.is-visible{opacity:1;visibility:visible;transition:opacity .22s ease,visibility 0s}
+.page-load-indicator span{
+  width:25px;height:25px;border-radius:50%;
+  border:1px solid rgba(41,40,36,.20);border-top-color:rgba(41,40,36,.88);
+  border-right-color:rgba(41,40,36,.52);
+  animation:vbLoaderSpin .9s linear infinite;
+}
+@keyframes vbLoaderSpin{to{transform:rotate(360deg)}}
+@media(prefers-reduced-motion:reduce){.page-load-indicator span{animation:none;border-color:rgba(41,40,36,.55)}}
+
+/* V58 — no numeric counter in the category lightbox */
+.gallery-lightbox-count{display:none!important}
+
 
 /* V60 — mobile/navigation polish + clean galleries */
 .gallery-item{background:transparent!important}
@@ -778,10 +798,38 @@ html.category-prepared-arrival body.page-transition-in.is-visible{
 }
 html.category-prepared-arrival .gallery-item{opacity:1!important;transform:none!important}
 html.category-prepared-arrival .page-transition-veil{display:none!important}
-\n\n/* V66 — continuity cover across the real HTML navigation.\n   The destination starts with the same completed signature/wash already covering it;\n   only after its gallery has rendered and decoded do we dissolve that cover away. */\nhtml.category-cover-arrival body::before,\nhtml.category-cover-arrival body::after{\n  content:"";position:fixed;inset:0;z-index:50000;pointer-events:none;opacity:1;\n}\nhtml.category-cover-arrival body::before{\n  background:rgba(242,240,233,.56);\n  backdrop-filter:blur(2px);-webkit-backdrop-filter:blur(2px);\n  transition:opacity .52s cubic-bezier(.4,0,.2,1);\n}\nhtml.category-cover-arrival body::after{\n  left:50%;top:50%;right:auto;bottom:auto;width:min(290px,52vw);height:120px;\n  transform:translate(-50%,-50%);\n  background:url('../assets/images/logo/valentina-bonanni-signature.png') center/contain no-repeat;\n  transition:opacity .46s cubic-bezier(.4,0,.2,1),filter .46s ease;\n}\nhtml.category-cover-arrival.category-cover-release body::before,\nhtml.category-cover-arrival.category-cover-release body::after{opacity:0}\nhtml.category-cover-arrival.category-cover-release body::after{filter:blur(.35px)}\n@media(prefers-reduced-motion:reduce){\n  html.category-cover-arrival body::before,html.category-cover-arrival body::after{transition:none!important}\n}\n
+
+
+/* V66 — continuity cover across the real HTML navigation.
+   The destination starts with the same completed signature/wash already covering it;
+   only after its gallery has rendered and decoded do we dissolve that cover away. */
+html.category-cover-arrival body::before,
+html.category-cover-arrival body::after{
+  content:"";position:fixed;inset:0;z-index:50000;pointer-events:none;opacity:1;
+}
+html.category-cover-arrival body::before{
+  background:rgba(242,240,233,.56);
+  backdrop-filter:blur(2px);-webkit-backdrop-filter:blur(2px);
+  transition:opacity .52s cubic-bezier(.4,0,.2,1);
+}
+html.category-cover-arrival body::after{
+  left:50%;top:50%;right:auto;bottom:auto;width:min(290px,52vw);height:120px;
+  transform:translate(-50%,-50%);
+  background:url('../assets/images/logo/valentina-bonanni-signature.png') center/contain no-repeat;
+  transition:opacity .46s cubic-bezier(.4,0,.2,1),filter .46s ease;
+}
+html.category-cover-arrival.category-cover-release body::before,
+html.category-cover-arrival.category-cover-release body::after{opacity:0}
+html.category-cover-arrival.category-cover-release body::after{filter:blur(.35px)}
+@media(prefers-reduced-motion:reduce){
+  html.category-cover-arrival body::before,html.category-cover-arrival body::after{transition:none!important}
+}
+
 /* V68 — SPA experiment: once the destination is already the live DOM, only lift the cover. */
 .category-transition.spa-release{opacity:0;visibility:visible;pointer-events:none;transition:opacity .62s cubic-bezier(.22,.61,.36,1)!important}
-\n\n/* V70 — editorial portrait markers + profile image in agency card */
+
+
+/* V70 — editorial portrait markers + profile image in agency card */
 .agency-marker{transform:translate(-19px,-19px);gap:10px}
 .agency-marker button{width:38px;height:38px;border-radius:50%;isolation:isolate}
 .agency-marker button img{position:absolute;inset:3px;width:32px;height:32px;border-radius:50%;object-fit:cover;object-position:center;display:block;z-index:2;border:1px solid rgba(242,240,233,.92);box-shadow:0 0 0 1px rgba(29,28,25,.42);filter:grayscale(1);transition:transform .45s cubic-bezier(.16,1,.3,1),box-shadow .35s ease}
@@ -1458,7 +1506,9 @@ html body, html body * {
     aspect-ratio: auto;
   }
 }
-\n\n/* V93 — About desktop: tall portrait left, copy + representation stacked right */
+
+
+/* V93 — About desktop: tall portrait left, copy + representation stacked right */
 @media (min-width: 801px) {
   .about-shell .about-wrap {
     max-width: 1180px;
@@ -2063,3 +2113,18 @@ html body, html body * {
     transform: translateX(-226px);
   }
 }
+
+
+/* V80 — iOS-safe real-navigation category cover. Fixed overlay; never participates in layout. */
+html.category-transition-lock,
+html.category-transition-lock body{overflow:hidden!important;overscroll-behavior:none!important;}
+html.category-cover-arrival body::before,
+html.category-cover-arrival body::after{position:fixed!important;pointer-events:none!important;}
+html.category-cover-arrival body::after{
+  clip-path:polygon(0 0,0 0,0 10%,0 20%,0 30%,0 40%,0 50%,0 60%,0 70%,0 80%,0 90%,0 100%,0 100%);
+  opacity:.2;
+  filter:blur(.7px);
+  animation:categorySignatureInk 3.45s .22s linear forwards;
+}
+html.category-cover-arrival.category-cover-release body::after{animation:none;clip-path:none;opacity:0;filter:blur(.35px)}
+@media(prefers-reduced-motion:reduce){html.category-cover-arrival body::after{animation:none;clip-path:none;opacity:1;filter:none}}

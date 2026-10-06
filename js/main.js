@@ -17,25 +17,24 @@ async function applyI18n(){const root=pathRoot(),lang=localStorage.getItem('vb_l
 async function applyImages(){const root=pathRoot();let d;try{d=await getJSON(`${root}/data/portfolio.json`)}catch{return}qsa('[data-featured]').forEach(el=>{const src=d.featured[el.dataset.featured];if(!src)return; if(el.tagName==='IMG'){const cover=el.closest('.cover');if(cover){cover.classList.add('cover-image-loading');if(!cover.querySelector('.cover-loading-signature')){const loader=document.createElement('img');loader.className='cover-loading-signature';loader.src=`${root}/assets/images/logo/valentina-bonanni-signature.png`;loader.alt='';loader.setAttribute('aria-hidden','true');cover.insertBefore(loader,el)}}const loaded=()=>{cover?.classList.remove('cover-image-loading','cover-image-error');cover?.classList.add('cover-image-loaded')};const failed=()=>{cover?.classList.remove('cover-image-loading','cover-image-loaded');cover?.classList.add('cover-image-error')};el.addEventListener('load',loaded,{once:true});el.addEventListener('error',failed,{once:true});el.src=`${root}/${src}`;if(el.complete&&el.naturalWidth>0)loaded()}else el.style.backgroundImage=`url('${root}/${src}')`});const gallery=qs('[data-gallery]');if(gallery){const cat=gallery.dataset.gallery;gallery.innerHTML=d.portfolio.filter(x=>x.category===cat).map(x=>`<figure class="gallery-item ${x.layout||'portrait'}"><img src="${root}/${x.src}" alt="${x.alt}" loading="${vbCategoryPreparedArrival?'eager':'lazy'}" onerror="this.parentElement.style.display='none'"></figure>`).join(''); if(vbCategoryPreparedArrival){gallery.querySelectorAll('.gallery-item').forEach(el=>el.classList.add('is-visible'))}else{initImageReveal(gallery.querySelectorAll('.gallery-item'))} initGalleryParallax(gallery); initGalleryLightbox(gallery)}}
 document.addEventListener('click',e=>{const b=e.target.closest('[data-lang]');if(b){localStorage.setItem('vb_lang',b.dataset.lang);applyI18n()}const m=e.target.closest('.menu-toggle');if(m)qs('.nav')?.classList.toggle('open')});
 document.addEventListener('DOMContentLoaded',()=>{
-  const pageReady=Promise.all([applyI18n(),applyImages()]);
+  // Always initialise the destination normally. For a category hand-off the gallery is eager
+  // and immediately visible underneath the fixed cover; the cover duration never waits on images.
+  Promise.all([applyI18n(),applyImages()]);
   if(vbCategoryPreparedArrival){
-    pageReady.then(async()=>{
-      const imgs=[...document.querySelectorAll('[data-gallery] img')];
-      await Promise.allSettled(imgs.map(img=>{
-        if(img.complete)return img.decode?img.decode().catch(()=>{}):Promise.resolve();
-        return new Promise(resolve=>{img.addEventListener('load',resolve,{once:true});img.addEventListener('error',resolve,{once:true})});
-      }));
-      // V67 — keep the continuity cover perfectly still until the destination has
-      // painted for several real frames. This hides the document hand-off/reflow
-      // before the only visible action: the cover dissolving away.
-      if(document.fonts?.ready){try{await document.fonts.ready}catch(_){}}
-      requestAnimationFrame(()=>requestAnimationFrame(()=>requestAnimationFrame(()=>{
+    let started=Date.now();
+    try{started=Number(sessionStorage.getItem('vb_category_transition_started'))||started;sessionStorage.removeItem('vb_category_transition_started')}catch(_){}
+    const remaining=Math.max(0,4000-(Date.now()-started));
+    // Freeze the document at the top while the cover is present, then release without a layout shift.
+    window.scrollTo(0,0);
+    document.documentElement.classList.add('category-transition-lock');
+    window.setTimeout(()=>{
+      requestAnimationFrame(()=>requestAnimationFrame(()=>{
+        document.documentElement.classList.add('category-cover-release');
         window.setTimeout(()=>{
-          document.documentElement.classList.add('category-cover-release');
-          window.setTimeout(()=>document.documentElement.classList.remove('category-cover-arrival','category-cover-release','category-prepared-arrival'),680);
-        },90);
-      })));
-    });
+          document.documentElement.classList.remove('category-cover-arrival','category-cover-release','category-prepared-arrival','category-transition-lock');
+        },680);
+      }));
+    },remaining);
   }
 });
 
@@ -71,6 +70,9 @@ function initPortfolioCoverEntrance(){
   const observer=new IntersectionObserver(entries=>{
     entries.forEach(entry=>{
       if(!entry.isIntersecting)return;
+      if(grid.dataset.cinematicStarted==='1')return;
+      grid.dataset.cinematicStarted='1';
+      observer.disconnect();
       const isMobilePortfolio=window.matchMedia('(max-width: 800px)').matches;
       // On mobile give the browser one real painted frame with the cards off-screen
       // before starting the transform. Without this, the initial and final transforms
@@ -112,7 +114,7 @@ function initPortfolioCoverEntrance(){
         });
         window.setTimeout(()=>covers[covers.length-1].classList.remove('portfolio-mobile-focus'),firstColourAt+(covers.length*1000));
       }
-      observer.disconnect();
+
     });
   },{threshold:.18,rootMargin:'0px 0px -5% 0px'});
   observer.observe(grid);
@@ -431,127 +433,28 @@ document.addEventListener('DOMContentLoaded',()=>{
   requestAnimationFrame(()=>requestAnimationFrame(()=>logo.classList.add('home-entry-ink')));
 });
 
-// V68 — experimental SPA hand-off for Portfolio -> category.
-// The destination is fetched and installed into the CURRENT document while the signature
-// cover stays above it. There is no location.href at the end, so removing the cover reveals
-// the exact DOM that was already rendered underneath it.
-function vbInitSpaTitleReveal(){
-  const titles=document.querySelectorAll('.script-title, .representation-head h2');
-  if(!titles.length)return;
-  // Category arrived under the cover: show the title in its final state, without replaying entrance choreography.
-  titles.forEach(title=>{
-    if(title.closest('.title-reveal-mask'))return;
-    const mask=document.createElement('span'); mask.className='title-reveal-mask is-visible';
-    const inner=document.createElement('span'); inner.className='title-reveal-inner';
-    title.parentNode.insertBefore(mask,title); mask.appendChild(inner); inner.appendChild(title);
-  });
-}
-function vbInitSpaFooterSignature(){
-  const logos=[...document.querySelectorAll('.footer-logo')];
-  if(!logos.length)return;
-  if(window.matchMedia('(prefers-reduced-motion: reduce)').matches||!('IntersectionObserver' in window)){
-    logos.forEach(x=>x.classList.add('is-ink-written')); return;
-  }
-  const observer=new IntersectionObserver((entries,obs)=>entries.forEach(entry=>{
-    if(!entry.isIntersecting)return;
-    requestAnimationFrame(()=>entry.target.classList.add('is-ink-written')); obs.unobserve(entry.target);
-  }),{threshold:.35});
-  logos.forEach(x=>observer.observe(x));
-}
-async function vbSpaInstall(html,href){
-  const parsed=new DOMParser().parseFromString(html,'text/html');
-  const incoming=parsed.body;
-  if(!incoming)throw new Error('Missing destination body');
-  // main.js is already alive in this document; imported script tags must not execute a second copy.
-  incoming.querySelectorAll('script').forEach(x=>x.remove());
-  const cursor=document.querySelector('.vb-cursor');
-  document.body.className=incoming.className;
-  [...document.body.attributes].forEach(a=>{if(a.name!=='class')document.body.removeAttribute(a.name)});
-  [...incoming.attributes].forEach(a=>{if(a.name!=='class')document.body.setAttribute(a.name,a.value)});
-  document.body.replaceChildren(...[...incoming.childNodes].map(n=>document.importNode(n,true)));
-  if(cursor)document.body.appendChild(cursor);
-  document.title=parsed.title||document.title;
-  history.pushState({vbSpa:true},'',href);
-  window.scrollTo(0,0);
-  // SPA category hand-off must reproduce the already-prepared category state used
-  // by the normal Portfolio -> category transition: build every gallery item eagerly
-  // and in its final visible state while the signature veil is still covering the page.
-  // Without this, the freshly replaced body can leave lazy/reveal items waiting for an
-  // IntersectionObserver cycle that may never be delivered on mobile until a reload.
-  const previousPreparedArrival=vbCategoryPreparedArrival;
-  vbCategoryPreparedArrival=true;
-  try{
-    await Promise.all([applyI18n(),applyImages()]);
-  }finally{
-    vbCategoryPreparedArrival=previousPreparedArrival;
-  }
-  vbInitSpaTitleReveal();
-  vbInitSpaFooterSignature();
-}
-
+// V80 — robust real-document hand-off for Portfolio/category navigation.
+// We deliberately use a normal HTML navigation (no fetch/body replacement). The destination
+// paints behind the same signature cover for a fixed 4 seconds measured from the click.
 document.addEventListener('DOMContentLoaded',()=>{
   if(!document.body.querySelector('.portfolio-page, .gallery-page'))return;
   const isCategoryTransitionLink=(a)=>{
     if(!a || !a.matches('.portfolio-covers a.cover[href], .gallery-page .mobile-gallery-tabs a[href]')) return false;
     return /\/(fashion|commercial|digitals|beauty)\.html$|^(fashion|commercial|digitals|beauty)\.html$/i.test(a.getAttribute('href')||'');
   };
-  if(!document.querySelector('.portfolio-covers a.cover[href], .gallery-page .mobile-gallery-tabs a[href]'))return;
-  const overlay=document.createElement('div');
-  overlay.className='category-transition'; overlay.setAttribute('aria-hidden','true');
-  overlay.innerHTML='<div class="category-transition-wash"></div><img class="category-transition-signature" src="assets/images/logo/valentina-bonanni-signature.png" alt="">';
-  // Keep the cover outside <body>, because <body> is the part replaced by the SPA hand-off.
-  document.documentElement.appendChild(overlay);
-  let running=false;
-  document.addEventListener('click',async e=>{
+  document.addEventListener('click',e=>{
     const a=e.target.closest?.('a[href]');
     if(!isCategoryTransitionLink(a))return;
-    if(e.defaultPrevented||e.button!==0||e.metaKey||e.ctrlKey||e.shiftKey||e.altKey||running)return;
-    e.preventDefault(); e.stopImmediatePropagation(); running=true;
+    if(e.defaultPrevented||e.button!==0||e.metaKey||e.ctrlKey||e.shiftKey||e.altKey)return;
     const href=a.getAttribute('href');
-    overlay.classList.add('is-active');
-    const transitionStartedAt=performance.now();
-    const minimumDisplay=new Promise(resolve=>setTimeout(resolve,4000));
-
-    // V69 — the cover must win the first paint. Start downloading immediately,
-    // but NEVER install the destination DOM until the overlay is fully visible.
-    // This prevents a fast/local destination from flashing before the signature veil,
-    // while still using the veil time to download the next page on a real network.
-    const coverReady=new Promise(resolve=>{
-      let done=false;
-      const finish=()=>{if(done)return;done=true;overlay.removeEventListener('transitionend',onEnd);resolve()};
-      const onEnd=e=>{if(e.target===overlay&&e.propertyName==='opacity')finish()};
-      overlay.addEventListener('transitionend',onEnd);
-      requestAnimationFrame(()=>requestAnimationFrame(()=>{
-        if(getComputedStyle(overlay).opacity==='1')finish();
-        else window.setTimeout(finish,480);
-      }));
-    });
     try{
-      const responsePromise=fetch(href,{cache:'force-cache'});
-      const response=await responsePromise;
-      if(!response.ok)throw new Error(href);
-      const html=await response.text();
-      await coverReady;
-      await vbSpaInstall(html,href);
-
-      // V79 — keep the existing signature transition visible for exactly the same
-      // minimum duration on every category navigation, independently of image loading.
-      // The destination is installed underneath while the veil is visible.
-      await minimumDisplay;
-      await new Promise(resolve=>requestAnimationFrame(()=>requestAnimationFrame(resolve)));
-      overlay.classList.add('spa-release');
-      window.setTimeout(()=>overlay.remove(),700);
-    }catch(_){
-      // Safe fallback: if dynamic installation fails, preserve normal multi-page navigation.
-      location.href=href;
-    }
+      const target=new URL(href,location.href).pathname.split('/').pop().toLowerCase();
+      sessionStorage.setItem('vb_category_prepared',target);
+      sessionStorage.setItem('vb_category_transition_started',String(Date.now()));
+    }catch(_){}
+    // Do not preventDefault: Safari performs a genuine document navigation.
   },true);
 });
-
-// A pushed SPA history entry must still make the browser Back button semantically correct.
-// For this experiment we deliberately use a normal reload on popstate instead of expanding
-// the SPA router beyond the single Portfolio -> category transition being evaluated.
-window.addEventListener('popstate',()=>{ location.reload(); });
 
 // V57 — seamless cross-document dissolve.
 // Modern browsers use the native cross-document View Transition API: the old
