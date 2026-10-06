@@ -33,7 +33,7 @@
   .about-photo{max-width:none;width:100%}
   .about-wrap>.measurements-section{grid-column:1/-1;width:100%;margin-top:38px}
   .contact-wrap{grid-template-columns:minmax(0,1.08fr) minmax(0,.92fr);gap:22px;align-items:start}
-  .contact-photo{max-width:none;width:100%}
+  .contact-photo{max-width:none;width:124%}
   .contact-copy{min-width:0}
 }
 @media(max-width:480px){
@@ -170,7 +170,7 @@
   .representation-note{text-align:left;font-size:6px;margin-top:13px}
 }
 @media(max-width:480px){
-  .representation{margin-top:56px;padding-top:40px}
+  .representation{margin-top:56px;padding-top:0px}
   .representation-head h2{font-size:32px}
   .representation-map{height:430px}
   .agency-marker{gap:5px}.agency-marker button{width:15px;height:15px}.agency-marker button::after{inset:6px}.agency-marker button span{inset:4px}
@@ -186,7 +186,7 @@
   .marker-london{left:27%;top:41%}.marker-milan{left:50%;top:53%}.marker-barcelona{left:33%;top:58.5%}.marker-madrid{left:19%;top:63%}.marker-stockholm{left:66%;top:25%}
 }
 @media(max-width:480px){
-  .representation-map{height:460px}
+  .representation-map{height:260px}
   .agency-card{width:min(215px,70vw);padding:15px 16px}
 }
 
@@ -195,7 +195,7 @@
 
 /* V43 — responsive map stage: markers remain locked to SVG coordinates */
 @media(max-width:800px){
-  .map-coordinate-stage{width:116%;top:39%;}
+  .map-coordinate-stage{width:116%;top:49%;}
   .map-coordinate-stage .europe-map{inset:0;width:100%;height:100%;}
   .map-coordinate-stage .marker-london{left:27.0%;top:55.3%;}
   .map-coordinate-stage .marker-milan{left:50.3%;top:71.3%;}
@@ -337,5 +337,114 @@
   .gallery[data-gallery="commercial"],
   .gallery[data-gallery="beauty"] {
     columns: 2;
+  }
+}
+
+/* Internal pages: compact two-column mobile footer */
+@media (max-width: 800px) {
+  .footer.footer-production {
+    display: grid;
+    grid-template-columns: minmax(0, 1fr) auto;
+    grid-template-rows: auto auto;
+    column-gap: 20px;
+    row-gap: 8px;
+    align-items: center;
+    padding-top: 26px;
+    min-height: 100px;
+  }
+
+  .footer-production .footer-row,
+  .footer-production .footer-row-main,
+  .footer-production .footer-row-meta {
+    display: contents;
+  }
+
+  .footer-production .footer-copyright {
+    grid-column: 1;
+    grid-row: 1;
+    justify-self: start;
+    align-self: end;
+    white-space: nowrap;
+  }
+
+  .footer-production .footer-powered {
+    grid-column: 1;
+    grid-row: 2;
+    justify-self: start;
+    align-self: start;
+    text-align: left;
+    white-space: nowrap;
+  }
+
+  .footer-production .footer-logo {
+    grid-column: 2;
+    grid-row: 1;
+    justify-self: end;
+    align-self: end;
+    width: 132px !important;
+    margin: 0 !important;
+  }
+
+  .footer-production .footer-socials {
+    grid-column: 2;
+    grid-row: 2;
+    justify-self: end;
+    align-self: start;
+  }
+
+  .footer-production .footer-legal {
+    display: none;
+  }
+}
+
+/* V73 — About mobile: photo + copy above, representation map full width below */
+@media (max-width: 800px) {
+  .about-top {
+    grid-template-columns: minmax(0, .92fr) minmax(0, 1.08fr);
+    gap: 22px;
+    align-items: start;
+  }
+
+  /* Let the copy stay in column 2 while Representation becomes a direct grid item. */
+  .about-right {
+    display: contents;
+  }
+
+  .about-photo {
+    grid-column: 1;
+    width: 100%;
+    max-width: none;
+    height: 100%;
+    overflow: hidden;
+  }
+
+  .about-photo img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+  }
+
+  .about-copy {
+    grid-column: 2;
+    min-width: 0;
+  }
+
+  .about-top .representation {
+    grid-column: 1 / -1;
+    width: 100%;
+    min-width: 0;
+    margin-top: 28px;
+    padding-left: 0;
+    padding-right: 0;
+  }
+
+  .about-top .representation-map {
+    width: 100%;
+  }
+}
+
+@media (max-width: 480px) {
+  .about-top {
+    gap: 14px;
   }
 }
