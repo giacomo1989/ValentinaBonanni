@@ -203,7 +203,7 @@
       "src": "assets/images/digitals/digitals-04.jpeg",
       "alt": "Digitals image 01",
       "category": "digitals",
-      "layout": "portrait"
+      "layout": "tall"
     },
     {
       "id": 14,
@@ -217,7 +217,7 @@
       "src": "assets/images/digitals/digitals-01.jpeg",
       "alt": "Digitals image 03",
       "category": "digitals",
-      "layout": "portrait"
+      "layout": "tall"
     },
     {
       "id": 16,
@@ -231,7 +231,7 @@
       "src": "assets/images/digitals/digitals-03.jpeg",
       "alt": "Digitals image 05",
       "category": "digitals",
-      "layout": "portrait"
+      "layout": "tall"
     },
     {
       "id": 18,
