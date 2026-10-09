@@ -4512,6 +4512,7 @@ html body * {
     min-width: 0;
     padding-left: 50px;
     box-sizing: border-box;
+    margin-top: 20px;
   }
 
   .about-shell .about-right>.representation {
