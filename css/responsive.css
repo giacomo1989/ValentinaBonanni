@@ -28,7 +28,7 @@
 
 /* V18 — keep editorial two-column compositions on mobile */
 @media(max-width:800px){
-  .portfolio-covers.portfolio-covers-four{grid-template-columns:repeat(2,minmax(0,1fr));width:100%;max-width:none}
+  .portfolio-covers.portfolio-covers-four{grid-template-columns:repeat(2,minmax(0,1fr));width:100%;max-width:none;margin-top: 13%;}
   .about-top{grid-template-columns:minmax(0,.92fr) minmax(0,1.08fr);gap:22px;align-items:start}
   .about-photo{max-width:none;width:100%}
   .about-wrap>.measurements-section{grid-column:1/-1;width:100%;margin-top:38px}
@@ -42,8 +42,8 @@
   .about-copy p,.contact-copy p{font-size:9px;line-height:1.65}
   .about-inline-signature{width:120px;max-width:80%;margin-top:18px}
   .contact-copy .script-title{margin-bottom:22px}
-  .contact-copy h1{font-size:14px;margin-bottom:16px}
-  .contact-details{margin-top:22px;gap:16px}
+  .contact-copy h1{font-size:26px;margin-bottom:16px}
+  .contact-details{margin-top:22px;gap:5px}
 }
 
 /* V19 — mobile-only refinements */
@@ -151,7 +151,7 @@
 
 /* V30 — mobile only: compact contact handles */
 @media(max-width:800px){
-  .contact-details a{font-size:9px;}
+  .contact-details a{font-size:7px;}
 }
 
 /* V31 — Representation map responsive */
@@ -752,6 +752,7 @@
     align-items: center !important;
     min-height: 78px !important;
     padding-top: 20px !important;
+    border-top: 1px solid #c4c0b5;
   }
 
   .footer-production .footer-row,
@@ -791,7 +792,7 @@
     grid-row: 1 / 3 !important;
     justify-self: end !important;
     align-self: center !important;
-    gap: 14px !important;
+    gap: 5px !important;
   }
 
   /* Home: preserve its existing overlay; only rearrange its contents. */
@@ -830,7 +831,7 @@
     grid-row: 1 / 3 !important;
     justify-self: end !important;
     align-self: center !important;
-    gap: 14px !important;
+    gap: 5px !important;
   }
 
   .home-footer .home-legal { display: none !important; }
@@ -878,4 +879,79 @@ html.category-cover-arrival .gallery-item img {
 
         opacity: .45;
     }
+}
+
+/* V104 — Contact mobile: preserve transparent portrait without crop */
+@media(max-width:800px){
+  .contact-mobile-layout .contact-photo{
+    height:auto;
+    min-height:0;
+    align-self:end;
+    overflow:visible;
+  }
+  .contact-mobile-layout .contact-photo img{
+    display:block;
+    width:124%;
+    max-width:none;
+    height:auto;
+    object-fit:contain;
+    object-position:center bottom;
+  }
+}
+
+/* V107 — CONTACT portrait anchored structurally to footer border-top (mobile) */
+@media (max-width: 800px) {
+  body.contact-body {
+    --contact-anchor-mobile-right: -84px;
+    --contact-anchor-mobile-width: 96vw;
+    --contact-anchor-mobile-z: 20;
+  }
+
+  body.contact-body .contact-page {
+    position: relative !important;
+    overflow: visible !important;
+  }
+
+  body.contact-body .contact-mobile-layout,
+  body.contact-body .contact-wrap {
+    position: static !important;
+    overflow: visible !important;
+  }
+
+  body.contact-body .contact-photo {
+    position: absolute !important;
+    right: var(--contact-anchor-mobile-right) !important;
+    bottom: 0 !important;
+    top: auto !important;
+    left: auto !important;
+    width: var(--contact-anchor-mobile-width) !important;
+    height: auto !important;
+    min-height: 0 !important;
+    max-width: none !important;
+    margin: 0 !important;
+    transform: none !important;
+    align-self: auto !important;
+    z-index: var(--contact-anchor-mobile-z) !important;
+    overflow: visible !important;
+    pointer-events: none !important;
+  }
+
+  body.contact-body .contact-photo img {
+    display: block !important;
+    width: 100% !important;
+    height: auto !important;
+    max-width: none !important;
+    object-fit: contain !important;
+    object-position: right bottom !important;
+  }
+}
+
+@media (max-width: 800px) {
+  .contact-detail-icon {
+    width: 15px !important;
+    height: 10px !important;  
+  }
+  .contact-detail-row {
+    gap: 2px !important;
+  }
 }

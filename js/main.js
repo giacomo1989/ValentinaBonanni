@@ -596,3 +596,30 @@ document.addEventListener('DOMContentLoaded',()=>{
     timers.push(setTimeout(reveal,3000));
   }
 });
+
+// V104 — replay About handwriting reveal whenever the portrait re-enters view.
+(() => {
+  const overlay = document.querySelector('.about-handwriting-overlay');
+  if (!overlay) return;
+
+  const reduced = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+  if (reduced || !('IntersectionObserver' in window)) {
+    overlay.classList.add('is-writing');
+    return;
+  }
+
+  const restart = () => {
+    overlay.classList.remove('is-writing');
+    void overlay.offsetWidth;
+    overlay.classList.add('is-writing');
+  };
+
+  const observer = new IntersectionObserver((entries) => {
+    entries.forEach((entry) => {
+      if (entry.isIntersecting) restart();
+      else overlay.classList.remove('is-writing');
+    });
+  }, { threshold: 0.28 });
+
+  observer.observe(overlay.closest('.about-photo') || overlay);
+})();

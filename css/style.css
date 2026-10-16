@@ -329,7 +329,7 @@ img {
 }
 
 .contact-copy h1 {
-  font-size: 21px;
+  font-size: 45px;
   line-height: 1.35;
   margin-bottom: 24px
 }
@@ -337,7 +337,7 @@ img {
 .contact-details {
   margin-top: 35px;
   display: grid;
-  gap: 24px
+  gap: 10px
 }
 
 .contact-details b {
@@ -1227,7 +1227,9 @@ body,
   margin-top: 30px;
   display: grid;
   gap: 20px;
-  max-width: 100%
+  max-width: 100%;
+  position: relative;
+  z-index: 30;
 }
 
 .contact-form label {
@@ -1352,7 +1354,6 @@ body,
   overflow: hidden;
   background: linear-gradient(180deg, rgba(255, 255, 255, .08), rgba(255, 255, 255, 0));
   border-top: 1px solid rgba(41, 40, 36, .08);
-  border-bottom: 1px solid rgba(41, 40, 36, .08)
 }
 
 .europe-map {
@@ -3788,6 +3789,7 @@ html.category-cover-arrival.category-cover-release body::after {
   font-family: 'Space Mono', monospace;
   font-size: 8px;
   letter-spacing: .14em;
+  border-top: 1px solid #c3bfb5;
 }
 
 .footer-production .footer-row {
@@ -4494,8 +4496,8 @@ html body * {
   }
 
   .about-shell .about-photo img {
-    width: 100%;
-    height: 100%;
+    width: 300px;
+    height: 300px;
     object-fit: cover;
   }
 
@@ -5047,5 +5049,519 @@ html.category-cover-arrival body::after {
     clip-path: none !important;
     opacity: 1;
     filter: none;
+  }
+}\n\n/* Home carousel: independent image layers; home content/layout stays unchanged */
+.home-body .home-hero { overflow: hidden; }
+.home-body .home-carousel-layer {
+  position: absolute;
+  inset: 0;
+  z-index: 0;
+  pointer-events: none;
+  background-position: inherit;
+  background-size: cover;
+  background-repeat: no-repeat;
+  opacity: 0;
+  transition: opacity 900ms cubic-bezier(.22,.61,.36,1);
+}
+.home-body .home-carousel-layer.is-visible { opacity: 1; }
+.home-body .home-hero::after { z-index: 1; }
+.home-body .home-identity,
+.home-body .home-copy,
+.home-body .home-footer { position: absolute; z-index: 2; }
+
+/* MOBILE — separatori verticali nella navigazione */
+
+@media (max-width: 800px) {
+  .nav > a {
+    position: relative;
+  }
+  .nav > a:not(:last-child)::after {
+    content: "";
+    position: absolute;
+    /* Centro esatto dello spazio tra le due voci */
+    right: -4px;
+    top: 50%;
+    transform: translate(50%, -50%);
+    width: 1px;
+    height: 10px;
+    background: #e0ded4;
+    pointer-events: none;
+  }
+}
+
+/* Contact details — reuse footer mail/Instagram icon language, inline with handles */
+.contact-detail-row {
+  display: flex;
+  align-items: center;
+  gap: 5px;
+}
+.contact-detail-icon {
+  flex: 0 0 15px;
+  width: 15px;
+  height: 15px;
+  display: block;
+  fill: none;
+  stroke: currentColor;
+  stroke-width: 1.35;
+  stroke-linecap: round;
+  stroke-linejoin: round;
+}
+@media (max-width: 800px) {
+  .contact-detail-icon {
+    width: 15px !important;
+    height: 10px !important;  
+  }
+}
+
+/* V103 — Contact desktop portrait placement only.
+   Adjust --contact-photo-right to move the portrait: positive = left, negative = right.
+   Adjust --contact-photo-width only if you want to resize it. */
+/* CONTACT — FOTO SOVRAPPOSTA AL FORM */
+@media (min-width: 801px) { 
+  .contact-body {
+    /* POSIZIONE E DIMENSIONE FOTO */
+    --contact-photo-right: -10px;
+    --contact-photo-width: 590px;
+  }
+
+  .contact-page {
+    position: relative;
+    overflow: visible;
+  }
+
+  .contact-mobile-layout {
+    position: static;
+    overflow: visible;
+  }
+
+  .contact-mobile-layout .contact-wrap {
+    position: static;
+    overflow: visible;
+  }
+
+  /* FORM SOTTO LA FOTO */
+  .contact-mobile-layout .contact-copy {
+    position: relative;
+    z-index: 1;
+  }
+
+  /* FOTO SOPRA IL FORM */
+  .contact-mobile-layout .contact-photo {
+    position: absolute;
+
+    right: var(--contact-photo-right);
+    bottom: 0;
+
+    width: var(--contact-photo-width);
+    height: auto;
+    max-width: none;
+
+    z-index: 20;
+
+    transform: none;
+    pointer-events: none;
+
+    overflow: visible;
+  }
+
+  .contact-mobile-layout .contact-photo img {
+    display: block;
+
+    width: 100%;
+    height: auto;
+    max-width: none;
+
+    object-fit: contain;
+
+    position: relative;
+    z-index: 20;
+  }
+}
+/* =========================================================
+   CONTACT DESKTOP — PHOTO OVER FORM
+   ========================================================= */
+
+@media (min-width: 801px) {
+
+  /* CONTENITORE GENERALE */
+  .contact-body .contact-page {
+    position: relative !important;
+    overflow: visible !important;
+  }
+
+  .contact-body .contact-mobile-layout {
+    position: static !important;
+    overflow: visible !important;
+  }
+
+  .contact-body .contact-wrap {
+    position: static !important;
+    overflow: visible !important;
+  }
+
+
+  /* TESTO + FORM */
+  .contact-body .contact-copy {
+    position: relative !important;
+    z-index: 1 !important;
+
+    width: 100%;
+    max-width: 410px;
+    min-width: 0;
+  }
+
+  .contact-body .contact-form {
+    position: relative !important;
+    z-index: 1 !important;
+  }
+
+
+  /* =========================================
+     FOTO
+     ========================================= */
+
+  .contact-body .contact-photo {
+    position: absolute !important;
+
+    /*
+       POSIZIONE ORIZZONTALE
+
+       aumenta il valore = va verso SINISTRA
+       diminuisci / negativo = va verso DESTRA
+
+       PROVA 250px per vedere chiaramente
+       la foto sopra il form.
+    */
+    right: 250px !important;
+
+
+    /*
+       FOTO APPOGGIATA AL BORDO DEL FOOTER
+    */
+    bottom: 0 !important;
+
+
+    /*
+       DIMENSIONE FOTO
+    */
+    width: 650px !important;
+
+    height: auto !important;
+    max-width: none !important;
+
+
+    /*
+       FONDAMENTALE:
+       FOTO DAVANTI AL FORM
+    */
+    z-index: 100 !important;
+
+
+    transform: none !important;
+    pointer-events: none;
+
+    overflow: visible !important;
+  }
+
+
+  .contact-body .contact-photo img {
+    display: block;
+
+    width: 100% !important;
+    height: auto !important;
+    max-width: none !important;
+
+    object-fit: contain;
+
+    position: relative;
+    z-index: 100;
+  }
+
+}
+/* ==========================================================
+   CONTACT PHOTO — OVERLAY DEFINITIVO
+   ========================================================== */
+
+@media (min-width: 801px) {
+
+  /*
+   * La sezione diventa il riferimento della foto.
+   */
+  body.contact-body .contact-mobile-layout {
+    position: relative !important;
+    overflow: visible !important;
+  }
+
+
+  /*
+   * IMPORTANTE:
+   * annulliamo la GRID come riferimento di posizionamento
+   * della foto.
+   */
+  body.contact-body .contact-wrap {
+    position: static !important;
+    overflow: visible !important;
+  }
+
+
+  /*
+   * COPY + FORM
+   */
+  body.contact-body .contact-copy {
+    position: relative !important;
+    z-index: 1 !important;
+  }
+
+  body.contact-body .contact-form {
+    position: relative !important;
+    z-index: 1 !important;
+  }
+
+
+  /*
+   * FOTO
+   */
+  body.contact-body .contact-photo {
+    position: absolute !important;
+      right: 152px !important;
+      bottom: 21px !important;
+      width: 53.3% !important;
+      max-width: none !important;
+      height: 100% !important;
+      z-index: 20 !important;
+      transform: none !important;
+      pointer-events: none !important;
+      overflow: visible !important;
+  }
+
+
+  body.contact-body .contact-photo img {
+    display: block !important;
+
+    width: 100% !important;
+    max-width: none !important;
+    height: auto !important;
+
+    object-fit: contain !important;
+
+    position: relative !important;
+    z-index: 9999 !important;
+  }
+
+}
+
+
+/* V104 — Contact direct-link label */
+.contact-direct-label{
+  margin:18px 0 0;
+}
+
+/* V104 — About handwritten overlay on portrait */
+.about-photo {
+  position: relative;
+  overflow: hidden;
+}
+
+.about-photo .about-handwriting-overlay {
+  position: absolute;
+  z-index: 4;
+  left: 22px;
+  top: 40%;
+  width: 90%;
+  height: 84%;
+  object-fit: contain;
+  object-position: center;
+  pointer-events: none;
+  opacity: 0;
+  clip-path: inset(0 100% 0 0);
+  filter: none;
+}
+
+.about-photo .about-handwriting-overlay.is-writing {
+  animation: aboutHandwritingReveal 4.8s cubic-bezier(.22,.61,.36,1) forwards;
+}
+
+@keyframes aboutHandwritingReveal {
+  0%   { opacity: 0; clip-path: inset(0 100% 0 0); }
+  4%   { opacity: 1; }
+  100% { opacity: 1; clip-path: inset(0 0 0 0); }
+}
+
+@media (max-width: 800px) {
+  .about-photo .about-handwriting-overlay {
+    left: 4%;
+    top: 7%;
+    width: 92%;
+    height: 86%;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .about-photo .about-handwriting-overlay,
+  .about-photo .about-handwriting-overlay.is-writing {
+    opacity: 1;
+    clip-path: inset(0 0 0 0);
+    animation: none;
+  }
+}
+
+/* V105 — About: transparent model silhouette + handwriting underneath */
+body.about-body {
+  --about-silhouette-left: 0px;
+  --about-silhouette-bottom: 0px;
+  --about-silhouette-width: 100%;
+  --about-silhouette-z: 6;
+  --about-handwriting-z: 5;
+}
+
+body.about-body .about-top,
+body.about-body .about-photo {
+  overflow: visible !important;
+}
+
+body.about-body .about-photo {
+  position: relative !important;
+  background: transparent !important;
+}
+
+/* Featured About image: real PNG alpha, no panel/background. */
+body.about-body .about-photo > img[data-featured="about"] {
+      position: absolute !important;
+    z-index: var(--about-silhouette-z) !important;
+    left: var(--about-silhouette-left) !important;
+    bottom: var(--about-silhouette-bottom) 0px !important;
+    top: auto !important;
+    width: 450px !important;
+    max-width: none !important;
+    height: auto !important;
+    object-fit: contain !important;
+    object-position: left bottom !important;
+    background: transparent !important;
+    pointer-events: none !important;
+    margin-left: 35%;
+}
+
+/* Handwriting stays transparent and one layer BELOW the model. */
+body.about-body .about-photo > .about-handwriting-overlay {
+  z-index: var(--about-handwriting-z) !important;
+  background: transparent !important;
+}
+
+/* Keep the right column available for intentional overlap. */
+body.about-body .about-right {
+  position: relative;
+  z-index: 2;
+}
+
+/* V106 — About model: structural anchors independent from viewport height */
+body.about-body {
+  --about-model-left: 245px;
+  --about-model-width: 450px;
+  --about-model-z: 6;
+  --about-model-mobile-left: 0px;
+  --about-model-mobile-width: 55vw;
+}
+
+body.about-body .about-page {
+  position: relative;
+  overflow: visible;
+}
+
+body.about-body .about-model-silhouette {
+  height: auto !important;
+  max-width: none !important;
+  object-fit: contain !important;
+  background: transparent !important;
+  pointer-events: none;
+  z-index: var(--about-model-z);
+}
+
+/* DESKTOP: bottom:0 belongs to .about-page, whose bottom meets footer border-top. */
+@media (min-width: 801px) {
+  body.about-body .about-model-desktop {
+    display: block;
+    position: absolute;
+    left: var(--about-model-left);
+    bottom: 0;
+    top: auto;
+    width: var(--about-model-width) !important;
+    margin: 0;
+  }
+
+  body.about-body .about-model-mobile {
+    display: none !important;
+  }
+}
+
+/* MOBILE: the model lives inside .representation-map and rises from its top edge. */
+@media (max-width: 800px) {
+  body.about-body .about-model-desktop {
+    display: none !important;
+  }
+
+  body.about-body .about-top .representation,
+  body.about-body .about-top .representation-map {
+    overflow: visible !important;
+  }
+
+  body.about-body .about-top .representation-map {
+    position: relative !important;
+  }
+
+  body.about-body .about-model-mobile {
+    display: block;
+    position: absolute;
+    left: var(--about-model-mobile-left);
+    bottom: 100%;
+    top: auto;
+    width: var(--about-model-mobile-width) !important;
+    margin: 0;
+  }
+}
+
+/* V107 — CONTACT portrait anchored structurally to footer border-top (desktop) */
+body.contact-body {
+  --contact-anchor-right: 0px;
+  --contact-anchor-width: 600px;
+  --contact-anchor-z: 20;
+}
+
+body.contact-body .contact-page {
+  position: relative !important;
+  overflow: visible !important;
+}
+
+@media (min-width: 801px) {
+  body.contact-body .contact-mobile-layout,
+  body.contact-body .contact-wrap {
+    position: static !important;
+    overflow: visible !important;
+  }
+
+  body.contact-body .contact-photo {
+    position: absolute !important;
+    right: var(--contact-anchor-right) !important;
+    bottom: 0 !important;
+    top: auto !important;
+    left: auto !important;
+    width: var(--contact-anchor-width) !important;
+    height: auto !important;
+    min-height: 0 !important;
+    max-width: none !important;
+    margin: 0 !important;
+    transform: none !important;
+    z-index: var(--contact-anchor-z) !important;
+    overflow: visible !important;
+    pointer-events: none !important;
+    margin-right: 19% !important;
+  }
+
+  body.contact-body .contact-photo img {
+    display: block !important;
+    width: 100% !important;
+    height: auto !important;
+    max-width: none !important;
+    object-fit: contain !important;
+    object-position: right bottom !important;
   }
 }

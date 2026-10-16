@@ -30,7 +30,7 @@
   },
   "about": {
     "heading": "ABOUT",
-    "body": "Soy Valentina, modelo afincada en Barcelona, con una gran pasión por la moda, la narrativa visual y el mundo creativo. Me gusta aportar personalidad, movimiento y autenticidad a cada proyecto, adaptándome de forma natural a diferentes conceptos, estilos y entornos. Mi trabajo abarca proyectos de fashion, commercial y editorial, siempre con la misma atención al detalle y un enfoque profesional en el set. Disfruto colaborando con fotógrafos, diseñadores, estilistas y marcas para crear imágenes contemporáneas, elegantes y auténticas. Para mí, ser modelo no consiste únicamente en estar delante de la cámara, sino en comprender una visión y ayudar a convertirla en imágenes. Soy curiosa, versátil y siempre estoy abierta a nuevas experiencias, retos creativos y colaboraciones que me permitan crecer y explorar nuevas perspectivas.",
+    "body": "Nací y crecí en Venezuela, con raíces italianas por ambos lados de mi familia. En 2018 me mudé a Barcelona, España, donde resido actualmente.\n\nCon formación en Arquitectura y Diseño de Interiores, con el tiempo encontré mi camino en el mundo del modelaje, una carrera que llevo desarrollando desde hace más de 15 años. Durante este tiempo he tenido la oportunidad de trabajar en una amplia variedad de campañas publicitarias y de moda para marcas nacionales e internacionales.\n\nMi experiencia abarca tanto proyectos freelance como colaboraciones con agencias, lo que me ha permitido trabajar en diferentes entornos creativos y junto a una gran variedad de equipos.\n\nDisfruto de la diversidad que ofrece el modelaje y afronto cada proyecto con versatilidad, compromiso y un interés genuino por contribuir a dar vida a cada visión creativa.",
     "measurements": "MEDIDAS",
     "height": "ALTURA",
     "bust": "PECHO",
@@ -61,7 +61,8 @@
     "formMessage": "Mensaje",
     "formMessagePlaceholder": "Cuéntame sobre tu proyecto...",
     "formSend": "Enviar mensaje",
-    "projectBeauty": "Beauty"
+    "projectBeauty": "Beauty",
+    "direct": "O PONTE EN CONTACTO\nDIRECTAMENTE"
   },
   "footer": {
     "location": "POWERED BY GEIVI STUDIO"

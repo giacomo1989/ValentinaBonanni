@@ -30,7 +30,7 @@
   },
   "about": {
     "heading": "ABOUT",
-    "body": "I'm Valentina, a model based in Barcelona with a strong passion for fashion, visual storytelling and the creative world. I enjoy bringing personality, movement and authenticity to every project, adapting naturally to different concepts, styles and environments. My work moves between fashion, commercial and editorial projects, always with the same attention to detail and a professional approach on set. I love collaborating with photographers, designers, stylists and brands, creating images that feel contemporary, elegant and genuine. For me, modelling is not only about being in front of the camera, but about understanding a vision and helping bring it to life. I'm curious, versatile and always open to new experiences, creative challenges and collaborations that allow me to grow and explore new perspectives.",
+    "body": "I was born and raised in Venezuela, with Italian roots on both sides of my family. In 2018, I moved to Barcelona, Spain, where I’m currently based.\n\nWith a background in Architecture and Interior Design, I eventually found my path in modeling, a career I’ve been pursuing for over 15 years. Throughout this time, I’ve had the opportunity to work on a wide range of advertising and fashion campaigns for both national and international brands.\n\nMy experience spans both freelance projects and agency collaborations, allowing me to work across different creative environments and alongside a variety of teams.\n\nI enjoy the diversity that modeling brings, and I approach every project with versatility, commitment, and a genuine interest in bringing each vision to life.",
     "measurements": "MEASUREMENTS",
     "height": "HEIGHT",
     "bust": "BUST",
@@ -61,7 +61,8 @@
     "formMessage": "Message",
     "formMessagePlaceholder": "Tell me about your project...",
     "formSend": "Send message",
-    "projectBeauty": "Beauty"
+    "projectBeauty": "Beauty",
+    "direct": "OR GET IN TOUCH\nDIRECTLY"
   },
   "footer": {
     "location": "POWERED BY GEIVI STUDIO"

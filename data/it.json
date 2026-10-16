@@ -30,7 +30,7 @@
   },
   "about": {
     "heading": "ABOUT",
-    "body": "Sono Valentina, modella con base a Barcellona, con una forte passione per la moda, lo storytelling visivo e il mondo creativo. Mi piace portare personalità, movimento e autenticità in ogni progetto, adattandomi con naturalezza a concept, stili e ambienti diversi. Il mio lavoro spazia tra fashion, commercial ed editorial, sempre con la stessa attenzione ai dettagli e un approccio professionale sul set. Amo collaborare con fotografi, designer, stylist e brand, creando immagini contemporanee, eleganti e autentiche. Per me fare la modella non significa soltanto stare davanti all'obiettivo, ma comprendere una visione e contribuire a trasformarla in immagini. Sono curiosa, versatile e sempre aperta a nuove esperienze, sfide creative e collaborazioni che mi permettano di crescere ed esplorare nuove prospettive.",
+    "body": "Sono nata e cresciuta in Venezuela, con radici italiane da entrambi i lati della mia famiglia. Nel 2018 mi sono trasferita a Barcellona, in Spagna, dove vivo attualmente.\n\nCon una formazione in Architettura e Interior Design, ho poi trovato la mia strada nel mondo della moda, intraprendendo una carriera da modella che porto avanti da oltre 15 anni. In questo periodo ho avuto l’opportunità di lavorare a numerose campagne pubblicitarie e di moda per brand nazionali e internazionali.\n\nLa mia esperienza comprende sia progetti freelance che collaborazioni con agenzie, permettendomi di lavorare in diversi contesti creativi e al fianco di team molto diversi tra loro.\n\nAmo la varietà che il lavoro di modella offre e affronto ogni progetto con versatilità, impegno e un autentico interesse nel contribuire a dare vita a ogni visione creativa.",
     "measurements": "MISURE",
     "height": "ALTEZZA",
     "bust": "SENO",
@@ -61,7 +61,8 @@
     "formMessage": "Messaggio",
     "formMessagePlaceholder": "Raccontami il tuo progetto...",
     "formSend": "Invia messaggio",
-    "projectBeauty": "Beauty"
+    "projectBeauty": "Beauty",
+    "direct": "OPPURE CONTATTAMI\nDIRETTAMENTE"
   },
   "footer": {
     "location": "POWERED BY GEIVI STUDIO"
