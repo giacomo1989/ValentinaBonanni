@@ -15,8 +15,50 @@ async function getJSON(path){const r=await fetch(path);if(!r.ok)throw new Error(
 function pathRoot(){return document.body.dataset.root||'.'}
 async function applyI18n(){const root=pathRoot(),lang=localStorage.getItem('vb_lang')||'en';let t;try{t=await getJSON(`${root}/data/${lang}.json`)}catch{return}qsa('[data-i18n]').forEach(el=>{const v=el.dataset.i18n.split('.').reduce((o,k)=>o?.[k],t);if(v!==undefined)el.textContent=v});qsa('[data-lang]').forEach(b=>b.classList.toggle('active',b.dataset.lang===lang));}
 async function applyImages(){const root=pathRoot();let d;try{d=await getJSON(`${root}/data/portfolio.json`)}catch{return}qsa('[data-featured]').forEach(el=>{const src=d.featured[el.dataset.featured];if(!src)return; if(el.tagName==='IMG'){const cover=el.closest('.cover');if(cover){cover.classList.add('cover-image-loading');if(!cover.querySelector('.cover-loading-signature')){const loader=document.createElement('img');loader.className='cover-loading-signature';loader.src=`${root}/assets/images/logo/valentina-bonanni-signature.png`;loader.alt='';loader.setAttribute('aria-hidden','true');cover.insertBefore(loader,el)}}const loaded=()=>{cover?.classList.remove('cover-image-loading','cover-image-error');cover?.classList.add('cover-image-loaded')};const failed=()=>{cover?.classList.remove('cover-image-loading','cover-image-loaded');cover?.classList.add('cover-image-error')};el.addEventListener('load',loaded,{once:true});el.addEventListener('error',failed,{once:true});el.src=`${root}/${src}`;if(el.complete&&el.naturalWidth>0)loaded()}else el.style.backgroundImage=`url('${root}/${src}')`});const gallery=qs('[data-gallery]');if(gallery){const cat=gallery.dataset.gallery;gallery.innerHTML=d.portfolio.filter(x=>x.category===cat).map(x=>`<figure class="gallery-item ${x.layout||'portrait'}"><img src="${root}/${x.src}" alt="${x.alt}" loading="${vbCategoryPreparedArrival?'eager':'lazy'}" onerror="this.parentElement.style.display='none'"></figure>`).join(''); if(vbCategoryPreparedArrival){gallery.querySelectorAll('.gallery-item').forEach(el=>el.classList.add('is-visible'))}else{initImageReveal(gallery.querySelectorAll('.gallery-item'))} initGalleryParallax(gallery); initGalleryLightbox(gallery)}}
-document.addEventListener('click',e=>{const b=e.target.closest('[data-lang]');if(b){localStorage.setItem('vb_lang',b.dataset.lang);applyI18n()}const m=e.target.closest('.menu-toggle');if(m)qs('.nav')?.classList.toggle('open')});
+function vbSpinLangButton(b){
+  if(!b)return;
+  b.classList.remove('lang-flip');
+  void b.offsetWidth;
+  b.classList.add('lang-flip');
+  window.setTimeout(()=>b.classList.remove('lang-flip'),650);
+}
+function vbPrepareDesktopLanguages(){
+  qsa('.lang [data-lang]').forEach(b=>{
+    if(!b.querySelector('.lang-letter')){
+      const label=(b.textContent||'').trim();
+      b.textContent='';
+      [...label].forEach(ch=>{const s=document.createElement('span');s.className='lang-letter';s.textContent=ch;b.appendChild(s)});
+    }
+  });
+}
+document.addEventListener('click',e=>{
+  const langBox=e.target.closest('.lang');
+  const b=e.target.closest('[data-lang]');
+  const desktop=window.matchMedia('(min-width: 801px)').matches;
+  if(desktop&&langBox){
+    const current=localStorage.getItem('vb_lang')||'en';
+    const active=langBox.querySelector(`[data-lang="${current}"]`)||langBox.querySelector('[data-lang].active');
+    if(!langBox.classList.contains('is-open')){
+      langBox.classList.add('is-open');
+      vbSpinLangButton(active);
+      return;
+    }
+    if(b){
+      vbSpinLangButton(b);
+      localStorage.setItem('vb_lang',b.dataset.lang);
+      applyI18n();
+      window.setTimeout(()=>langBox.classList.remove('is-open'),560);
+      return;
+    }
+    langBox.classList.remove('is-open');
+    return;
+  }
+  if(b){localStorage.setItem('vb_lang',b.dataset.lang);applyI18n()}
+  const m=e.target.closest('.menu-toggle');if(m){const nav=qs('.nav');const isOpen=nav?.classList.toggle('open');m.classList.toggle('is-open',!!isOpen);m.setAttribute('aria-expanded',isOpen?'true':'false')}
+  if(!langBox) qsa('.lang.is-open').forEach(el=>el.classList.remove('is-open'));
+});
 document.addEventListener('DOMContentLoaded',()=>{
+  vbPrepareDesktopLanguages();
   // Always initialise the destination normally. For a category hand-off the gallery is eager
   // and immediately visible underneath the fixed cover; the cover duration never waits on images.
   Promise.all([applyI18n(),applyImages()]);
@@ -276,7 +318,7 @@ document.addEventListener('DOMContentLoaded', () => {
   if (!section) return;
 
   const reducedMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
-  const order = ['barcelona','madrid','milan','london','stockholm'];
+  const order = ['madrid','milan','london','stockholm','berlin','warsaw'];
   const markers = order.map(city => section.querySelector('.marker-' + city)).filter(Boolean);
   let markerTimers = [];
 
