@@ -5387,8 +5387,8 @@ html.category-cover-arrival body::after {
 @media (max-width: 800px) {
   .about-photo .about-handwriting-overlay {
     left: -11%;
-    top: 31%;
-    width: 60%;
+    top: 47%;
+    width: 64%;
     height: 86%;
   }
 }
@@ -5721,8 +5721,8 @@ body.contact-body .contact-footer-direct a {
   body.contact-body .footer.footer-production {
     grid-template-columns: minmax(0, 1fr) minmax(0, 1fr) !important;
     grid-template-rows: repeat(3, auto) !important;
-    column-gap: 18px !important;
-    row-gap: 7px !important;
+    column-gap: 90px !important;
+    row-gap: 0px !important;
   }
 
   body.contact-body .footer-production .footer-row-main,

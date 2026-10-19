@@ -979,7 +979,7 @@
 @media(max-width:800px) {
   .map-coordinate-stage {
     width: 116%;
-    top: 49%;
+    top: 60%;
   }
 
   .map-coordinate-stage .europe-map {
@@ -1476,7 +1476,7 @@
     grid-column: 1 / -1;
     width: 100%;
     min-width: 0;
-    margin-top: 28px;
+    margin-top: 125px;
     padding-left: 0;
     padding-right: 0;
   }
@@ -1488,7 +1488,8 @@
 
 @media (max-width: 480px) {
   .about-top {
-    gap: 14px;
+    gap: 40px;
+    margin-top: 40px;
   }
 }
 
@@ -1994,8 +1995,8 @@ html.category-cover-arrival .gallery-item img {
     right: var(--contact-anchor-mobile-right) !important;
     bottom: 0 !important;
     top: auto !important;
-    left: 32% !important;
-    width: 84% !important;
+    left: 105px !important;
+    width: 320px !important;
     height: auto !important;
     min-height: 0 !important;
     max-width: none !important;
@@ -2082,30 +2083,30 @@ html.category-cover-arrival .gallery-item img {
 @media (max-width: 800px) {
   
   body.about-body {
-    --about-model-mobile-left: -2px;
-    --about-model-mobile-width: 62vw;
+    --about-model-mobile-left: 2px;
+    --about-model-mobile-width: 66vw;
   }
   body.about-body .about-copy {
-    --about-line-01: 0px;
-    --about-line-02: 0px;
-    --about-line-03: 0px;
-    --about-line-04: 7px;
-    --about-line-05: 41px;
-    --about-line-06: 73px;
-    --about-line-07: 73px;
-    --about-line-08: 70px;
-    --about-line-09: 56px;
-    --about-line-10: 31px;
-    --about-line-11: 0px;
-    --about-line-12: 0px;
-    --about-line-13: 0px;
-    --about-line-14: 0px;
-    --about-line-15: 0px;
-    --about-line-16: 0px;
-    --about-line-17: 0px;
-    --about-line-18: 0px;
-    --about-line-19: 0px;
-    --about-line-20: 0px;
+    --about-line-01: 10px;
+    --about-line-02: 10px;
+    --about-line-03: 10px;
+    --about-line-04: 10px;
+    --about-line-05: 10px;
+    --about-line-06: 10px;
+    --about-line-07: 10px;
+    --about-line-08: 10px;
+    --about-line-09: 10px;
+    --about-line-10: 10px;
+    --about-line-11: 10px;
+    --about-line-12: 10px;
+    --about-line-13: 10px;
+    --about-line-14: 10px;
+    --about-line-15: 10px;
+    --about-line-16: 10px;
+    --about-line-17: 10px;
+    --about-line-18: 10px;
+    --about-line-19: 10px;
+    --about-line-20: 10px;
   }
 
   body.about-body .about-copy p[data-i18n="about.body"]::before {
@@ -2138,5 +2139,92 @@ html.category-cover-arrival .gallery-item img {
       var(--about-line-20) 95%, var(--about-line-20) 100%,
       0 100%
     );
+  }
+}
+
+/* V110 — ABOUT MOBILE: abbassa SOLO il blocco About Me, senza muovere la modella. */
+@media (max-width: 800px) {
+  body.about-body .about-copy {
+    --about-copy-mobile-offset: 160px; /* MODIFICA SOLO QUESTO VALORE per alzare/abbassare About Me */
+    transform: translateY(var(--about-copy-mobile-offset));
+  }
+}
+
+/* V111 — ABOUT MOBILE: nasconde solo il titolo "ABOUT ME". */
+@media (max-width: 800px) {
+  body.about-body .about-copy > .about-copy-title {
+    display: none !important;
+  }
+}
+
+/* V112 — ABOUT MOBILE: spaziature firma e blocco REPRESENTED BY.
+   Modifica SOLO le due variabili qui sotto per fare prove. */
+@media (max-width: 800px) {
+  body.about-body {
+    --about-signature-gap: 10px;          /* distanza tra body About e firma */
+    --represented-map-top-gap: 30px;      /* distanza tra REPRESENTED BY e border-top della mappa */
+  }
+
+  body.about-body .about-inline-signature {
+    margin-top: var(--about-signature-gap) !important;
+  }
+
+  body.about-body .representation > .about-copy-title {
+    margin-bottom: var(--represented-map-top-gap) !important;
+  }
+}
+
+
+/* V113 — ABOUT MOBILE: REPRESENTED BY appartiene alla MAPPA, non alla silhouette/firma.
+   Modifica SOLO --represented-title-from-map-top per cambiare la distanza dal border-top della mappa. */
+.represented-title-mobile {
+  display: none;
+}
+
+@media (max-width: 800px) {
+  body.about-body {
+    --represented-title-from-map-top: 30px;
+  }
+
+  body.about-body .representation > .represented-title-desktop {
+    display: none !important;
+  }
+
+  body.about-body .representation-map > .represented-title-mobile {
+    display: block !important;
+    position: absolute !important;
+    top: var(--represented-title-from-map-top) !important;
+    left: 50px !important;
+    z-index: 12 !important;
+    margin: 0 !important;
+    padding: 0 !important;
+  }
+}
+
+/* V114 — ABOUT MOBILE: distanza reale tra fine body e firma.
+   Modifica SOLO --about-body-signature-gap. */
+@media (max-width: 800px) {
+  body.about-body {
+    --about-body-signature-gap: 10px;
+  }
+
+  body.about-body .about-copy p[data-i18n="about.body"] {
+    margin-bottom: var(--about-body-signature-gap) !important;
+  }
+
+  body.about-body .about-inline-signature {
+    display: block !important;
+    margin-top: 0 !important;
+  }
+}
+
+/* V115 — CONTACT MOBILE: allinea a sinistra le tre righe del blocco contatti footer.
+   Il punto di partenza è identico per: direct label, mail e Instagram. */
+@media (max-width: 800px) {
+  body.contact-body .contact-footer-direct .contact-direct-label,
+  body.contact-body .contact-footer-direct .contact-detail-row:nth-child(1),
+  body.contact-body .contact-footer-direct .contact-detail-row:nth-child(2) {
+    justify-self: start !important;
+    text-align: left !important;
   }
 }
