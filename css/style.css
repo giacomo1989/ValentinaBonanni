@@ -1941,8 +1941,8 @@ body,
 }
 
 .map-coordinate-stage .marker-madrid {
-  left: 25.5%;
-  top: 75.7%;
+  left: 34.5%;
+  top: 81.7%;
 }
 
 .map-coordinate-stage .marker-stockholm {
@@ -6047,6 +6047,7 @@ body.contact-body .contact-footer-direct a {
   transform: scale(1);
   transition: transform .9s cubic-bezier(.22,.61,.36,1), filter .75s cubic-bezier(.22,.61,.36,1);
   will-change: transform;
+  object-position: top;
 }
 .home-body .home-editorial-panel .home-editorial-cover::after {
   content: "";
@@ -6108,7 +6109,7 @@ body.contact-body .contact-footer-direct a {
     font-size: 16px;
   }
   .home-body .home-editorial-panel .home-editorial-cover > img {
-    filter: grayscale(0.9) brightness(.90);
+    filter: grayscale(0.3) brightness(1);
   }
 }
 @media (prefers-reduced-motion: reduce) {
@@ -6299,5 +6300,35 @@ body.contact-body .contact-footer-direct a {
   .gallery[data-gallery] .gallery-item .gallery-id-badge {
     top: 8px; left: 8px; min-width: 30px; min-height: 30px;
     padding: 4px 7px; font-size: 13px !important;
+  }
+}
+
+/* Home: minimal scroll hint, visible only on the opening hero. */
+.home-body .home-scroll-cue {
+  position:absolute; left:50%; bottom:82px; z-index:4;
+  transform:translateX(-50%); display:flex; align-items:center; justify-content:center;
+  width:42px; height:50px; padding:6px; border:0; background:transparent;
+  color:#fff; opacity:.82; cursor:pointer;
+  transition:opacity .35s ease, visibility .35s ease;
+}
+.home-body .home-scroll-cue svg {
+  display:block; width:21px; height:34px; fill:none;
+  stroke:currentColor; stroke-width:1.15; stroke-linecap:round; stroke-linejoin:round;
+  animation:home-cue-float 2.5s ease-in-out infinite;
+}
+@keyframes home-cue-float { 0%,100% { transform:translateY(-3px); } 50% { transform:translateY(4px); } }
+.home-body .home-scroll-cue:hover { opacity:1; }
+.home-body .home-scroll-cue:focus-visible { outline:1px solid currentColor; outline-offset:3px; }
+.home-body .home-scroll-track.home-scroll-active .home-scroll-cue { opacity:0; visibility:hidden; pointer-events:none; }
+@media (max-width:800px) {
+  .home-body .home-scroll-cue { bottom:75px; width:38px; height:46px; }
+  .home-body .home-scroll-cue svg { width:19px; height:31px; }
+}
+@media (prefers-reduced-motion:reduce) { .home-body .home-scroll-cue svg { animation:none; } }
+/* Desktop: Portfolio covers reveal their original full colour on hover. */
+@media (min-width:801px) {
+  .home-body .home-editorial-panel .home-editorial-cover:hover > img,
+  .home-body .home-editorial-panel .home-editorial-cover:focus-visible > img {
+    filter:grayscale(0) brightness(1);
   }
 }

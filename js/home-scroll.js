@@ -41,6 +41,14 @@
     mobileQuery.addEventListener?.('change', updateFinalHero);
   }).catch(() => {});
 
+  // The discreet arrow takes the visitor to the fully revealed four-card panel.
+  const scrollCue = track.querySelector('.home-scroll-cue');
+  scrollCue?.addEventListener('click', () => {
+    const stageHeight = track.querySelector('.home-scroll-stage').getBoundingClientRect().height;
+    const top = track.getBoundingClientRect().top + window.scrollY;
+    window.scrollTo({ top: top + stageHeight, behavior: 'smooth' });
+  });
+
   // Always start the Home on the original fullscreen hero, including reloads.
   if ('scrollRestoration' in history) history.scrollRestoration = 'manual';
   window.scrollTo(0, 0);
