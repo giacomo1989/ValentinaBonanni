@@ -285,6 +285,10 @@ img {
   letter-spacing: .05em;
   color: #514f49;
   text-align: justify;
+
+}
+.about-copy p {
+  font-size: 15px !important;
 }
 
 .measurements {
@@ -1094,6 +1098,8 @@ body,
   max-width: 55%;
   height: auto;
   margin-top: 28px;
+  margin-bottom: 10px;
+  margin-left: 60%;
   background: transparent;
   object-fit: contain
 }
@@ -6103,7 +6109,6 @@ body.contact-body .contact-footer-direct a {
   }
   .home-body .home-editorial-panel .home-editorial-cover > img {
     filter: grayscale(0.9) brightness(.90);
-    object-position: top;
   }
 }
 @media (prefers-reduced-motion: reduce) {
@@ -6140,7 +6145,7 @@ body.contact-body .contact-footer-direct a {
   /* ABOUT: portrait is anchored to both edges, preserving its aspect ratio. */
   body.about-body .about-model-desktop {
     position: absolute !important;
-    top: 0 !important;
+    /*top: 0 !important;*/
     bottom: 0 !important;
     height: 100% !important;
     width: auto !important;
@@ -6177,5 +6182,103 @@ body.contact-body .contact-footer-direct a {
     max-width: none !important;
     object-fit: contain !important;
     margin: 0 !important;
+  }
+}
+
+/* Final Hero — desktop: same signature, role and CTA as the opening Hero. */
+@media (min-width: 801px) {
+  .home-body .home-final-panel .home-final-identity {
+    position: absolute;
+    inset: 0;
+    z-index: 3;
+    pointer-events: none;
+  }
+  .home-body .home-final-panel .home-final-identity > .home-identity {
+    position: absolute;
+    top: 120px;
+    left: 23%;
+    width: 400px;
+    margin: 0;
+    z-index: 6;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    pointer-events: auto;
+  }
+  .home-body .home-final-panel .home-final-identity .logo-signature {
+    display: block;
+    width: 400px;
+    margin: 0;
+  }
+  .home-body .home-final-panel .home-final-identity .home-identity-copy {
+    width: 100%;
+    margin-top: 0;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    text-align: center;
+    color: #e1ded4;
+  }
+  .home-body .home-final-panel .home-final-identity .home-role {
+    display: block;
+    width: max-content;
+    margin: 0 auto;
+    font-weight: 300;
+    font-size: 15.5px;
+    line-height: 1.2;
+    white-space: nowrap;
+    letter-spacing: 4px;
+  }
+  .home-body .home-final-panel .home-final-identity .home-identity-cta {
+    display: flex;
+    width: max-content;
+    margin: 0 auto;
+    align-items: center;
+    justify-content: center;
+    gap: 9px;
+    font-weight: 300;
+    font-size: 11.7px;
+    line-height: 1.2;
+    white-space: nowrap;
+    transition: opacity .25s ease, gap .25s ease;
+  }
+  .home-body .home-final-panel .home-final-identity .home-identity-cta:hover {
+    opacity: .62;
+    gap: 13px;
+  }
+}
+@media (max-width: 800px) {
+  .home-body .home-final-panel .home-final-identity { display: none; }
+}
+
+/* V117 — Final Hero identity: exact desktop geometry of the opening Home hero.
+   Both are positioned relative to the same full-viewport scroll stage. */
+@media (min-width: 801px) {
+  .home-body .home-final-panel .home-final-identity > .home-identity {
+    top: 95px;
+    left: 53%;
+    width: 400px;
+  }
+}
+
+/* V117 — About desktop handwriting: attached to the centered composition,
+   centered in the space between the silhouette (right edge at 50% of the
+   stage) and the biography column (left edge at 50% + half the grid gap).
+   It does not use viewport coordinates and thus stays with both elements. */
+@media (min-width: 801px) {
+  body.about-body .about-top { position: relative; }
+  body.about-body .about-photo > .about-handwriting-overlay {
+    /* The left column ends at the grid midpoint minus half the 60px gap. */
+    position: absolute !important;
+    left: calc(100% + 0px) !important;
+    top: 70% !important;
+    transform: translate(-50%, -50%) !important;
+    width: clamp(130px, 13vw, 225px) !important;
+    height: auto !important;
+    max-height: 72% !important;
+    object-fit: contain !important;
+    object-position: center !important;
+    margin: 0 !important;
+    pointer-events: none !important;
   }
 }

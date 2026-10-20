@@ -4,6 +4,23 @@
   const final = document.querySelector('.home-final-panel');
   if (!track || !editorial || !final) return;
 
+  // Use the exact same footer markup on both the opening and final heroes.
+  const originalFooter = track.querySelector('.home-hero .home-footer');
+  const finalFooterHost = final.querySelector('.home-final-footer');
+  if (originalFooter && finalFooterHost) {
+    const footer = originalFooter.cloneNode(true);
+    footer.removeAttribute('aria-label');
+    finalFooterHost.appendChild(footer);
+  }
+
+  // Reuse the original desktop signature, role and Portfolio CTA in the final hero.
+  // Cloning preserves the exact markup, typography, translations and link.
+  const originalIdentity = track.querySelector('.home-hero > .home-identity');
+  const finalIdentityHost = final.querySelector('.home-final-identity');
+  if (originalIdentity && finalIdentityHost) {
+    finalIdentityHost.appendChild(originalIdentity.cloneNode(true));
+  }
+
   // Reuse the exact four category cover images already configured for Portfolio.
   fetch('data/portfolio.json').then(r => r.json()).then(data => {
     const covers = { fashion:'fashionCover', commercial:'commercialCover', beauty:'beautyCover', digitals:'digitalsCover' };
@@ -28,12 +45,24 @@
   if ('scrollRestoration' in history) history.scrollRestoration = 'manual';
   window.scrollTo(0, 0);
 
+  // Safari iOS collapses/expands its browser chrome during scrolling.
+  // Freeze the scroll geometry across height-only resizes; update it when
+  // the device rotates or when the layout width actually changes.
+  const stage = track.querySelector('.home-scroll-stage');
+  let geometryWidth = document.documentElement.clientWidth;
+  let stableViewport = stage.getBoundingClientRect().height;
+  let stableTrackTop = track.getBoundingClientRect().top + window.scrollY;
+  function refreshGeometry() {
+    geometryWidth = document.documentElement.clientWidth;
+    stableViewport = stage.getBoundingClientRect().height;
+    stableTrackTop = track.getBoundingClientRect().top + window.scrollY;
+  }
   let pending = false;
   const clamp = n => Math.min(1, Math.max(0, n));
   function render() {
     pending = false;
-    const viewport = track.querySelector('.home-scroll-stage').getBoundingClientRect().height;
-    const traveled = -track.getBoundingClientRect().top;
+    const viewport = stableViewport;
+    const traveled = window.scrollY - stableTrackTop;
     const progress = clamp(traveled / (2 * viewport));
     // The editorial panel must not be visible until scrolling actually begins.
     track.classList.toggle('home-scroll-active', traveled > 1);
@@ -52,9 +81,14 @@
   }
   function schedule() { if (!pending) { pending = true; requestAnimationFrame(render); } }
   addEventListener('scroll', schedule, { passive:true });
-  addEventListener('resize', schedule);
+  addEventListener('resize', () => {
+    if (document.documentElement.clientWidth !== geometryWidth) refreshGeometry();
+    schedule();
+  });
+  addEventListener('orientationchange', () => { setTimeout(() => { refreshGeometry(); schedule(); }, 350); });
   addEventListener('pageshow', () => {
     window.scrollTo(0, 0);
+    refreshGeometry();
     schedule();
   });
   render();
