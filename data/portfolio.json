@@ -1115,5 +1115,9 @@
         "layout": "portrait"
       }
     ]
+  },
+  "homeExperience": {
+    "finalHeroDesktop": "assets/images/home/finalHero.jpg",
+    "finalHeroMobile": "assets/images/home/finalHero-mobile.jpg"
   }
 }

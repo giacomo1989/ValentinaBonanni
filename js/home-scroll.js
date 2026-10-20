@@ -11,8 +11,17 @@
       const img = editorial.querySelector(`[data-home-panel="${category}"]`);
       if (img && data.featured?.[key]) img.src = data.featured[key];
     });
-    const finalHero = data.homeExperience?.finalHero || data.featured?.home;
-    if (finalHero) final.style.backgroundImage = `url("${finalHero}")`;
+    // Desktop and mobile final hero are independently configurable in portfolio.json.
+    const mobileQuery = window.matchMedia('(max-width: 800px)');
+    const updateFinalHero = () => {
+      const settings = data.homeExperience || {};
+      const finalHero = mobileQuery.matches
+        ? (settings.finalHeroMobile || settings.finalHeroDesktop || settings.finalHero || data.featured?.home)
+        : (settings.finalHeroDesktop || settings.finalHero || data.featured?.home);
+      if (finalHero) final.style.backgroundImage = `url("${finalHero}")`;
+    };
+    updateFinalHero();
+    mobileQuery.addEventListener?.('change', updateFinalHero);
   }).catch(() => {});
 
   // Always start the Home on the original fullscreen hero, including reloads.

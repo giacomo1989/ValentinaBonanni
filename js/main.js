@@ -499,9 +499,9 @@ document.addEventListener('DOMContentLoaded',()=>{
 // We deliberately use a normal HTML navigation (no fetch/body replacement). The destination
 // paints behind the same signature cover for a fixed 4 seconds measured from the click.
 document.addEventListener('DOMContentLoaded',()=>{
-  if(!document.body.querySelector('.portfolio-page, .gallery-page'))return;
+  if(!document.body.querySelector('.portfolio-page, .gallery-page, .home-scroll-track'))return;
   const isCategoryTransitionLink=(a)=>{
-    if(!a || !a.matches('.portfolio-covers a.cover[href], .gallery-page .mobile-gallery-tabs a[href]')) return false;
+    if(!a || !a.matches('.portfolio-covers a.cover[href], .gallery-page .mobile-gallery-tabs a[href], .home-editorial-panel a.home-editorial-cover[href]')) return false;
     return /\/(fashion|commercial|digitals|beauty)\.html$|^(fashion|commercial|digitals|beauty)\.html$/i.test(a.getAttribute('href')||'');
   };
   document.addEventListener('click',e=>{
