@@ -6111,3 +6111,10 @@ body.contact-body .contact-footer-direct a {
     transition: none;
   }
 }
+
+/* Final Hero: reuse the opening Home footer on both desktop and mobile. */
+.home-body .home-final-panel .home-final-footer { position:absolute; inset:0; z-index:2; pointer-events:none; }
+.home-body .home-final-panel .home-final-footer .home-footer { position:absolute; left:0; right:0; bottom:0; z-index:2; pointer-events:auto; }
+/* Safari: promote scroll-driven panels to compositor layers. */
+.home-body .home-editorial-panel { backface-visibility:hidden; }
+.home-body .home-final-panel { backface-visibility:hidden; }
