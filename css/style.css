@@ -73,10 +73,6 @@ img {
   border-bottom: 1px solid transparent
 }
 
-.nav a:hover,
-.nav a.active {
-  border-color: var(--ink)
-}
 
 .lang {
   display: flex;
@@ -200,7 +196,7 @@ img {
   bottom: 24px;
   color: #fff;
   text-transform: uppercase;
-  font-size: 16px;
+  font-size: 21px;
   letter-spacing: .14em
 }
 
@@ -287,7 +283,8 @@ img {
 .contact-copy p {
   line-height: 1.8;
   letter-spacing: .05em;
-  color: #514f49
+  color: #514f49;
+  text-align: justify;
 }
 
 .measurements {
@@ -1915,6 +1912,7 @@ body,
   height: 100%;
   object-fit: fill;
   overflow: visible;
+  /*padding-right: 23%;*/
 }
 
 .map-coordinate-stage .agency-marker {
@@ -4496,8 +4494,8 @@ html body * {
   }
 
   .about-shell .about-photo img {
-    width: 300px;
-    height: 300px;
+    width: 200px;
+    height: 200px;
     object-fit: cover;
   }
 
@@ -5052,24 +5050,7 @@ html.category-cover-arrival body::after {
   }
 }
 
-/* Home carousel: independent image layers; home content/layout stays unchanged */
-.home-body .home-hero { overflow: hidden; }
-.home-body .home-carousel-layer {
-  position: absolute;
-  inset: 0;
-  z-index: 0;
-  pointer-events: none;
-  background-position: inherit;
-  background-size: cover;
-  background-repeat: no-repeat;
-  opacity: 0;
-  transition: opacity 900ms cubic-bezier(.22,.61,.36,1);
-}
-.home-body .home-carousel-layer.is-visible { opacity: 1; }
-.home-body .home-hero::after { z-index: 1; }
-.home-body .home-identity,
-.home-body .home-copy,
-.home-body .home-footer { position: absolute; z-index: 2; }
+
 
 /* MOBILE — separatori verticali nella navigazione */
 
@@ -5362,8 +5343,8 @@ html.category-cover-arrival body::after {
 .about-photo .about-handwriting-overlay {
   position: absolute;
   z-index: 4;
-  left: 22px;
-  top: 40%;
+  left: 0%;
+  top: 45%;
   width: 90%;
   height: 84%;
   object-fit: contain;
@@ -5450,9 +5431,9 @@ body.about-body .about-right {
   z-index: 2;
 }
 
-/* V106 — About model: structural anchors independent from viewport height */
+/* V106 — About model: structural anchors independent from viewport height for desktop */
 body.about-body {
-  --about-model-left: 190px;
+  --about-model-left: 20px;
   --about-model-width: 400px;
   --about-model-z: 6;
   --about-model-mobile-left: 0px;
@@ -5478,11 +5459,12 @@ body.about-body .about-model-silhouette {
   body.about-body .about-model-desktop {
     display: block;
     position: absolute;
-    left: var(--about-model-left);
+    /*left: var(--about-model-left);*/
     bottom: 0;
     top: auto;
     width: var(--about-model-width) !important;
     margin: 0;
+    right: 50%;
   }
 
   body.about-body .about-model-mobile {
@@ -5967,5 +5949,74 @@ body.contact-body .contact-footer-direct a {
   @keyframes vbGeiviLetterSpin {
     from { transform: rotateY(0deg); }
     to   { transform: rotateY(360deg); }
+  }
+}
+
+/* HOME — scroll-driven editorial panels */
+.home-body .home-scroll-track { position:relative; height:300vh; height:300svh; }
+.home-body .home-scroll-stage { position:sticky; top:0; height:100vh; height:100svh; overflow:hidden; isolation:isolate; }
+.home-body .home-scroll-stage > .home-hero { position:absolute; inset:0; width:100%; height:100%; min-height:0; z-index:0; }
+.home-body .home-scroll-stage .home-identity,
+.home-body .home-scroll-stage .home-copy,
+.home-body .home-scroll-stage .home-footer { position:absolute; z-index:2; }
+.home-body .home-editorial-panel { position:absolute; left:0; top:0; width:100%; height:70%; display:grid; grid-template-columns:repeat(4,minmax(0,1fr)); z-index:5; transform:translate3d(0, 100vh, 0); will-change:transform; }
+.home-body .home-editorial-panel > a { display:block; min-width:0; overflow:hidden; }
+.home-body .home-editorial-panel img { display:block; width:100%; height:100%; object-fit:cover; object-position:center; }
+.home-body .home-final-panel { position:absolute; inset:0; z-index:6; background-image:url('../assets/images/home/hero.jpg'); background-size:cover; background-position:center; transform:none; clip-path:inset(100% 0 0 0); will-change:clip-path; pointer-events:none; }
+@media (max-width:800px) {
+ .home-body .home-editorial-panel { grid-template-columns:repeat(2,minmax(0,1fr)); grid-template-rows:repeat(2,minmax(0,1fr)); }
+ .home-body .home-editorial-panel img { object-position:center; }
+ .home-body .home-final-panel { background-image:url('../assets/images/home/hero-home-mobile.jpg'); }
+}
+
+/* Keep all editorial images completely hidden on initial Home load. */
+.home-body .home-editorial-panel { visibility:hidden; }
+.home-body .home-scroll-track.home-scroll-active .home-editorial-panel { visibility:visible; }
+
+/* V108 — ABOUT / CONTACT: desktop compositions anchored to a centered stage.
+   Viewport width adds only outer background; mobile remains untouched. */
+@media (min-width: 801px) {
+  body.about-body .about-page {
+    width: 100%;
+    max-width: 1400px;
+    margin-inline: auto;
+    box-sizing: border-box;
+    position: relative;
+  }
+  body.about-body .about-top {
+    width: 100%;
+    max-width: 1400px;
+    margin-inline: auto;
+    box-sizing: border-box;
+    grid-template-columns: minmax(0, 1fr) minmax(0, 1fr);
+    gap: 60px;
+  }
+  /* Model keeps its bottom-to-footer anchor, now measured from the same
+     centered stage as the handwritten art, biography and agency map. */
+  body.about-body .about-model-desktop {
+    right: 50%;
+  }
+
+  body.contact-body .contact-page {
+    width: 100%;
+    max-width: 1200px;
+    margin-inline: auto;
+    box-sizing: border-box;
+    position: relative !important;
+  }
+  body.contact-body .contact-mobile-layout {
+    width: 100%;
+  }
+  body.contact-body .contact-photo {
+    right: 0 !important;
+    margin-right: 19% !important;
+  }
+  /* The direct-contact details are in the footer: align that footer row
+     with the same centered 1200px composition without changing the footer. */
+  body.contact-body .footer-row-main {
+    width: 100%;
+    max-width: 1200px;
+    margin-inline: auto;
+    box-sizing: border-box;
   }
 }

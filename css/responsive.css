@@ -2227,4 +2227,7 @@ html.category-cover-arrival .gallery-item img {
     justify-self: start !important;
     text-align: left !important;
   }
+  .cover-label {
+    font-size: 16px;
+  }
 }
