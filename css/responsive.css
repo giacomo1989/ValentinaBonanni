@@ -434,7 +434,8 @@
   .about-inline-signature {
     width: 120px;
     max-width: 80%;
-    margin-top: 18px
+    margin-top: 18px;
+    margin-left: 20%;
   }
 
   .contact-copy .script-title {
@@ -1006,8 +1007,8 @@
   }
 
   .map-coordinate-stage .marker-madrid {
-    left: 18.5%;
-    top: 84.7%;
+    left: 31.5%;
+    top: 81.7%;
   }
 
   .map-coordinate-stage .marker-stockholm {
@@ -1490,7 +1491,7 @@
 @media (max-width: 480px) {
   .about-top {
     gap: 40px;
-    margin-top: 40px;
+    margin-top: 0px;
   }
 }
 
@@ -2084,29 +2085,29 @@ html.category-cover-arrival .gallery-item img {
 @media (max-width: 800px) {
   
   body.about-body {
-    --about-model-mobile-left: 2px;
+    --about-model-mobile-left: 12px;
     --about-model-mobile-width: 66vw;
   }
   body.about-body .about-copy {
-    --about-line-01: 10px;
-    --about-line-02: 10px;
-    --about-line-03: 10px;
-    --about-line-04: 10px;
-    --about-line-05: 10px;
+    --about-line-01: 108px;
+    --about-line-02: 102px;
+    --about-line-03: 85px;
+    --about-line-04: 65px;
+    --about-line-05: 30px;
     --about-line-06: 10px;
-    --about-line-07: 10px;
-    --about-line-08: 10px;
-    --about-line-09: 10px;
-    --about-line-10: 10px;
-    --about-line-11: 10px;
-    --about-line-12: 10px;
-    --about-line-13: 10px;
-    --about-line-14: 10px;
-    --about-line-15: 10px;
-    --about-line-16: 10px;
-    --about-line-17: 10px;
-    --about-line-18: 10px;
-    --about-line-19: 10px;
+    --about-line-07: 1px;
+    --about-line-08: 4px;
+    --about-line-09: 8px;
+    --about-line-10: 5px;
+    --about-line-11: 4px;
+    --about-line-12: 2px;
+    --about-line-13: 9px;
+    --about-line-14: 16px;
+    --about-line-15: 19px;
+    --about-line-16: 21px;
+    --about-line-17: 21px;
+    --about-line-18: 21px;
+    --about-line-19: 21px;
     --about-line-20: 10px;
   }
 
@@ -2146,7 +2147,7 @@ html.category-cover-arrival .gallery-item img {
 /* V110 — ABOUT MOBILE: abbassa SOLO il blocco About Me, senza muovere la modella. */
 @media (max-width: 800px) {
   body.about-body .about-copy {
-    --about-copy-mobile-offset: 160px; /* MODIFICA SOLO QUESTO VALORE per alzare/abbassare About Me */
+    --about-copy-mobile-offset: 130px; /* MODIFICA SOLO QUESTO VALORE per alzare/abbassare About Me */
     transform: translateY(var(--about-copy-mobile-offset));
   }
 }
@@ -2231,4 +2232,40 @@ html.category-cover-arrival .gallery-item img {
   .cover-label {
     font-size: 16px;
   }
+}
+
+/* About mobile restoration: independent of the centered desktop composition.
+   Keep the original two-column editorial layout and the silhouette attached
+   to the representation-map edge, without stretching the left empty column. */
+@media (max-width: 800px) {
+  body.about-body .about-page { width: 100% !important; max-width: none !important; min-height: 0 !important; }
+  body.about-body .about-top {
+    display: grid !important;
+    grid-template-columns: minmax(0, .92fr) minmax(0, 1.08fr) !important;
+    gap: 22px !important;
+    align-items: start !important;
+    min-height: 0 !important;
+    max-width: none !important;
+  }
+  body.about-body .about-right { display: contents !important; }
+  body.about-body .about-photo { grid-column: 1; height: auto !important; min-height: 0 !important; }
+  body.about-body .about-copy { grid-column: 2; min-width: 0; }
+  body.about-body .about-copy p[data-i18n="about.body"] {
+    text-justify: auto !important;
+    word-spacing: normal !important;
+    overflow-wrap: normal;
+    font-size: clamp(10px, 2vw, 13px) !important;
+    line-height: 1.7 !important;
+    letter-spacing: .015em !important;
+  }
+  body.about-body .about-top .representation {
+    grid-column: 1 / -1;
+    width: 100%;
+    min-width: 0;
+  }
+  body.about-body .about-model-desktop { display: none !important; }
+  body.about-body .about-model-mobile { display: block !important; }
+}
+@media (max-width: 480px) {
+  body.about-body .about-top { gap: 20px !important; }
 }
