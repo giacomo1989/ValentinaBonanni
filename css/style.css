@@ -4177,6 +4177,7 @@ html body * {
     font-size: 15.5px;
     line-height: 1.2;
     white-space: nowrap;
+    letter-spacing: 4px;
   }
 
   .home-body .home-hero>.home-identity .home-identity-cta {
@@ -6036,7 +6037,7 @@ body.contact-body .contact-footer-direct a {
   width: 100%;
   height: 100%;
   object-fit: cover;
-  filter: grayscale(1) brightness(.78);
+  filter: grayscale(0.9) brightness(.90);
   transform: scale(1);
   transition: transform .9s cubic-bezier(.22,.61,.36,1), filter .75s cubic-bezier(.22,.61,.36,1);
   will-change: transform;
@@ -6101,7 +6102,8 @@ body.contact-body .contact-footer-direct a {
     font-size: 16px;
   }
   .home-body .home-editorial-panel .home-editorial-cover > img {
-    filter: grayscale(1) brightness(.84);
+    filter: grayscale(0.9) brightness(.90);
+    object-position: top;
   }
 }
 @media (prefers-reduced-motion: reduce) {
@@ -6118,3 +6120,62 @@ body.contact-body .contact-footer-direct a {
 /* Safari: promote scroll-driven panels to compositor layers. */
 .home-body .home-editorial-panel { backface-visibility:hidden; }
 .home-body .home-final-panel { backface-visibility:hidden; }
+
+/* V116 — Desktop/tablet: both portraits span the actual content area between
+   the header bottom edge and the footer top border. The main element is the
+   shared positioning reference; mobile's established layout is untouched. */
+@media (min-width: 801px) {
+  body.about-body .about-shell,
+  body.contact-body .contact-shell {
+    min-height: 100vh;
+    min-height: 100svh;
+  }
+
+  body.about-body .about-page,
+  body.contact-body .contact-page {
+    position: relative !important;
+    min-height: 0;
+  }
+
+  /* ABOUT: portrait is anchored to both edges, preserving its aspect ratio. */
+  body.about-body .about-model-desktop {
+    position: absolute !important;
+    top: 0 !important;
+    bottom: 0 !important;
+    height: 100% !important;
+    width: auto !important;
+    max-width: none !important;
+    right: 50% !important;
+    left: auto !important;
+    object-fit: contain !important;
+    object-position: bottom center !important;
+    margin: 0 !important;
+  }
+
+  /* CONTACT: keep the portrait aligned with the centered composition,
+     but size the actual image by the header-to-footer distance. */
+  body.contact-body .contact-photo {
+    position: absolute !important;
+    top: 0 !important;
+    bottom: 0 !important;
+    height: 100% !important;
+    width: 53.3% !important;
+    right: 0 !important;
+    margin-right: 19% !important;
+    overflow: visible !important;
+    pointer-events: none !important;
+  }
+  body.contact-body .contact-photo img {
+    position: absolute !important;
+    top: 0 !important;
+    bottom: 0 !important;
+    right: 0 !important;
+    left: auto !important;
+    display: block !important;
+    height: 100% !important;
+    width: auto !important;
+    max-width: none !important;
+    object-fit: contain !important;
+    margin: 0 !important;
+  }
+}

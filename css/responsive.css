@@ -686,8 +686,9 @@
   }
 
   .about-copy-title {
-    font-size: 10px;
+    font-size: 12px;
     margin-bottom: 11px;
+    letter-spacing: 3px;
   }
 }
 
@@ -1222,7 +1223,7 @@
 @media (max-width: 480px) {
   .home-body .home-copy {
     right: 7vw;
-    top: 71%;
+    top: 75%;
     left: 14%;
     width: auto;
   }
@@ -1995,8 +1996,8 @@ html.category-cover-arrival .gallery-item img {
     right: var(--contact-anchor-mobile-right) !important;
     bottom: 0 !important;
     top: auto !important;
-    left: 105px !important;
-    width: 320px !important;
+    left: 110px !important;
+    width: 300px !important;
     height: auto !important;
     min-height: 0 !important;
     max-width: none !important;
@@ -2194,7 +2195,7 @@ html.category-cover-arrival .gallery-item img {
     display: block !important;
     position: absolute !important;
     top: var(--represented-title-from-map-top) !important;
-    left: 50px !important;
+    left: 0px !important;
     z-index: 12 !important;
     margin: 0 !important;
     padding: 0 !important;
