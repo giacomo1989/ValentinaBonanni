@@ -6282,3 +6282,22 @@ body.contact-body .contact-footer-direct a {
     pointer-events: none !important;
   }
 }
+
+/* Temporary gallery photo IDs for editorial reordering — desktop and mobile */
+.gallery[data-gallery] .gallery-item { position: relative; }
+.gallery[data-gallery] .gallery-item .gallery-id-badge {
+  position: absolute; top: 12px; left: 12px; z-index: 8;
+  display: inline-flex; align-items: center; justify-content: center;
+  min-width: 34px; min-height: 34px; padding: 5px 9px;
+  box-sizing: border-box; border-radius: 3px;
+  background: rgba(12,12,12,.84); color: #fff;
+  font: 600 14px/1.1 Arial, sans-serif !important;
+  letter-spacing: 0; text-align: center;
+  pointer-events: none; user-select: none;
+}
+@media (max-width: 800px) {
+  .gallery[data-gallery] .gallery-item .gallery-id-badge {
+    top: 8px; left: 8px; min-width: 30px; min-height: 30px;
+    padding: 4px 7px; font-size: 13px !important;
+  }
+}
