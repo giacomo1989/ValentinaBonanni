@@ -634,8 +634,8 @@
       },
       {
         "id": 12,
-        "src": "assets/images/commercial/12.jpg",
-        "alt": "Commercial image 12",
+        "src": "assets/images/commercial/24.jpg",
+        "alt": "Commercial image 24",
         "layout": "portrait"
       },
       {
@@ -706,8 +706,8 @@
       },
       {
         "id": 24,
-        "src": "assets/images/commercial/24.jpg",
-        "alt": "Commercial image 24",
+        "src": "assets/images/commercial/12.jpg",
+        "alt": "Commercial image 12",
         "layout": "portrait"
       },
       {
