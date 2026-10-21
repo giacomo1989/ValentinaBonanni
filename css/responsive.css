@@ -642,6 +642,16 @@
   .about-mobile-copy-title {
     display: none;
   }
+
+  .contact-form input,
+  .contact-form select,
+  .contact-form textarea {
+    font: 400 12px/1.6 'Space Mono', monospace;
+  }
+  .contact-form label>span {
+    font-size: 12px;
+  }
+
 }
 
 
@@ -685,7 +695,7 @@
   }
 
   .about-copy-title {
-    font-size: 12px;
+    font-size: 10px;
     margin-bottom: 11px;
     letter-spacing: 3px;
   }
