@@ -919,6 +919,102 @@
         "src": "assets/images/commercial/56.jpg",
         "alt": "Commercial image 56",
         "layout": "portrait"
+      },
+      {
+        "id": 57,
+        "src": "assets/images/commercial/57.jpg",
+        "alt": "Commercial image 57",
+        "layout": "portrait"
+      },
+      {
+        "id": 58,
+        "src": "assets/images/commercial/58.jpg",
+        "alt": "Commercial image 58",
+        "layout": "portrait"
+      },
+      {
+        "id": 59,
+        "src": "assets/images/commercial/59.jpg",
+        "alt": "Commercial image 59",
+        "layout": "portrait"
+      },
+      {
+        "id": 60,
+        "src": "assets/images/commercial/60.jpg",
+        "alt": "Commercial image 60",
+        "layout": "portrait"
+      },
+      {
+        "id": 61,
+        "src": "assets/images/commercial/61.jpg",
+        "alt": "Commercial image 61",
+        "layout": "portrait"
+      },
+      {
+        "id": 62,
+        "src": "assets/images/commercial/62.jpg",
+        "alt": "Commercial image 62",
+        "layout": "portrait"
+      },
+      {
+        "id": 63,
+        "src": "assets/images/commercial/63.jpg",
+        "alt": "Commercial image 63",
+        "layout": "portrait"
+      },
+      {
+        "id": 64,
+        "src": "assets/images/commercial/64.jpg",
+        "alt": "Commercial image 64",
+        "layout": "portrait"
+      },
+      {
+        "id": 65,
+        "src": "assets/images/commercial/65.jpg",
+        "alt": "Commercial image 65",
+        "layout": "portrait"
+      },
+      {
+        "id": 66,
+        "src": "assets/images/commercial/66.jpg",
+        "alt": "Commercial image 66",
+        "layout": "portrait"
+      },
+      {
+        "id": 67,
+        "src": "assets/images/commercial/67.jpg",
+        "alt": "Commercial image 67",
+        "layout": "portrait"
+      },
+      {
+        "id": 68,
+        "src": "assets/images/commercial/68.jpg",
+        "alt": "Commercial image 68",
+        "layout": "portrait"
+      },
+      {
+        "id": 69,
+        "src": "assets/images/commercial/69.jpg",
+        "alt": "Commercial image 69",
+        "layout": "portrait"
+      },
+      {
+        "id": 70,
+        "src": "assets/images/commercial/70.jpg",
+        "alt": "Commercial image 70",
+        "layout": "portrait"
+      },
+      {
+        "id": 71,
+        "src": "assets/images/commercial/71.jpg",
+        "alt": "Commercial image 71",
+        "layout": "portrait"
+      },
+      {
+        "id": 72,
+        "src": "assets/images/commercial/72.jpg",
+        "alt": "Commercial image 72",
+        "layout": "portrait"
       }
     ],
     "beauty": [

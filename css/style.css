@@ -6322,7 +6322,7 @@ body.contact-body .contact-footer-direct a {
 .home-body .home-scroll-track.home-scroll-active .home-scroll-cue { opacity:0; visibility:hidden; pointer-events:none; }
 @media (max-width:800px) {
   .home-body .home-scroll-cue { bottom:75px; width:38px; height:46px; }
-  .home-body .home-scroll-cue svg { width:50px; height:50px; }
+  .home-body .home-scroll-cue svg { width:30px; height:30px; margin-top: 100px;}
 }
 @media (prefers-reduced-motion:reduce) { .home-body .home-scroll-cue svg { animation:none; } }
 /* Desktop: Portfolio covers reveal their original full colour on hover. */
@@ -6331,4 +6331,19 @@ body.contact-body .contact-footer-direct a {
   .home-body .home-editorial-panel .home-editorial-cover:focus-visible > img {
     filter:grayscale(0) brightness(1);
   }
+}
+
+/* V117 — HOME MOBILE: cover photographs always retain their original colours.
+   Desktop grayscale and colour-on-hover behaviour remain unchanged. */
+@media (max-width: 800px) {
+  .home-body .home-editorial-panel .home-editorial-cover > img {
+    filter: none !important;
+    -webkit-filter: none !important;
+  }
+}
+
+/* Scroll cue: chevron only (no vertical shaft), desktop and mobile. */
+.home-body .home-scroll-cue svg { width: 24px; height: 24px; }
+@media (max-width: 800px) {
+  .home-body .home-scroll-cue svg { width: 40px; height: 40px; margin-top: 0; }
 }

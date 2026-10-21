@@ -1,6 +1,6 @@
 @media(max-width:800px) {
   .shell {
-    padding: 22px 20px 18px
+    padding: 22px 15px 18px
   }
 
   .menu-toggle {
@@ -366,7 +366,6 @@
   .about-inline-signature {
     width: 165px;
     max-width: 60%;
-    margin-top: 24px
   }
 
   .about-wrap>.measurements {
@@ -434,7 +433,6 @@
   .about-inline-signature {
     width: 120px;
     max-width: 80%;
-    margin-top: 18px;
     margin-left: 20%;
   }
 
@@ -2085,29 +2083,29 @@ html.category-cover-arrival .gallery-item img {
 @media (max-width: 800px) {
   
   body.about-body {
-    --about-model-mobile-left: 12px;
+    --about-model-mobile-left: 1px;
     --about-model-mobile-width: 66vw;
   }
   body.about-body .about-copy {
-    --about-line-01: 108px;
-    --about-line-02: 102px;
-    --about-line-03: 85px;
-    --about-line-04: 65px;
-    --about-line-05: 30px;
+    --about-line-01: 10px;
+    --about-line-02: 10px;
+    --about-line-03: 10px;
+    --about-line-04: 10px;
+    --about-line-05: 10px;
     --about-line-06: 10px;
-    --about-line-07: 1px;
-    --about-line-08: 4px;
-    --about-line-09: 8px;
-    --about-line-10: 5px;
-    --about-line-11: 4px;
-    --about-line-12: 2px;
-    --about-line-13: 9px;
-    --about-line-14: 16px;
-    --about-line-15: 19px;
-    --about-line-16: 21px;
-    --about-line-17: 21px;
-    --about-line-18: 21px;
-    --about-line-19: 21px;
+    --about-line-07: 10px;
+    --about-line-08: 10px;
+    --about-line-09: 10px;
+    --about-line-10: 10px;
+    --about-line-11: 10px;
+    --about-line-12: 10px;
+    --about-line-13: 10px;
+    --about-line-14: 10px;
+    --about-line-15: 10px;
+    --about-line-16: 10px;
+    --about-line-17: 10px;
+    --about-line-18: 10px;
+    --about-line-19: 10px;
     --about-line-20: 10px;
   }
 
@@ -2115,7 +2113,7 @@ html.category-cover-arrival .gallery-item img {
     content: "";
     float: left;
     width: 180px;
-    height: 20lh;
+    height: 22lh;
     shape-margin: 0;
     shape-outside: polygon(
       0 0,
@@ -2147,7 +2145,7 @@ html.category-cover-arrival .gallery-item img {
 /* V110 — ABOUT MOBILE: abbassa SOLO il blocco About Me, senza muovere la modella. */
 @media (max-width: 800px) {
   body.about-body .about-copy {
-    --about-copy-mobile-offset: 130px; /* MODIFICA SOLO QUESTO VALORE per alzare/abbassare About Me */
+    --about-copy-mobile-offset: 200px; /* MODIFICA SOLO QUESTO VALORE per alzare/abbassare About Me */
     transform: translateY(var(--about-copy-mobile-offset));
   }
 }
@@ -2165,10 +2163,6 @@ html.category-cover-arrival .gallery-item img {
   body.about-body {
     --about-signature-gap: 10px;          /* distanza tra body About e firma */
     --represented-map-top-gap: 30px;      /* distanza tra REPRESENTED BY e border-top della mappa */
-  }
-
-  body.about-body .about-inline-signature {
-    margin-top: var(--about-signature-gap) !important;
   }
 
   body.about-body .representation > .about-copy-title {
@@ -2268,4 +2262,65 @@ html.category-cover-arrival .gallery-item img {
 }
 @media (max-width: 480px) {
   body.about-body .about-top { gap: 20px !important; }
+}
+
+/* V117 — ABOUT MOBILE: actual gap between the biography's last line and signature.
+   Change ONLY --about-signature-distance below (0px = closest).
+   A flex column prevents margins and desktop positioning from interfering. */
+@media (max-width: 800px) {
+  body.about-body .about-copy {
+    --about-signature-distance: 4px;
+    display: flex !important;
+    flex-direction: column !important;
+    align-items: flex-start !important;
+    gap: var(--about-signature-distance) !important;
+  }
+  body.about-body .about-copy > p[data-i18n="about.body"] {
+    margin-bottom: 0 !important;
+  }
+  body.about-body .about-copy > .about-inline-signature {
+    margin-top: 0 !important;
+    margin-bottom: 0 !important;
+    flex: none !important;
+  }
+}
+
+/* V118 — ABOUT MOBILE: signature visually anchored to the end of the
+   biography, without contributing to grid height. Changing its distance
+   therefore cannot move representation-map or the silhouette. */
+@media (max-width: 800px) {
+  body.about-body .about-copy {
+    --signature-margin-top: -90px; /* negative = closer / overlapping text */
+    --signature-align: center;   /* left | center | right */
+    --signature-offset-x: 0px;
+    position: relative !important;
+    display: block !important;
+    min-width: 0;
+  }
+  body.about-body .about-copy > p[data-i18n="about.body"] {
+    margin: 0 !important;
+  }
+  body.about-body .about-copy > .about-signature-row {
+    position: absolute !important;
+    top: calc(100% + var(--signature-margin-top)) !important;
+    left: 0 !important;
+    right: 0 !important;
+    width: 100% !important;
+    height: auto !important;
+    margin: 0 !important;
+    padding: 0 !important;
+    text-align: var(--signature-align) !important;
+    transform: translateX(var(--signature-offset-x)) !important;
+    z-index: 2;
+  }
+  body.about-body .about-signature-row > .about-inline-signature {
+    position: static !important;
+    display: inline-block !important;
+    vertical-align: top !important;
+    width: 120px !important;
+    max-width: 80% !important;
+    height: auto !important;
+    margin: 0 !important;
+    transform: none !important;
+  }
 }
