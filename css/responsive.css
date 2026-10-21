@@ -2113,7 +2113,7 @@ html.category-cover-arrival .gallery-item img {
     content: "";
     float: left;
     width: 180px;
-    height: 22lh;
+    height: 20lh;
     shape-margin: 0;
     shape-outside: polygon(
       0 0,
@@ -2145,7 +2145,7 @@ html.category-cover-arrival .gallery-item img {
 /* V110 — ABOUT MOBILE: abbassa SOLO il blocco About Me, senza muovere la modella. */
 @media (max-width: 800px) {
   body.about-body .about-copy {
-    --about-copy-mobile-offset: 200px; /* MODIFICA SOLO QUESTO VALORE per alzare/abbassare About Me */
+    --about-copy-mobile-offset: 160px; /* MODIFICA SOLO QUESTO VALORE per alzare/abbassare About Me */
     transform: translateY(var(--about-copy-mobile-offset));
   }
 }
@@ -2290,7 +2290,7 @@ html.category-cover-arrival .gallery-item img {
    therefore cannot move representation-map or the silhouette. */
 @media (max-width: 800px) {
   body.about-body .about-copy {
-    --signature-margin-top: -90px; /* negative = closer / overlapping text */
+    --signature-margin-top: -58px; /* negative = closer / overlapping text */
     --signature-align: center;   /* left | center | right */
     --signature-offset-x: 0px;
     position: relative !important;
@@ -2322,5 +2322,25 @@ html.category-cover-arrival .gallery-item img {
     height: auto !important;
     margin: 0 !important;
     transform: none !important;
+  }
+}
+
+
+/* V119 — CONTACT MOBILE: prevent horizontal page panning from the cutout.
+   Clip only the horizontal overflow; do not move or resize the silhouette. */
+@media (max-width: 800px) {
+  body.contact-body,
+  body.contact-body .contact-shell {
+    overflow-x: clip !important;
+  }
+}
+
+
+/* V120 — ABOUT MOBILE: prevent horizontal page panning without
+   changing the position or dimensions of the silhouette and map. */
+@media (max-width: 800px) {
+  body.about-body,
+  body.about-body .about-shell {
+    overflow-x: clip !important;
   }
 }
