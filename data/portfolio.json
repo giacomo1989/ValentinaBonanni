@@ -42,8 +42,8 @@
       },
       {
         "id": 6,
-        "src": "assets/images/fashion/6.jpg",
-        "alt": "Fashion image 06",
+        "src": "assets/images/fashion/48.jpg",
+        "alt": "Fashion image 48",
         "layout": "tall"
       },
       {
@@ -54,14 +54,14 @@
       },
       {
         "id": 8,
-        "src": "assets/images/fashion/8.jpg",
-        "alt": "Fashion image 08",
+        "src": "assets/images/fashion/82.jpg",
+        "alt": "Fashion image 82",
         "layout": "portrait"
       },
       {
         "id": 9,
-        "src": "assets/images/fashion/9.jpg",
-        "alt": "Fashion image 09",
+        "src": "assets/images/fashion/50.jpg",
+        "alt": "Fashion image 50",
         "layout": "square"
       },
       {
@@ -78,7 +78,7 @@
       },
       {
         "id": 12,
-        "src": "assets/images/fashion/12.jpg",
+        "src": "assets/images/fashion/88.jpg",
         "alt": "Fashion image 12",
         "layout": "tall"
       },
@@ -198,8 +198,8 @@
       },
       {
         "id": 32,
-        "src": "assets/images/fashion/32.jpg",
-        "alt": "Fashion image 32",
+        "src": "assets/images/fashion/34.jpg",
+        "alt": "Fashion image 34",
         "layout": "portrait"
       },
       {
@@ -210,8 +210,8 @@
       },
       {
         "id": 34,
-        "src": "assets/images/fashion/34.jpg",
-        "alt": "Fashion image 34",
+        "src": "assets/images/fashion/32.jpg",
+        "alt": "Fashion image 32",
         "layout": "portrait"
       },
       {
@@ -222,8 +222,8 @@
       },
       {
         "id": 36,
-        "src": "assets/images/fashion/36.jpg",
-        "alt": "Fashion image 36",
+        "src": "assets/images/fashion/38.jpg",
+        "alt": "Fashion image 38",
         "layout": "portrait"
       },
       {
@@ -234,8 +234,8 @@
       },
       {
         "id": 38,
-        "src": "assets/images/fashion/38.jpg",
-        "alt": "Fashion image 38",
+        "src": "assets/images/fashion/36.jpg",
+        "alt": "Fashion image 36",
         "layout": "portrait"
       },
       {
@@ -270,32 +270,32 @@
       },
       {
         "id": 44,
-        "src": "assets/images/fashion/44.jpg",
-        "alt": "Fashion image 44",
+        "src": "assets/images/fashion/73.jpg",
+        "alt": "Fashion image 73",
         "layout": "portrait"
       },
       {
         "id": 45,
+        "src": "assets/images/fashion/8.jpg",
+        "alt": "Fashion image 8",
+        "layout": "portrait"
+      },
+      {
+        "id": 46,
         "src": "assets/images/fashion/45.jpg",
         "alt": "Fashion image 45",
         "layout": "portrait"
       },
       {
-        "id": 46,
+        "id": 47,
         "src": "assets/images/fashion/46.jpg",
         "alt": "Fashion image 46",
         "layout": "portrait"
       },
       {
-        "id": 47,
-        "src": "assets/images/fashion/47.jpg",
-        "alt": "Fashion image 47",
-        "layout": "portrait"
-      },
-      {
         "id": 48,
-        "src": "assets/images/fashion/48.jpg",
-        "alt": "Fashion image 48",
+        "src": "assets/images/fashion/6.jpg",
+        "alt": "Fashion image 6",
         "layout": "portrait"
       },
       {
@@ -306,14 +306,14 @@
       },
       {
         "id": 50,
-        "src": "assets/images/fashion/50.jpg",
-        "alt": "Fashion image 50",
+        "src": "assets/images/fashion/9.jpg",
+        "alt": "Fashion image 9",
         "layout": "portrait"
       },
       {
         "id": 51,
-        "src": "assets/images/fashion/51.jpg",
-        "alt": "Fashion image 51",
+        "src": "assets/images/fashion/65.jpg",
+        "alt": "Fashion image 65",
         "layout": "portrait"
       },
       {
@@ -324,8 +324,8 @@
       },
       {
         "id": 53,
-        "src": "assets/images/fashion/53.jpg",
-        "alt": "Fashion image 53",
+        "src": "assets/images/fashion/64.jpg",
+        "alt": "Fashion image 64",
         "layout": "portrait"
       },
       {
@@ -366,8 +366,8 @@
       },
       {
         "id": 60,
-        "src": "assets/images/fashion/60.jpg",
-        "alt": "Fashion image 60",
+        "src": "assets/images/fashion/44.jpg",
+        "alt": "Fashion image 44",
         "layout": "portrait"
       },
       {
@@ -390,14 +390,14 @@
       },
       {
         "id": 64,
-        "src": "assets/images/fashion/64.jpg",
-        "alt": "Fashion image 64",
+        "src": "assets/images/fashion/53.jpg",
+        "alt": "Fashion image 53",
         "layout": "portrait"
       },
       {
         "id": 65,
-        "src": "assets/images/fashion/65.jpg",
-        "alt": "Fashion image 65",
+        "src": "assets/images/fashion/51.jpg",
+        "alt": "Fashion image 51",
         "layout": "portrait"
       },
       {
@@ -408,14 +408,14 @@
       },
       {
         "id": 67,
-        "src": "assets/images/fashion/67.jpg",
-        "alt": "Fashion image 67",
+        "src": "assets/images/fashion/74.jpg",
+        "alt": "Fashion image 74",
         "layout": "portrait"
       },
       {
         "id": 68,
-        "src": "assets/images/fashion/68.jpg",
-        "alt": "Fashion image 68",
+        "src": "assets/images/fashion/78.jpg",
+        "alt": "Fashion image 78",
         "layout": "portrait"
       },
       {
@@ -444,14 +444,14 @@
       },
       {
         "id": 73,
-        "src": "assets/images/fashion/73.jpg",
-        "alt": "Fashion image 73",
+        "src": "assets/images/fashion/60.jpg",
+        "alt": "Fashion image 60",
         "layout": "portrait"
       },
       {
         "id": 74,
-        "src": "assets/images/fashion/74.jpg",
-        "alt": "Fashion image 74",
+        "src": "assets/images/fashion/67.jpg",
+        "alt": "Fashion image 67",
         "layout": "portrait"
       },
       {
@@ -474,8 +474,8 @@
       },
       {
         "id": 78,
-        "src": "assets/images/fashion/78.jpg",
-        "alt": "Fashion image 78",
+        "src": "assets/images/fashion/68.jpg",
+        "alt": "Fashion image 68",
         "layout": "portrait"
       },
       {
@@ -498,8 +498,8 @@
       },
       {
         "id": 82,
-        "src": "assets/images/fashion/82.jpg",
-        "alt": "Fashion image 82",
+        "src": "assets/images/fashion/47.jpg",
+        "alt": "Fashion image 47",
         "layout": "portrait"
       },
       {
@@ -516,32 +516,14 @@
       },
       {
         "id": 85,
-        "src": "assets/images/fashion/85.jpg",
-        "alt": "Fashion image 85",
+        "src": "assets/images/fashion/87.jpg",
+        "alt": "Fashion image 87",
         "layout": "portrait"
       },
       {
         "id": 86,
         "src": "assets/images/fashion/86.jpg",
         "alt": "Fashion image 86",
-        "layout": "portrait"
-      },
-      {
-        "id": 87,
-        "src": "assets/images/fashion/87.jpg",
-        "alt": "Fashion image 87",
-        "layout": "portrait"
-      },
-      {
-        "id": 88,
-        "src": "assets/images/fashion/88.jpg",
-        "alt": "Fashion image 88",
-        "layout": "portrait"
-      },
-      {
-        "id": 89,
-        "src": "assets/images/fashion/89.jpg",
-        "alt": "Fashion image 89",
         "layout": "portrait"
       }
     ],
@@ -1020,14 +1002,14 @@
     "beauty": [
       {
         "id": 1,
-        "src": "assets/images/beauty/1.jpg",
-        "alt": "Beauty image 01",
+        "src": "assets/images/beauty/7.jpg",
+        "alt": "Beauty image 07",
         "layout": "portrait"
       },
       {
         "id": 2,
-        "src": "assets/images/beauty/2.jpg",
-        "alt": "Beauty image 02",
+        "src": "assets/images/beauty/32.jpg",
+        "alt": "Beauty image 32",
         "layout": "portrait"
       },
       {
@@ -1056,8 +1038,8 @@
       },
       {
         "id": 7,
-        "src": "assets/images/beauty/7.jpg",
-        "alt": "Beauty image 07",
+        "src": "assets/images/beauty/1.jpg",
+        "alt": "Beauty image 01",
         "layout": "portrait"
       },
       {
@@ -1086,8 +1068,8 @@
       },
       {
         "id": 12,
-        "src": "assets/images/beauty/12.jpg",
-        "alt": "Beauty image 12",
+        "src": "assets/images/beauty/22.jpg",
+        "alt": "Beauty image 22",
         "layout": "portrait"
       },
       {
@@ -1140,8 +1122,8 @@
       },
       {
         "id": 21,
-        "src": "assets/images/beauty/21.jpg",
-        "alt": "Beauty image 21",
+        "src": "assets/images/beauty/29.jpg",
+        "alt": "Beauty image 29",
         "layout": "portrait"
       },
       {
@@ -1158,8 +1140,8 @@
       },
       {
         "id": 24,
-        "src": "assets/images/beauty/24.jpg",
-        "alt": "Beauty image 24",
+        "src": "assets/images/beauty/2.jpg",
+        "alt": "Beauty image 2",
         "layout": "portrait"
       },
       {
@@ -1188,8 +1170,8 @@
       },
       {
         "id": 29,
-        "src": "assets/images/beauty/29.jpg",
-        "alt": "Beauty image 29",
+        "src": "assets/images/beauty/21.jpg",
+        "alt": "Beauty image 21",
         "layout": "portrait"
       },
       {
@@ -1202,12 +1184,6 @@
         "id": 31,
         "src": "assets/images/beauty/31.jpg",
         "alt": "Beauty image 31",
-        "layout": "portrait"
-      },
-      {
-        "id": 32,
-        "src": "assets/images/beauty/32.jpg",
-        "alt": "Beauty image 32",
         "layout": "portrait"
       }
     ]

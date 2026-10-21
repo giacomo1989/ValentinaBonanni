@@ -6347,3 +6347,83 @@ body.contact-body .contact-footer-direct a {
 @media (max-width: 800px) {
   .home-body .home-scroll-cue svg { width: 40px; height: 40px; margin-top: 0; }
 }
+
+/* V121 — HOME DESKTOP: opening and final hero share identical signature geometry.
+   Edit these values once to move both signatures together. Mobile untouched. */
+@media (min-width: 801px) {
+  .home-body .home-hero > .home-identity,
+  .home-body .home-final-panel .home-final-identity > .home-identity {
+    top: 130px;
+    left: 65%;
+    width: 400px;
+  }
+  .home-body .home-final-panel .home-final-identity .home-identity-cta {
+    margin: 5px auto 0;
+  }
+}
+
+/* V122 — ABOUT / CONTACT: centered desktop stage on wide viewports.
+   Only the content stage is constrained; header/footer remain full width.
+   Portrait anchors remain relative to their respective centered pages. */
+@media (min-width: 801px) {
+  body.about-body .about-shell > main.about-page {
+    display: block;
+    width: min(1400px, calc(100% - 80px)) !important;
+    max-width: 1400px !important;
+    margin-left: auto !important;
+    margin-right: auto !important;
+    box-sizing: border-box !important;
+  }
+  body.about-body .about-page > .about-top {
+    width: 100% !important;
+    max-width: 100% !important;
+    margin-left: auto !important;
+    margin-right: auto !important;
+    box-sizing: border-box !important;
+  }
+  body.contact-body .contact-shell > main.contact-page {
+    display: block;
+    width: min(1200px, calc(100% - 80px)) !important;
+    max-width: 1200px !important;
+    margin-left: auto !important;
+    margin-right: auto !important;
+    box-sizing: border-box !important;
+  }
+  body.contact-body .contact-page > .contact-mobile-layout {
+    width: 100% !important;
+    max-width: 100% !important;
+    margin-inline: auto !important;
+    box-sizing: border-box !important;
+  }
+  body.contact-body .contact-mobile-layout > .contact-wrap {
+    width: 100% !important;
+    max-width: 1050px !important;
+    margin-left: auto !important;
+    margin-right: auto !important;
+    box-sizing: border-box !important;
+  }
+}
+
+/* V123 — ABOUT / CONTACT desktop: center the COMPLETE visual composition.
+   Move the stage as one unit; do not alter any relative spacing between
+   model, typography, form, signature or map. Mobile is unchanged.
+   These offsets compensate for the asymmetric visual footprint of the
+   absolutely positioned cutout portraits inside the centered CSS stages. */
+@media (min-width: 801px) {
+  body.about-body {
+    --about-desktop-stage-shift-x: 40px;
+  }
+  body.contact-body {
+    --contact-desktop-stage-shift-x: 85px;
+  }
+  body.about-body .about-shell > main.about-page {
+    transform: translateX(var(--about-desktop-stage-shift-x)) !important;
+  }
+  body.contact-body .contact-shell > main.contact-page {
+    transform: translateX(var(--contact-desktop-stage-shift-x)) !important;
+  }
+}
+@media (min-width: 801px) and (max-width: 1399px) {
+  body.about-body { --about-desktop-stage-shift-x: 0px; }
+  body.contact-body { --contact-desktop-stage-shift-x: 0px; }
+}
