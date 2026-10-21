@@ -586,8 +586,8 @@
       },
       {
         "id": 4,
-        "src": "assets/images/commercial/5.jpg",
-        "alt": "Commercial image 05",
+        "src": "assets/images/commercial/50.jpg",
+        "alt": "Commercial image 50",
         "layout": "portrait"
       },
       {
@@ -616,14 +616,14 @@
       },
       {
         "id": 9,
-        "src": "assets/images/commercial/19.jpg",
-        "alt": "Commercial image 19",
+        "src": "assets/images/commercial/44.jpg",
+        "alt": "Commercial image 44",
         "layout": "portrait"
       },
       {
         "id": 10,
-        "src": "assets/images/commercial/44.jpg",
-        "alt": "Commercial image 44",
+        "src": "assets/images/commercial/19.jpg",
+        "alt": "Commercial image 19",
         "layout": "portrait"
       },
       {
@@ -652,8 +652,8 @@
       },
       {
         "id": 15,
-        "src": "assets/images/commercial/15.jpg",
-        "alt": "Commercial image 15",
+        "src": "assets/images/commercial/52.jpg",
+        "alt": "Commercial image 52",
         "layout": "portrait"
       },
       {
@@ -670,8 +670,8 @@
       },
       {
         "id": 18,
-        "src": "assets/images/commercial/18.jpg",
-        "alt": "Commercial image 18",
+        "src": "assets/images/commercial/55.jpg",
+        "alt": "Commercial image 55",
         "layout": "portrait"
       },
       {
@@ -688,8 +688,8 @@
       },
       {
         "id": 21,
-        "src": "assets/images/commercial/57.jpg",
-        "alt": "Commercial image 57",
+        "src": "assets/images/commercial/21.jpg",
+        "alt": "Commercial image 21",
         "layout": "portrait"
       },
       {
@@ -700,8 +700,8 @@
       },
       {
         "id": 23,
-        "src": "assets/images/commercial/21.jpg",
-        "alt": "Commercial image 21",
+        "src": "assets/images/commercial/57.jpg",
+        "alt": "Commercial image 57",
         "layout": "portrait"
       },
       {
@@ -778,8 +778,8 @@
       },
       {
         "id": 36,
-        "src": "assets/images/commercial/36.jpg",
-        "alt": "Commercial image 36",
+        "src": "assets/images/commercial/63.jpg",
+        "alt": "Commercial image 63",
         "layout": "portrait"
       },
       {
@@ -862,8 +862,8 @@
       },
       {
         "id": 50,
-        "src": "assets/images/commercial/50.jpg",
-        "alt": "Commercial image 50",
+        "src": "assets/images/commercial/5.jpg",
+        "alt": "Commercial image 5",
         "layout": "portrait"
       },
       {
@@ -874,8 +874,8 @@
       },
       {
         "id": 52,
-        "src": "assets/images/commercial/52.jpg",
-        "alt": "Commercial image 52",
+        "src": "assets/images/commercial/15.jpg",
+        "alt": "Commercial image 15",
         "layout": "portrait"
       },
       {
@@ -892,8 +892,8 @@
       },
       {
         "id": 55,
-        "src": "assets/images/commercial/55.jpg",
-        "alt": "Commercial image 55",
+        "src": "assets/images/commercial/18.jpg",
+        "alt": "Commercial image 18",
         "layout": "portrait"
       },
       {
@@ -940,8 +940,8 @@
       },
       {
         "id": 63,
-        "src": "assets/images/commercial/63.jpg",
-        "alt": "Commercial image 63",
+        "src": "assets/images/commercial/36.jpg",
+        "alt": "Commercial image 36",
         "layout": "portrait"
       },
       {
@@ -1184,6 +1184,18 @@
         "id": 31,
         "src": "assets/images/beauty/31.jpg",
         "alt": "Beauty image 31",
+        "layout": "portrait"
+      },
+      {
+        "id": 32,
+        "src": "assets/images/beauty/34.jpg",
+        "alt": "Beauty image 34",
+        "layout": "portrait"
+      },
+      {
+        "id": 33,
+        "src": "assets/images/beauty/33.jpg",
+        "alt": "Beauty image 33",
         "layout": "portrait"
       }
     ]
