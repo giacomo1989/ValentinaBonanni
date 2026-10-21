@@ -86,12 +86,12 @@ img {
   padding: 0;
   font: inherit;
   font-size: 11px;
-  color: var(--muted);
+  color: #e1ded4;
   cursor: pointer
 }
 
 .lang button.active {
-  color: var(--ink);
+  color: #e1ded4;
   text-decoration: underline
 }
 
