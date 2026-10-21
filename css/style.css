@@ -6427,3 +6427,41 @@ body.contact-body .contact-footer-direct a {
   body.about-body { --about-desktop-stage-shift-x: 0px; }
   body.contact-body { --contact-desktop-stage-shift-x: 0px; }
 }
+
+/* V124 — HOME DESKTOP: single source of truth for both hero identities.
+   The final identity is a clone of the initial one (js/home-scroll.js).
+   Change the custom properties below to reposition both together. */
+@media (min-width: 801px) {
+  .home-body {
+    --home-identity-top: 130px;
+    --home-identity-left: 65%;
+    --home-identity-width: 400px;
+  }
+  .home-body .home-hero > .home-identity,
+  .home-body .home-final-panel .home-final-identity > .home-identity {
+    top: var(--home-identity-top) !important;
+    left: var(--home-identity-left) !important;
+    width: var(--home-identity-width) !important;
+  }
+  /* Both use the same signature image and identical visual treatment. */
+  .home-body .home-hero > .home-identity .logo-signature,
+  .home-body .home-final-panel .home-final-identity > .home-identity .logo-signature {
+    width: 100%;
+    margin: 0;
+  }
+  .home-body .home-hero > .home-identity .logo-signature img,
+  .home-body .home-final-panel .home-final-identity > .home-identity .logo-signature img {
+    filter: none !important;
+    -webkit-filter: none !important;
+  }
+  .home-body .home-hero > .home-identity .home-identity-copy,
+  .home-body .home-final-panel .home-final-identity > .home-identity .home-identity-copy {
+    color: #e1ded4;
+  }
+  /* Match the navigation language control to the ivory Home header. */
+  .home-body .home-header .lang,
+  .home-body .home-header .lang button,
+  .home-body .home-header .lang button.active {
+    color: #e1ded4 !important;
+  }
+}
