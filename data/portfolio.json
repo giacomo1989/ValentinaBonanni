@@ -1020,8 +1020,8 @@
       },
       {
         "id": 4,
-        "src": "assets/images/beauty/4.jpg",
-        "alt": "Beauty image 04",
+        "src": "assets/images/beauty/17.jpg",
+        "alt": "Beauty image 17",
         "layout": "portrait"
       },
       {
@@ -1098,14 +1098,14 @@
       },
       {
         "id": 17,
-        "src": "assets/images/beauty/17.jpg",
-        "alt": "Beauty image 17",
+        "src": "assets/images/beauty/4.jpg",
+        "alt": "Beauty image 04",
         "layout": "portrait"
       },
       {
         "id": 18,
-        "src": "assets/images/beauty/18.jpg",
-        "alt": "Beauty image 18",
+        "src": "assets/images/beauty/34.jpg",
+        "alt": "Beauty image 34",
         "layout": "portrait"
       },
       {
@@ -1188,8 +1188,8 @@
       },
       {
         "id": 32,
-        "src": "assets/images/beauty/34.jpg",
-        "alt": "Beauty image 34",
+        "src": "assets/images/beauty/18.jpg",
+        "alt": "Beauty image 18",
         "layout": "portrait"
       },
       {

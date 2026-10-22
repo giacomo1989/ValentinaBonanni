@@ -6830,7 +6830,7 @@ body.contact-body .contact-footer-direct a {
     --about-content-top: 16px;
     --about-content-bottom: 12px;
     --about-model-height: 90%;
-    --about-writing-x: 75%;
+    --about-writing-x: 43%;
     --about-writing-y: 63%;
     --about-writing-width: 30%;
     /*--about-map-max-width: 610px;*/
@@ -6852,6 +6852,7 @@ body.contact-body .contact-footer-direct a {
     height: auto !important;
     margin: 0 auto !important;
     transform: none !important;
+    left: -7%
   }
   body.about-body .about-page > .about-top {
     position: relative !important;
@@ -6915,7 +6916,7 @@ body.contact-body .contact-footer-direct a {
     flex-direction: column !important;
     justify-content: space-between !important;
     align-items: stretch !important;
-    width: 100% !important;
+    width: 95% !important;
     max-width: none !important;
     min-width: 0 !important;
     min-height: 0 !important;
@@ -7009,11 +7010,11 @@ body.contact-body .contact-footer-direct a {
     position: absolute !important;
     top: auto !important;
     bottom: 0 !important;
-    left: 50% !important;
+    left: 73% !important;
     right: auto !important;
     margin: 0 !important;
     margin-left: 0 !important;
-    height: 82% !important;
+    height: 100% !important;
     width: auto !important;
     max-width: 100% !important;
     max-height: 100% !important;
