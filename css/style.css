@@ -6465,3 +6465,619 @@ body.contact-body .contact-footer-direct a {
     color: #e1ded4 !important;
   }
 }
+
+/* V125 — ABOUT DESKTOP ONLY: silhouette rises from the footer's top border,
+   leaving approximately 20% of the header-to-footer stage above her head.
+   No mobile styles or other pages are affected. */
+@media (min-width: 801px) {
+  body.about-body .about-page > .about-model-desktop {
+    top: auto !important;
+    bottom: 0 !important;
+    height: 80% !important;
+    width: auto !important;
+    max-height: none !important;
+    max-width: none !important;
+    object-fit: contain !important;
+    object-position: bottom center !important;
+  }
+}
+
+/* V126 — ABOUT DESKTOP ONLY: the model's positioning reference must extend
+   all the way to the footer. The portrait is a child of .about-top (not a
+   direct child of .about-page), so anchor it to a full-height .about-top.
+   Mobile and all other pages are intentionally untouched. */
+@media (min-width: 801px) {
+  body.about-body .about-shell > main.about-page {
+    display: flex !important;
+    flex-direction: column !important;
+    min-height: 0 !important;
+  }
+
+  body.about-body .about-page > .about-top {
+    position: relative !important;
+    flex: 1 0 auto !important;
+    min-height: 100% !important;
+    align-content: start !important;
+  }
+
+  body.about-body .about-top > .about-model-desktop {
+    position: absolute !important;
+    top: auto !important;
+    bottom: 0 !important;
+    height: 90% !important;
+    width: auto !important;
+    max-height: none !important;
+    max-width: none !important;
+    object-fit: contain !important;
+    object-position: bottom center !important;
+    margin: 0 !important;
+  }
+}
+
+/* V127 — ABOUT DESKTOP ONLY: vertical-responsive editorial composition.
+   The silhouette remains footer-anchored (V126).  The handwriting is
+   positioned within the same full-height stage as the silhouette, rather
+   than within a fixed 710px column.  No mobile or other page changes. */
+@media (min-width: 801px) {
+  /* Remove the old fixed 710px desktop column height. Both columns now
+     follow the actual header-to-footer stage, at any desktop aspect ratio. */
+  body.about-body .about-page > .about-top {
+    height: auto !important;
+    min-height: 100% !important;
+    align-items: stretch !important;
+  }
+  body.about-body .about-top > .about-photo,
+  body.about-body .about-top > .about-right {
+    height: 100% !important;
+    min-height: 0 !important;
+  }
+  /* Anchor the handwritten motif to the portrait's proportional stage:
+     ~51% from its top, just below the raised arm at large resolutions. */
+  body.about-body .about-photo > .about-handwriting-overlay {
+    top: 51% !important;
+    left: calc(100% + 0px) !important;
+    width: clamp(125px, 15svh, 215px) !important;
+    max-height: 27% !important;
+    transform: translate(-50%, -50%) !important;
+  }
+  /* Biography + signature + agencies occupy the available stage rather
+     than the old fixed 710px grid; keep the existing internal alignment. */
+  body.about-body .about-top > .about-right {
+    display: grid !important;
+    grid-template-rows: auto minmax(0, 1fr) !important;
+    align-content: start !important;
+    padding-top: clamp(0px, 1.2svh, 18px) !important;
+    box-sizing: border-box !important;
+  }
+  body.about-body .about-right > .about-copy {
+    margin-top: clamp(8px, 1.4svh, 22px) !important;
+  }
+  body.about-body .about-right > .representation {
+    min-height: 0 !important;
+    height: 100% !important;
+  }
+  body.about-body .about-right > .representation .representation-map {
+    min-height: 0 !important;
+    height: 100% !important;
+  }
+  body.about-body .about-right > .representation .map-coordinate-stage {
+    width: min(96%, 65svh) !important;
+    max-width: 100% !important;
+  }
+}
+
+/* V128 — ABOUT DESKTOP ONLY: restore the editorial map and handwriting.
+   Keep V126's footer-anchored portrait; avoid clipping the agency map inside
+   the former absolute-positioned, zero-height grid track. */
+@media (min-width: 801px) {
+  body.about-body .about-top > .about-right {
+    display: flex !important;
+    flex-direction: column !important;
+    align-items: stretch !important;
+    justify-content: flex-start !important;
+    gap: clamp(18px, 2.5vh, 42px) !important;
+    height: 100% !important;
+    padding-top: clamp(18px, 3vh, 48px) !important;
+    min-height: 0 !important;
+  }
+  body.about-body .about-right > .about-copy {
+    flex: 0 0 auto !important;
+    margin-top: 0 !important;
+  }
+  body.about-body .about-right > .representation {
+    display: flex !important;
+    flex-direction: column !important;
+    flex: 1 1 auto !important;
+    height: auto !important;
+    min-height: clamp(300px, 40vh, 620px) !important;
+    overflow: visible !important;
+  }
+  body.about-body .about-right > .representation > .representation-map {
+    position: relative !important;
+    inset: auto !important;
+    flex: 1 1 auto !important;
+    width: 100% !important;
+    height: auto !important;
+    min-height: clamp(290px, 38vh, 600px) !important;
+    overflow: visible !important;
+  }
+  body.about-body .about-right > .representation .map-coordinate-stage {
+    position: absolute !important;
+    top: 50% !important;
+    left: 50% !important;
+    width: min(96%, 590px) !important;
+    max-width: 100% !important;
+    transform: translate(-50%, -50%) !important;
+  }
+  body.about-body .about-photo > .about-handwriting-overlay {
+    top: 94% !important;
+    left: calc(100% + 10px) !important;
+    /*width: clamp(210px, 23vh, 320px) !important;*/
+    max-height: none !important;
+    height: auto !important;
+    /*transform: translate(-50%, -50%) !important;*/
+    transform: translate(-50%, -50%) translateY(20vh) !important;
+  }
+}
+
+
+/* V129 — ABOUT DESKTOP ONLY: expand the right editorial composition toward
+   the footer. Portrait and handwriting remain untouched; mobile unaffected. */
+@media (min-width: 801px) {
+  body.about-body .about-top > .about-right {
+    gap: clamp(22px, 3.5vh, 56px) !important;
+  }
+  body.about-body .about-right > .about-copy p[data-i18n="about.body"] {
+    font-size: clamp(13px, 1.05vw, 17px) !important;
+    line-height: 1.75 !important;
+  }
+  body.about-body .about-right > .representation {
+    min-height: clamp(430px, 58vh, 950px) !important;
+  }
+  body.about-body .about-right > .representation > .representation-map {
+    min-height: clamp(410px, 56vh, 920px) !important;
+  }
+  body.about-body .about-right > .representation .map-coordinate-stage {
+    top: 58% !important;
+    width: min(100%, 740px) !important;
+    transform: translate(-50%, -50%) scale(1.15) !important;
+    transform-origin: center center !important;
+  }
+}
+
+/* V130 — ABOUT DESKTOP ONLY: center the visible editorial composition,
+   including the absolutely positioned silhouette and the agency map.
+   The offset is calculated from their rendered bounds by the About-only
+   script; all internal distances and footer anchoring remain unchanged. */
+@media (min-width: 801px) {
+  body.about-body .about-shell > main.about-page {
+    transform: translateX(var(--about-visual-center-shift, 0px)) !important;
+  }
+}
+
+/* V131 — ABOUT DESKTOP ONLY: fit the editorial stage within the viewport.
+   Previous V129 minimum map heights (58vh + 56vh) caused the right column
+   to enlarge the page beyond the footer on shorter laptop viewports. */
+@media (min-width: 801px) {
+  body.about-body .about-shell > main.about-page {
+    min-height: 0 !important;
+    flex: 1 1 0 !important;
+  }
+  body.about-body .about-page > .about-top {
+    flex: 1 1 0 !important;
+    min-height: 0 !important;
+    height: 100% !important;
+  }
+  body.about-body .about-top > .about-right {
+    min-height: 0 !important;
+    height: 100% !important;
+    gap: clamp(10px, 2vh, 32px) !important;
+    padding-top: clamp(8px, 1.5vh, 24px) !important;
+    padding-bottom: clamp(8px, 1.5vh, 24px) !important;
+    box-sizing: border-box !important;
+  }
+  body.about-body .about-right > .representation,
+  body.about-body .about-right > .representation > .representation-map {
+    min-height: 0 !important;
+    height: auto !important;
+    flex: 1 1 0 !important;
+  }
+  body.about-body .about-right > .representation .map-coordinate-stage {
+    width: min(100%, 62vh) !important;
+    max-height: 100% !important;
+    top: 50% !important;
+    transform: translate(-50%, -50%) scale(1.08) !important;
+  }
+}
+
+/* V132 — ABOUT DESKTOP ONLY: preserve the no-scroll layout without
+   collapsing the Europe map. The map stage retains its 1000:650 ratio;
+   its size is limited by viewport height, not by the flex item's
+   transient computed height. Mobile and other pages are unaffected. */
+@media (min-width: 801px) {
+  body.about-body .about-top > .about-right {
+    min-height: 0 !important;
+    overflow: visible !important;
+  }
+  body.about-body .about-right > .representation {
+    flex: 1 1 0 !important;
+    min-height: 0 !important;
+    overflow: visible !important;
+  }
+  body.about-body .about-right > .representation > .representation-map {
+    flex: 1 1 0 !important;
+    min-height: 0 !important;
+    overflow: visible !important;
+  }
+  body.about-body .about-right > .representation .map-coordinate-stage {
+    width: min(100%, 72svh, 740px) !important;
+    height: auto !important;
+    aspect-ratio: 1000 / 650 !important;
+    max-height: none !important;
+    top: 50% !important;
+    left: 50% !important;
+    transform: translate(-50%, -50%) !important;
+  }
+}
+
+
+/* V133 — ABOUT DESKTOP ONLY: map sizing independent from biography height.
+   Keep the map near the footer, prevent overlap, and use the available
+   horizontal space for a more compact biography. Mobile is untouched. */
+@media (min-width: 801px) {
+  body.about-body {
+    --about-map-fixed-width: clamp(360px, 58svh, 650px);
+    --about-map-footer-gap: 10px;
+  }
+  body.about-body .about-top > .about-right {
+    display: grid !important;
+    grid-template-rows: auto minmax(0, 1fr) !important;
+    gap: 6px !important;
+    min-height: 0 !important;
+    padding-top: clamp(6px, 1svh, 14px) !important;
+    padding-bottom: 0 !important;
+  }
+  body.about-body .about-right > .about-copy {
+    width: 100% !important;
+    max-width: none !important;
+    padding-left: 0 !important;
+    padding-right: 0 !important;
+    margin: 0 !important;
+    min-width: 0 !important;
+    align-self: start !important;
+  }
+  body.about-body .about-right > .about-copy p[data-i18n="about.body"] {
+    font-size: clamp(12px, 0.95vw, 23px) !important;
+    line-height: 1.48 !important;
+    margin-bottom: 0 !important;
+  }
+  body.about-body .about-right > .about-copy .about-inline-signature {
+    margin-top: clamp(7px, 1svh, 13px) !important;
+    margin-bottom: 0 !important;
+  }
+  body.about-body .about-right > .representation {
+    position: relative !important;
+    display: block !important;
+    height: 100% !important;
+    min-height: 0 !important;
+    width: 100% !important;
+    overflow: visible !important;
+    align-self: stretch !important;
+  }
+  body.about-body .about-right > .representation > .representation-map {
+    position: absolute !important;
+    inset: auto 0 var(--about-map-footer-gap) 0 !important;
+    width: 100% !important;
+    height: min(100%, calc(var(--about-map-fixed-width) * 0.65 + 25px)) !important;
+    min-height: 0 !important;
+    flex: none !important;
+    overflow: visible !important;
+  }
+  body.about-body .about-right > .representation .map-coordinate-stage {
+    position: absolute !important;
+    width: min(100%, var(--about-map-fixed-width)) !important;
+    height: auto !important;
+    aspect-ratio: 1000 / 650 !important;
+    max-width: none !important;
+    max-height: none !important;
+    bottom: 0 !important;
+    left: 50% !important;
+    transform: translateX(-50%) !important;
+  }
+}
+
+
+/* V134 — ABOUT DESKTOP ONLY: handwriting anchored to the actual silhouette.
+   Values are fractions of the rendered model image, NOT of .about-photo.
+   Adjust --versatility-model-y to move the writing vertically (larger = lower).
+   No changes to the portrait, map, biography or mobile layout. */
+@media (min-width: 801px) {
+  body.about-body {
+    --versatility-model-x: 0.88;
+    --versatility-model-y: 0.65;
+    --versatility-model-width: 0.55;
+  }
+  body.about-body .about-photo > .about-handwriting-overlay {
+    top: var(--versatility-anchored-top, 50%) !important;
+    left: var(--versatility-anchored-left, 100%) !important;
+    width: var(--versatility-anchored-width, 220px) !important;
+    height: auto !important;
+    max-height: none !important;
+    transform: translate(-50%, -50%) !important;
+  }
+}
+@media (min-width: 1541px) {
+
+  body.about-body .about-right > .representation .map-coordinate-stage {
+    width: 900px !important;
+    max-width: none !important;
+    min-width: 900px !important;
+  }
+
+}
+
+
+/* V135 — ABOUT DESKTOP: TWO INDEPENDENT COLUMNS.
+   Only desktop; the mobile cascade and markup remain unchanged.
+   Adjust these variables instead of adding viewport-specific offsets. */
+@media (min-width: 801px) {
+  body.about-body {
+    --about-stage-max-width: 1520px;
+    --about-stage-side-gap: 40px;
+    --about-column-gap: clamp(18px, 3vw, 64px);
+    --about-left-share: 1fr;
+    --about-right-share: 1fr;
+    --about-content-top: 16px;
+    --about-content-bottom: 12px;
+    --about-model-height: 90%;
+    --about-writing-x: 75%;
+    --about-writing-y: 63%;
+    --about-writing-width: 30%;
+    /*--about-map-max-width: 610px;*/
+     --about-map-max-width:100%;
+  }
+  body.about-body .about-shell {
+    display: flex !important;
+    flex-direction: column !important;
+    min-height: 100svh !important;
+  }
+  body.about-body .about-shell > main.about-page {
+    position: relative !important;
+    display: flex !important;
+    flex-direction: column !important;
+    flex: 1 0 auto !important;
+    width: min(var(--about-stage-max-width), calc(100% - 2 * var(--about-stage-side-gap))) !important;
+    max-width: none !important;
+    min-height: 0 !important;
+    height: auto !important;
+    margin: 0 auto !important;
+    transform: none !important;
+  }
+  body.about-body .about-page > .about-top {
+    position: relative !important;
+    display: grid !important;
+    grid-template-columns: minmax(0, var(--about-left-share)) minmax(0, var(--about-right-share)) !important;
+    gap: var(--about-column-gap) !important;
+    flex: 1 0 auto !important;
+    width: 100% !important;
+    height: auto !important;
+    min-height: 0 !important;
+    margin: 0 !important;
+    align-items: stretch !important;
+    transform: none !important;
+  }
+  body.about-body .about-top > .about-photo {
+    grid-column: 1 !important;
+    grid-row: 1 !important;
+    position: relative !important;
+    width: 100% !important;
+    height: auto !important;
+    min-height: 0 !important;
+    margin: 0 !important;
+    padding: 0 !important;
+    overflow: visible !important;
+  }
+  body.about-body .about-photo > .about-model-desktop {
+    display: block !important;
+    position: absolute !important;
+    left: 50% !important;
+    right: auto !important;
+    top: auto !important;
+    bottom: 0 !important;
+    height: var(--about-model-height) !important;
+    width: auto !important;
+    max-width: 100% !important;
+    max-height: none !important;
+    margin: 0 !important;
+    object-fit: contain !important;
+    object-position: bottom center !important;
+    transform: translateX(-50%) !important;
+    z-index: 6 !important;
+  }
+  body.about-body .about-photo > .about-handwriting-overlay {
+    position: absolute !important;
+    left: var(--about-writing-x) !important;
+    top: var(--about-writing-y) !important;
+    right: auto !important;
+    bottom: auto !important;
+    width: var(--about-writing-width) !important;
+    max-width: none !important;
+    max-height: none !important;
+    height: auto !important;
+    margin: 0 !important;
+    transform: translate(-50%, -50%) !important;
+    z-index: 5 !important;
+  }
+  body.about-body .about-top > .about-right {
+    grid-column: 2 !important;
+    grid-row: 1 !important;
+    display: flex !important;
+    flex-direction: column !important;
+    justify-content: space-between !important;
+    align-items: stretch !important;
+    width: 100% !important;
+    max-width: none !important;
+    min-width: 0 !important;
+    min-height: 0 !important;
+    height: auto !important;
+    margin: 0 !important;
+    padding: var(--about-content-top) 0 var(--about-content-bottom) !important;
+    gap: clamp(12px, 2svh, 26px) !important;
+    box-sizing: border-box !important;
+    overflow: visible !important;
+    transform: none !important;
+  }
+  body.about-body .about-right > .about-copy {
+    flex: 0 0 auto !important;
+    width: 100% !important;
+    max-width: none !important;
+    min-width: 0 !important;
+    margin: 0 !important;
+    padding: 0 !important;
+  }
+  body.about-body .about-right > .representation {
+    display: flex !important;
+    flex: 1 1 auto !important;
+    flex-direction: column !important;
+    width: 100% !important;
+    min-width: 0 !important;
+    min-height: 230px !important;
+    height: auto !important;
+    margin: 0 !important;
+    padding: 0 !important;
+    position: relative !important;
+    overflow: visible !important;
+  }
+  body.about-body .about-right > .representation > .representation-map {
+    position: relative !important;
+    inset: auto !important;
+    flex: 1 1 auto !important;
+    width: 100% !important;
+    min-height: 210px !important;
+    height: auto !important;
+    overflow: visible !important;
+  }
+  body.about-body .about-right > .representation .map-coordinate-stage {
+    position: absolute !important;
+    top: 50% !important;
+    left: 50% !important;
+    right: auto !important;
+    bottom: auto !important;
+    width: min(100%, var(--about-map-max-width), 66svh) !important;
+    height: auto !important;
+    aspect-ratio: 1000 / 650 !important;
+    max-height: none !important;
+    transform: translate(-50%, -50%) !important;
+  }
+}
+
+/* V136 — ABOUT DESKTOP: fixed grid track between header and footer.
+   Overrides old min-height:100% and inherited portrait margins. Mobile untouched. */
+@media (min-width: 801px) {
+  body.about-body .about-shell {
+    display: grid !important;
+    grid-template-rows: auto minmax(0, 1fr) auto !important;
+    grid-template-columns: minmax(0, 1fr) !important;
+    min-height: 100svh !important;
+    height: 100svh !important;
+    box-sizing: border-box !important;
+  }
+  body.about-body .about-shell > .site-header { grid-row: 1 !important; }
+  body.about-body .about-shell > main.about-page {
+    grid-row: 2 !important;
+    display: block !important;
+    flex: none !important;
+    height: 100% !important;
+    min-height: 0 !important;
+    align-self: stretch !important;
+    overflow: visible !important;
+  }
+  body.about-body .about-page > .about-top {
+    display: grid !important;
+    flex: none !important;
+    height: 100% !important;
+    min-height: 0 !important;
+    max-height: 100% !important;
+    align-content: stretch !important;
+  }
+  body.about-body .about-top > .about-photo {
+    height: 100% !important;
+    min-height: 0 !important;
+    aspect-ratio: auto !important;
+  }
+  body.about-body .about-photo > img.about-model-desktop {
+    position: absolute !important;
+    top: auto !important;
+    bottom: 0 !important;
+    left: 50% !important;
+    right: auto !important;
+    margin: 0 !important;
+    margin-left: 0 !important;
+    height: 82% !important;
+    width: auto !important;
+    max-width: 100% !important;
+    max-height: 100% !important;
+    object-fit: contain !important;
+    object-position: bottom center !important;
+    transform: translateX(-50%) !important;
+  }
+  body.about-body .about-shell > footer.footer { grid-row: 3 !important; }
+}
+
+/* V137 — Contact footer: email icon + address share one mailto link; icon alignment. */
+body.contact-body .contact-footer-direct .contact-email-link {
+  display: inline-flex;
+  align-items: center;
+  gap: 5px;
+  white-space: nowrap;
+}
+body.contact-body .contact-footer-direct .contact-detail-row > a:has(.contact-detail-icon) {
+  display: inline-flex;
+  align-items: center;
+  line-height: 1;
+}
+body.contact-body .contact-footer-direct .contact-detail-icon {
+  display: block;
+  width: 14px;
+  height: 14px;
+  flex: 0 0 14px;
+}
+
+/* V138 — Contact desktop footer: align label and both icons on one left edge. */
+@media (min-width: 801px) {
+  body.contact-body .footer.footer-production {
+    --contact-footer-right-width: 260px;
+  }
+  body.contact-body .contact-footer-direct .contact-direct-label,
+  body.contact-body .contact-footer-direct .contact-detail-row:nth-child(1),
+  body.contact-body .contact-footer-direct .contact-detail-row:nth-child(2) {
+    box-sizing: border-box;
+    width: var(--contact-footer-right-width);
+    justify-self: end;
+    text-align: left;
+  }
+}
+
+/* V139 - Contact footer MOBILE only: align label with mail and Instagram icons. */
+@media (max-width: 800px) {
+  body.contact-body .contact-footer-direct .contact-direct-label,
+  body.contact-body .contact-footer-direct .contact-detail-row:nth-child(1),
+  body.contact-body .contact-footer-direct .contact-detail-row:nth-child(2) {
+    justify-self: start !important;
+    text-align: left !important;
+  }
+}
+
+@media (max-width: 799px) {
+    body.contact-body .contact-detail-row {
+        position: relative;
+        left: -30px !important;
+    }
+    body.contact-body .contact-direct-label {
+
+        position: relative;
+
+        left: -28px !important;
+
+    }
+}

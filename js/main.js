@@ -182,6 +182,23 @@ document.addEventListener('DOMContentLoaded',initPortfolioCoverEntrance);
     document.querySelectorAll('[data-lang]').forEach(b=>b.addEventListener('click',()=>setTimeout(applyFormPlaceholders,80)));
     const form=document.getElementById('contactForm');
     const status=document.getElementById('contactFormStatus');
+    const lang = document.documentElement.lang?.toLowerCase().split('-')[0] || 'en';
+    const messages = {
+      it: {
+        success: 'Messaggio inviato',
+        error: 'Invio non riuscito. Riprova.'
+      },
+      en: {
+        success: 'Message sent successfully',
+        error: 'Message could not be sent. Please try again.'
+      },
+      es: {
+        success: 'Mensaje enviado correctamente',
+        error: 'No se pudo enviar el mensaje. Inténtalo de nuevo.'
+      }
+    };
+
+    const currentMessages = messages[lang] || messages.en;
     if(form&&status)form.addEventListener('submit',async e=>{
       e.preventDefault();
       status.textContent='';
@@ -192,10 +209,10 @@ document.addEventListener('DOMContentLoaded',initPortfolioCoverEntrance);
         const response=await fetch(form.action,{method:'POST',body:new FormData(form),headers:{Accept:'application/json'}});
         if(!response.ok)throw new Error('Formspree submission failed');
         form.reset();
-        status.textContent='Messaggio inviato';
+        status.textContent=currentMessages.success;
         status.classList.add('is-visible');
       }catch(err){
-        status.textContent='Invio non riuscito. Riprova.';
+        status.textContent=currentMessages.error;
         status.classList.add('is-visible','is-error');
       }finally{
         if(submit)submit.disabled=false;
