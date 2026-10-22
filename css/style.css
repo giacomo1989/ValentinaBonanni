@@ -6806,12 +6806,12 @@ body.contact-body .contact-footer-direct a {
     transform: translate(-50%, -50%) !important;
   }
 }
-@media (min-width: 1541px) {
+@media (min-width: 1741px) {
 
   body.about-body .about-right > .representation .map-coordinate-stage {
-    width: 900px !important;
+    width: 800px !important;
     max-width: none !important;
-    min-width: 900px !important;
+    min-width: 800px !important;
   }
 
 }

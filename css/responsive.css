@@ -2189,7 +2189,7 @@ html.category-cover-arrival .gallery-item img {
 
 @media (max-width: 800px) {
   body.about-body {
-    --represented-title-from-map-top: 30px;
+    --represented-title-from-map-top: 40px;
   }
 
   body.about-body .representation > .represented-title-desktop {
