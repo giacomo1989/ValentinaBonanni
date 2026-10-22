@@ -2355,32 +2355,16 @@ html.category-cover-arrival .gallery-item img {
   }
 }
 
-/* V142 — HOME MOBILE: a single uninterrupted photographic layer.
-   Keep the original 100svh scroll stage and every overlay position intact.
-   Only the photo extends behind Safari's bottom browser chrome. */
+/* HOME MOBILE — remove the V142 fixed duplicate background.
+   Keep the original hero image inside the sticky stage so it follows
+   the existing scroll composition without a second image behind it. */
 @media (max-width: 800px) {
   body.home-body::before {
-    content: "";
-    position: fixed;
-    inset: 0;
-    width: 100%;
-    height: 100lvh;
-    background-image: url('../assets/images/home/hero-home-mobile.jpg');
-    background-size: cover;
-    background-position: 68% center;
-    background-repeat: no-repeat;
-    pointer-events: none;
-    z-index: 0;
+    content: none !important;
+    display: none !important;
   }
-
-  body.home-body > .home-scroll-track {
-    position: relative;
-    z-index: 1;
-  }
-
-  /* The image is painted only once, behind the entire first stage. */
   body.home-body .home-scroll-stage > .home-hero {
-    background-image: none !important;
+    background-image: url('../assets/images/home/hero-home-mobile.jpg') !important;
     background-color: transparent !important;
   }
 }
